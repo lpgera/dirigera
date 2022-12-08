@@ -2,10 +2,13 @@
 
 import { program } from 'commander'
 import Dirigera from './index'
+import { version } from '../package.json'
 
-program.description(
-  'CLI utility to help get started with the dirigera library and to debug issues'
-)
+program
+  .version(version)
+  .description(
+    'CLI utility to help get started with the dirigera library and to debug issues'
+  )
 
 program
   .command('authenticate')
