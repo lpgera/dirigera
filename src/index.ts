@@ -1,11 +1,14 @@
-import crypto from 'crypto'
 import readline from 'readline/promises'
 import os from 'os'
-import got from 'got-cjs'
+import got, { Got } from 'got-cjs'
+import {
+  calculateCodeChallenge,
+  CODE_CHALLENGE_METHOD,
+  generateCodeVerifier,
+} from './authCode'
 
 export default class Dirigera {
-  private readonly gatewayIP: string
-  private readonly accessToken: string | undefined
+  private readonly gotInstance: Got
 
   constructor({
     gatewayIP,
@@ -14,39 +17,29 @@ export default class Dirigera {
     gatewayIP: string
     accessToken?: string
   }) {
-    this.gatewayIP = gatewayIP
-    this.accessToken = accessToken
-  }
-
-  private generateCodeVerifier(): string {
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('')
-    const length = 128
-
-    return [...Array(length)]
-      .map(() => characters[Math.floor(Math.random() * characters.length)])
-      .join('')
-  }
-
-  private calculateCodeChallenge(codeVerifier: string): string {
-    return crypto.createHash('sha256').update(codeVerifier).digest('base64url')
+    this.gotInstance = got.extend({
+      prefixUrl: `https://${gatewayIP}:8443/v1`,
+      headers: {
+        ...(accessToken ? { authorization: `Bearer ${accessToken}` } : null),
+      },
+      https: {
+        rejectUnauthorized: false,
+      },
+    })
   }
 
   async authenticate() {
-    const codeVerifier = this.generateCodeVerifier()
-    const codeChallenge = this.calculateCodeChallenge(codeVerifier)
+    const codeVerifier = generateCodeVerifier()
+    const codeChallenge = calculateCodeChallenge(codeVerifier)
 
-    const { code }: { code: string } = await got(
-      `https://${this.gatewayIP}:8443/v1/oauth/authorize`,
+    const { code }: { code: string } = await this.gotInstance(
+      `oauth/authorize`,
       {
         searchParams: {
           audience: 'homesmart.local',
           response_type: 'code',
           code_challenge: codeChallenge,
-          code_challenge_method: 'S256',
-        },
-        https: {
-          rejectUnauthorized: false,
+          code_challenge_method: CODE_CHALLENGE_METHOD,
         },
       }
     ).json()
@@ -62,9 +55,8 @@ export default class Dirigera {
 
     rl.close()
 
-    const { access_token: accessToken }: { access_token: string } = await got(
-      `https://${this.gatewayIP}:8443/v1/oauth/token`,
-      {
+    const { access_token: accessToken }: { access_token: string } =
+      await this.gotInstance(`oauth/token`, {
         method: 'POST',
         form: {
           code,
@@ -72,25 +64,15 @@ export default class Dirigera {
           grant_type: 'authorization_code',
           code_verifier: codeVerifier,
         },
-        https: {
-          rejectUnauthorized: false,
-        },
-      }
-    ).json()
+      }).json()
 
-    console.log(`Your access token: ${accessToken}`)
+    return accessToken
   }
 
   // TODO return type missing
   async home() {
-    return got(`https://${this.gatewayIP}:8443/v1/home`, {
+    return this.gotInstance(`home`, {
       method: 'GET',
-      headers: {
-        authorization: `Bearer ${this.accessToken}`,
-      },
-      https: {
-        rejectUnauthorized: false,
-      },
     }).json()
   }
 }

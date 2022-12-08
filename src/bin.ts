@@ -14,10 +14,12 @@ program
   .command('authenticate')
   .description('Get an authentication token from your gateway')
   .requiredOption('--gateway-IP <string>')
-  .action((options: { gatewayIP: string }) => {
+  .action(async (options: { gatewayIP: string }) => {
     const client = new Dirigera(options)
 
-    client.authenticate().catch((err) => console.error(err))
+    const accessToken = await client.authenticate()
+
+    console.log(`🔑 Your access token: ${accessToken}`)
   })
 
 program
