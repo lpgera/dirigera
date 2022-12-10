@@ -2,7 +2,7 @@ import createMdnsServer from 'mdns-server'
 
 const name = '_ihsp._tcp.local.'
 
-export const discoverGateway = async (
+export const discoverGatewayIP = async (
   timeoutMilliseconds = 10000
 ): Promise<string> => {
   const mdnsServer = createMdnsServer({

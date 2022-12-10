@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import Dirigera from './index'
+import createDirigeraClient from './index'
 import { version } from '../package.json'
-import { discoverGateway } from './mdnsDiscovery'
 
 program
   .version(version)
@@ -19,9 +18,7 @@ program
     'Optional. Use if MDNS discovery is not working.'
   )
   .action(async (options: { gatewayIP?: string }) => {
-    const gatewayIP = options.gatewayIP ?? (await discoverGateway())
-
-    const client = new Dirigera({ gatewayIP })
+    const client = await createDirigeraClient(options)
 
     const accessToken = await client.authenticate()
 
@@ -40,9 +37,7 @@ program
     `Get an access token by running 'dirigera authenticate' first!`
   )
   .action(async (options: { gatewayIP?: string; accessToken: string }) => {
-    const gatewayIP = options.gatewayIP ?? (await discoverGateway())
-
-    const client = new Dirigera({ gatewayIP, accessToken: options.accessToken })
+    const client = await createDirigeraClient(options)
 
     const dump = await client.home()
 
