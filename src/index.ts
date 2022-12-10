@@ -7,6 +7,7 @@ import {
   generateCodeVerifier,
 } from './authCode'
 import { discoverGatewayIP } from './mdnsDiscovery'
+import { initializeWebSocket } from './ws'
 
 export default async function createDirigeraClient({
   gatewayIP,
@@ -112,6 +113,15 @@ export default async function createDirigeraClient({
             attributes,
           },
         ],
+      })
+    },
+    startListeningForUpdates(callback: (updateEvent: any) => void) {
+      if (!accessToken) {
+        throw new Error('Access token is missing.')
+      }
+      const ws = initializeWebSocket(ip, accessToken)
+      ws.on('message', (message) => {
+        callback(JSON.parse(String(message)))
       })
     },
   }
