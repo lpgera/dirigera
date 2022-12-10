@@ -27,12 +27,6 @@ export default async function createDirigeraClient({
     },
   })
 
-  const assertAccessToken = () => {
-    if (!accessToken) {
-      throw new Error('Access token is missing.')
-    }
-  }
-
   return {
     async authenticate() {
       const codeVerifier = generateCodeVerifier()
@@ -76,13 +70,43 @@ export default async function createDirigeraClient({
     },
     // TODO return type missing
     async home() {
-      assertAccessToken()
+      if (!accessToken) {
+        throw new Error('Access token is missing.')
+      }
       return gotInstance.get(`home`).json()
     },
     // TODO low level API, shouldn't be exposed
     async setDeviceState(id: string, attributes: Record<string, any>) {
-      assertAccessToken()
+      if (!accessToken) {
+        throw new Error('Access token is missing.')
+      }
       return gotInstance.patch(`devices/${id}`, {
+        json: [
+          {
+            attributes,
+          },
+        ],
+      })
+    },
+    // TODO low level API, shouldn't be exposed
+    async setDeviceSetState(id: string, attributes: Record<string, any>) {
+      if (!accessToken) {
+        throw new Error('Access token is missing.')
+      }
+      return gotInstance.patch(`devices/set/${id}`, {
+        json: [
+          {
+            attributes,
+          },
+        ],
+      })
+    },
+    // TODO low level API, shouldn't be exposed
+    async setRoomState(id: string, attributes: Record<string, any>) {
+      if (!accessToken) {
+        throw new Error('Access token is missing.')
+      }
+      return gotInstance.patch(`devices/room/${id}`, {
         json: [
           {
             attributes,
