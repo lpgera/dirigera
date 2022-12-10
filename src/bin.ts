@@ -3,6 +3,7 @@
 import { program } from 'commander'
 import Dirigera from './index'
 import { version } from '../package.json'
+import { discoverGateway } from './mdnsDiscovery'
 
 program
   .version(version)
@@ -13,9 +14,14 @@ program
 program
   .command('authenticate')
   .description('Get an authentication token from your gateway')
-  .requiredOption('--gateway-IP <string>')
-  .action(async (options: { gatewayIP: string }) => {
-    const client = new Dirigera(options)
+  .option(
+    '--gateway-IP <string>',
+    'Optional. Use if MDNS discovery is not working.'
+  )
+  .action(async (options: { gatewayIP?: string }) => {
+    const gatewayIP = options.gatewayIP ?? (await discoverGateway())
+
+    const client = new Dirigera({ gatewayIP })
 
     const accessToken = await client.authenticate()
 
@@ -25,13 +31,18 @@ program
 program
   .command('dump')
   .description('Dump a JSON of all device data from your gateway')
-  .requiredOption('--gateway-IP <string>')
+  .option(
+    '--gateway-IP <string>',
+    'Optional. Use if MDNS discovery is not working.'
+  )
   .requiredOption(
     '--access-token <string>',
     `Get an access token by running 'dirigera authenticate' first!`
   )
-  .action(async (options: { gatewayIP: string; token: string }) => {
-    const client = new Dirigera(options)
+  .action(async (options: { gatewayIP?: string; accessToken: string }) => {
+    const gatewayIP = options.gatewayIP ?? (await discoverGateway())
+
+    const client = new Dirigera({ gatewayIP, accessToken: options.accessToken })
 
     const dump = await client.home()
 

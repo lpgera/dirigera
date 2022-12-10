@@ -4,5 +4,8 @@
     "declaration": true,
     "outDir": "dist",
     "resolveJsonModule": true
+  },
+  "ts-node": {
+    "files": true
   }
 }

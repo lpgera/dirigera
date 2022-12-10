@@ -32,17 +32,16 @@ export default class Dirigera {
     const codeVerifier = generateCodeVerifier()
     const codeChallenge = calculateCodeChallenge(codeVerifier)
 
-    const { code }: { code: string } = await this.gotInstance(
-      `oauth/authorize`,
-      {
+    const { code }: { code: string } = await this.gotInstance
+      .get(`oauth/authorize`, {
         searchParams: {
           audience: 'homesmart.local',
           response_type: 'code',
           code_challenge: codeChallenge,
           code_challenge_method: CODE_CHALLENGE_METHOD,
         },
-      }
-    ).json()
+      })
+      .json()
 
     const rl = readline.createInterface({
       input: process.stdin,
@@ -56,23 +55,22 @@ export default class Dirigera {
     rl.close()
 
     const { access_token: accessToken }: { access_token: string } =
-      await this.gotInstance(`oauth/token`, {
-        method: 'POST',
-        form: {
-          code,
-          name: os.hostname(),
-          grant_type: 'authorization_code',
-          code_verifier: codeVerifier,
-        },
-      }).json()
+      await this.gotInstance
+        .post(`oauth/token`, {
+          form: {
+            code,
+            name: os.hostname(),
+            grant_type: 'authorization_code',
+            code_verifier: codeVerifier,
+          },
+        })
+        .json()
 
     return accessToken
   }
 
   // TODO return type missing
   async home() {
-    return this.gotInstance(`home`, {
-      method: 'GET',
-    }).json()
+    return this.gotInstance.get(`home`).json()
   }
 }

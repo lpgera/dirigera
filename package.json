@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "commander": "^9.4.1",
-    "got-cjs": "^12.5.4"
+    "got-cjs": "^12.5.4",
+    "mdns-server": "^1.0.11"
   }
 }
