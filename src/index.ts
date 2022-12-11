@@ -77,43 +77,64 @@ export default async function createDirigeraClient({
       return gotInstance.get(`home`).json()
     },
     // TODO low level API, shouldn't be exposed
-    async setDeviceState(id: string, attributes: Record<string, any>) {
+    async setDeviceState(
+      id: string,
+      attributes: Record<string, any>,
+      transitionTime?: number
+    ) {
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }
-      return gotInstance.patch(`devices/${id}`, {
-        json: [
-          {
-            attributes,
-          },
-        ],
-      })
+      return gotInstance
+        .patch(`devices/${id}`, {
+          json: [
+            {
+              attributes,
+              transitionTime,
+            },
+          ],
+        })
+        .json()
     },
     // TODO low level API, shouldn't be exposed
-    async setDeviceSetState(id: string, attributes: Record<string, any>) {
+    async setDeviceSetState(
+      id: string,
+      attributes: Record<string, any>,
+      transitionTime?: number
+    ) {
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }
-      return gotInstance.patch(`devices/set/${id}`, {
-        json: [
-          {
-            attributes,
-          },
-        ],
-      })
+      return gotInstance
+        .patch(`devices/set/${id}`, {
+          json: [
+            {
+              attributes,
+              transitionTime,
+            },
+          ],
+        })
+        .json()
     },
     // TODO low level API, shouldn't be exposed
-    async setRoomState(id: string, attributes: Record<string, any>) {
+    async setRoomState(
+      id: string,
+      attributes: Record<string, any>,
+      transitionTime?: number
+    ) {
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }
-      return gotInstance.patch(`devices/room/${id}`, {
-        json: [
-          {
-            attributes,
-          },
-        ],
-      })
+      return gotInstance
+        .patch(`devices/room/${id}`, {
+          json: [
+            {
+              attributes,
+              transitionTime,
+            },
+          ],
+        })
+        .json()
     },
     startListeningForUpdates(callback: (updateEvent: any) => void) {
       if (!accessToken) {
