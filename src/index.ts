@@ -8,6 +8,7 @@ import {
 } from './authCode'
 import { discoverGatewayIP } from './mdnsDiscovery'
 import { initializeWebSocket } from './ws'
+import lights from './api/lights'
 
 export default async function createDirigeraClient({
   gatewayIP,
@@ -76,26 +77,7 @@ export default async function createDirigeraClient({
       }
       return gotInstance.get(`home`).json()
     },
-    // TODO low level API, shouldn't be exposed
-    async setDeviceState(
-      id: string,
-      attributes: Record<string, any>,
-      transitionTime?: number
-    ) {
-      if (!accessToken) {
-        throw new Error('Access token is missing.')
-      }
-      return gotInstance
-        .patch(`devices/${id}`, {
-          json: [
-            {
-              attributes,
-              transitionTime,
-            },
-          ],
-        })
-        .json()
-    },
+    lights: lights(gotInstance, accessToken),
     // TODO low level API, shouldn't be exposed
     async setDeviceSetState(
       id: string,
