@@ -33,9 +33,63 @@ Use the following command to dump a JSON from your gateway. This can be useful f
 library or to debug issues that may arise from device or gateway firmware changes.
 
 ```bash
-npx dirigera authenticate --access-token YOUR_ACCESS_TOKEN
+npx dirigera dump --access-token YOUR_ACCESS_TOKEN
 ```
 
 ## Library
 
-Coming soon!
+### Create a client instance
+
+```typescript
+const client = await createDirigeraClient({
+  accessToken: 'YOUR_ACCESS_TOKEN',
+})
+```
+
+Or by explicitly setting the gateway IP address:
+
+```typescript
+const client = await createDirigeraClient({
+  gatewayIP: 'YOUR_GATEWAY_IP',
+  accessToken: 'YOUR_ACCESS_TOKEN',
+})
+```
+
+### Listen for update events
+
+The gateway publishes events via a WebSocket. You can listen for these events with the following method:
+
+```typescript
+client.startListeningForUpdates(async (updateEvent) => {
+  console.log(JSON.stringify(updateEvent))
+})
+```
+
+### Lights
+
+```typescript
+const lights = await client.lights.list()
+
+const light = await client.lights.get({ id: 'YOUR_DEVICE_ID' })
+```
+
+#### Operations
+
+```typescript
+const deviceId = 'YOUR_DEVICE_ID'
+
+await client.lights.setIsOn({
+  id: deviceId,
+  isOn: false,
+})
+
+await client.lights.setLightLevel({
+  id: deviceId,
+  lightLevel: 50,
+  transition: 5000,
+})
+```
+
+---
+
+More coming soon!
