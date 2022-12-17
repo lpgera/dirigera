@@ -2,10 +2,10 @@ import type { Room } from './Room'
 import type { Capabilities } from './Capabilities'
 import type { DeviceSet } from './DeviceSet'
 
-export interface Light {
+export interface Outlet {
   id: string
-  type: 'light'
-  deviceType: 'light'
+  type: 'outlet'
+  deviceType: 'outlet'
   createdAt: string
   isReachable: boolean
   lastSeen: string
@@ -20,12 +20,6 @@ export interface Light {
     isOn: boolean
     startupOnOff: 'startOn' | 'startPrevious'
     lightLevel: number
-    colorHue?: number
-    colorSaturation?: number
-    colorTemperature?: number
-    colorTemperatureMin?: number
-    colorTemperatureMax?: number
-    colorMode?: 'temperature' | 'color'
     identifyStarted: string
     identifyPeriod: number
     permittingJoin: boolean

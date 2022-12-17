@@ -71,22 +71,40 @@ client.startListeningForUpdates(async (updateEvent) => {
 const lights = await client.lights.list()
 
 const light = await client.lights.get({ id: 'YOUR_DEVICE_ID' })
-```
-
-#### Operations
-
-```typescript
-const deviceId = 'YOUR_DEVICE_ID'
 
 await client.lights.setIsOn({
-  id: deviceId,
+  id: 'YOUR_DEVICE_ID',
   isOn: false,
 })
 
 await client.lights.setLightLevel({
-  id: deviceId,
+  id: 'YOUR_DEVICE_ID',
   lightLevel: 50,
   transition: 5000,
+})
+
+await client.lights.setLightColor({
+  id: 'YOUR_DEVICE_ID',
+  colorHue: 260,
+  colorSaturation: 0.8,
+})
+
+await client.lights.setLightTemperature({
+  id: 'YOUR_DEVICE_ID',
+  colorTemperature: 2700,
+})
+```
+
+### Outlets
+
+```typescript
+const outlets = await client.outlets.list()
+
+const outlet = await client.outlets.get({ id: 'YOUR_DEVICE_ID' })
+
+await client.outlets.setIsOn({
+  id: 'YOUR_DEVICE_ID',
+  isOn: false,
 })
 ```
 

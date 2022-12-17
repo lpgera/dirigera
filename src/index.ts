@@ -9,6 +9,7 @@ import {
 import { discoverGatewayIP } from './mdnsDiscovery'
 import { initializeWebSocket } from './ws'
 import lights from './api/lights'
+import outlets from './api/outlets'
 
 export default async function createDirigeraClient({
   gatewayIP,
@@ -78,6 +79,7 @@ export default async function createDirigeraClient({
       return gotInstance.get(`home`).json()
     },
     lights: lights(gotInstance, accessToken),
+    outlets: outlets(gotInstance, accessToken),
     // TODO low level API, shouldn't be exposed
     async setDeviceSetState(
       id: string,
