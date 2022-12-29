@@ -30,6 +30,21 @@ export default async function createDirigeraClient({
     https: {
       rejectUnauthorized: false,
     },
+    hooks: {
+      beforeError: [
+        (error) => {
+          if (
+            error.code === 'ERR_NON_2XX_3XX_RESPONSE' &&
+            error?.response?.body
+          ) {
+            error.name = 'DirigeraError'
+            error.message = `${error.response.body}`
+          }
+
+          return error
+        },
+      ],
+    },
   })
 
   return {
