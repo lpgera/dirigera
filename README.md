@@ -74,7 +74,7 @@ const light = await client.lights.get({ id: 'YOUR_DEVICE_ID' })
 
 await client.lights.setIsOn({
   id: 'YOUR_DEVICE_ID',
-  isOn: false,
+  isOn: true,
 })
 
 await client.lights.setLightLevel({
@@ -104,7 +104,36 @@ const outlet = await client.outlets.get({ id: 'YOUR_DEVICE_ID' })
 
 await client.outlets.setIsOn({
   id: 'YOUR_DEVICE_ID',
-  isOn: false,
+  isOn: true,
+})
+```
+
+### Controllers
+
+```typescript
+const controls = await client.controllers.list()
+
+await client.controllers.setCustomName({
+  id: 'YOUR_DEVICE_ID',
+  customName: 'A_CUSTOM_NAME',
+})
+```
+
+### Speakers
+
+```typescript
+const speaker = await client.speakers.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+await client.speakers.setVolume({
+  id: 'YOUR_DEVICE_ID',
+  volume: 20,
+})
+
+await client.speakers.setPlayback({
+  id: 'YOUR_DEVICE_ID',
+  playback: 'playbackPaused',
 })
 ```
 
