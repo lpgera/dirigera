@@ -1,22 +1,9 @@
-import type { Room } from './Room'
-import type { Capabilities } from './Capabilities'
-import type { DeviceSet } from './DeviceSet'
+import type { Device } from './Device'
 
-export interface Light {
-  id: string
+export interface Light extends Device {
   type: 'light'
   deviceType: 'light'
-  createdAt: string
-  isReachable: boolean
-  lastSeen: string
-  attributes: {
-    customName: string
-    model: string
-    manufacturer: string
-    firmwareVersion: string
-    hardwareVersion: string
-    serialNumber: string
-    productCode: string
+  attributes: Device['attributes'] & {
     isOn: boolean
     startupOnOff: 'startOn' | 'startPrevious'
     lightLevel: number
@@ -28,17 +15,5 @@ export interface Light {
     colorMode?: 'temperature' | 'color'
     identifyStarted: string
     identifyPeriod: number
-    permittingJoin: boolean
-    otaStatus: 'upToDate' | string // TODO extend type union
-    otaState: 'readyToCheck' | string // TODO extend type union
-    otaProgress: number
-    otaPolicy: 'autoUpdate' | string // TODO extend type union
-    otaScheduleStart: string
-    otaScheduleEnd: string
   }
-  room: Room
-  capabilities: Capabilities
-  deviceSet: DeviceSet
-  remoteLinks: string[]
-  isHidden: boolean
 }
