@@ -31,7 +31,7 @@
   "devDependencies": {
     "@tsconfig/node18-strictest": "^1.0.0",
     "@types/jest": "^29.2.4",
-    "@types/node": "^18.11.11",
+    "@types/node": "^18.11.18",
     "@types/ws": "^8.5.3",
     "dotenv": "^16.0.3",
     "husky": "^8.0.2",
