@@ -16,9 +16,14 @@ import speakers from './api/speakers'
 export default async function createDirigeraClient({
   gatewayIP,
   accessToken,
+  wsOptions,
 }: {
   gatewayIP?: string
   accessToken?: string
+  wsOptions?: {
+    pingInterval?: number
+    pongTimeout?: number
+  }
 }) {
   const ip = gatewayIP ?? (await discoverGatewayIP())
 
@@ -143,7 +148,11 @@ export default async function createDirigeraClient({
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }
-      const ws = initializeWebSocket(ip, accessToken)
+      const ws = initializeWebSocket({
+        ip,
+        accessToken,
+        ...wsOptions,
+      })
       ws.on('message', (message) => {
         callback(JSON.parse(String(message)))
       })

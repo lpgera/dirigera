@@ -1,9 +1,16 @@
 import WebSocket from 'ws'
 
-const PING_INTERVAL = 30000
-const PONG_TIMEOUT = 1000
-
-export function initializeWebSocket(ip: string, accessToken: string) {
+export function initializeWebSocket({
+  ip,
+  accessToken,
+  pingInterval = 30000,
+  pongTimeout = 5000,
+}: {
+  ip: string
+  accessToken: string
+  pingInterval?: number
+  pongTimeout?: number
+}) {
   const ws = new WebSocket(`wss://${ip}:8443/v1`, {
     rejectUnauthorized: false,
     headers: {
@@ -15,14 +22,14 @@ export function initializeWebSocket(ip: string, accessToken: string) {
     ws.ping()
   })
 
-  let pongTimeout: NodeJS.Timeout | undefined
+  let pongTimeoutObject: NodeJS.Timeout | undefined
 
   ws.on('pong', () => {
-    clearTimeout(pongTimeout)
-    setTimeout(() => ws.ping(), PING_INTERVAL)
-    pongTimeout = setTimeout(() => {
+    clearTimeout(pongTimeoutObject)
+    setTimeout(() => ws.ping(), pingInterval)
+    pongTimeoutObject = setTimeout(() => {
       ws.terminate()
-    }, PING_INTERVAL + PONG_TIMEOUT)
+    }, pingInterval + pongTimeout)
   })
 
   ws.on('close', () => {
