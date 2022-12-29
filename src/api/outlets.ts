@@ -19,6 +19,26 @@ export default (got: Got, accessToken?: string) => {
       return device as Outlet
     },
 
+    async setCustomName({
+      id,
+      customName,
+    }: {
+      id: string
+      customName: string
+    }) {
+      await got
+        .patch(`devices/${id}`, {
+          json: [
+            {
+              attributes: {
+                customName,
+              },
+            },
+          ],
+        })
+        .json()
+    },
+
     async setIsOn({ id, isOn }: { id: string; isOn: boolean }) {
       await got
         .patch(`devices/${id}`, {
