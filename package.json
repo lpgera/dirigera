@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "prepack": "rm -rf dist && tsc",
+    "prepack": "rm -rf dist && git stash -u && tsc",
     "postversion": "git push && git push --tags"
   },
   "repository": {
