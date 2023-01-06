@@ -27,7 +27,7 @@ export interface Device {
   }
   room: Room
   capabilities: Capabilities
-  deviceSet: DeviceSet
+  deviceSet: DeviceSet[]
   remoteLinks: string[]
   isHidden: boolean
 }
