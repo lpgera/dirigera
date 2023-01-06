@@ -13,6 +13,7 @@ import outlets from './api/outlets'
 import controllers from './api/controllers'
 import speakers from './api/speakers'
 import blinds from './api/blinds'
+import airPurifiers from './api/airPurifiers'
 
 export default async function createDirigeraClient({
   gatewayIP,
@@ -106,6 +107,7 @@ export default async function createDirigeraClient({
     controllers: controllers(gotInstance, accessToken),
     speakers: speakers(gotInstance, accessToken),
     blinds: blinds(gotInstance, accessToken),
+    airPurifiers: airPurifiers(gotInstance, accessToken),
     // TODO low level API, shouldn't be exposed
     async setDeviceSetState(
       id: string,
