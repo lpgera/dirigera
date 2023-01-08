@@ -1,10 +1,20 @@
 import WebSocket from 'ws'
 
+function ping(ws: WebSocket) {
+  console.debug(`${new Date().toISOString()} [ws] ping`)
+  ws.ping()
+}
+
+function terminate(ws: WebSocket) {
+  console.debug(`${new Date().toISOString()} [ws] terminating`)
+  ws.terminate()
+}
+
 export function initializeWebSocket({
   ip,
   accessToken,
   pingInterval = 30000,
-  pongTimeout = 5000,
+  pongTimeout = 120000,
 }: {
   ip: string
   accessToken: string
@@ -18,18 +28,19 @@ export function initializeWebSocket({
     },
   })
 
-  ws.on('open', () => {
-    ws.ping()
-  })
-
   let pongTimeoutObject: NodeJS.Timeout | undefined
 
+  ws.on('open', () => {
+    console.debug(`${new Date().toISOString()} [ws] open`)
+    ping(ws)
+    setInterval(() => ping(ws), pingInterval)
+    pongTimeoutObject = setTimeout(() => terminate(ws), pongTimeout)
+  })
+
   ws.on('pong', () => {
+    console.debug(`${new Date().toISOString()} [ws] pong`)
     clearTimeout(pongTimeoutObject)
-    setTimeout(() => ws.ping(), pingInterval)
-    pongTimeoutObject = setTimeout(() => {
-      ws.terminate()
-    }, pingInterval + pongTimeout)
+    pongTimeoutObject = setTimeout(() => terminate(ws), pongTimeout)
   })
 
   ws.on('close', () => {
