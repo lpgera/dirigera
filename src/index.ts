@@ -156,13 +156,11 @@ export default async function createDirigeraClient({
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }
-      const ws = initializeWebSocket({
+      initializeWebSocket({
         ip,
         accessToken,
+        callback,
         ...wsOptions,
-      })
-      ws.on('message', (message) => {
-        callback(JSON.parse(String(message)))
       })
     },
   }

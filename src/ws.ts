@@ -15,11 +15,13 @@ export function initializeWebSocket({
   accessToken,
   pingInterval = 30000,
   pongTimeout = 120000,
+  callback,
 }: {
   ip: string
   accessToken: string
   pingInterval?: number
   pongTimeout?: number
+  callback: (o: Object) => void | Promise<void>
 }) {
   const ws = new WebSocket(`wss://${ip}:8443/v1`, {
     rejectUnauthorized: false,
@@ -47,5 +49,7 @@ export function initializeWebSocket({
     throw new Error('WebSocket connection closed')
   })
 
-  return ws
+  ws.on('message', (message) => {
+    callback(JSON.parse(String(message)))
+  })
 }
