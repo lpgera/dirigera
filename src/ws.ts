@@ -1,55 +1,33 @@
+import ReconnectingWebSocket from 'reconnecting-websocket'
 import WebSocket from 'ws'
-
-function ping(ws: WebSocket) {
-  console.debug(`${new Date().toISOString()} [ws] ping`)
-  ws.ping()
-}
-
-function terminate(ws: WebSocket) {
-  console.debug(`${new Date().toISOString()} [ws] terminating`)
-  ws.terminate()
-}
 
 export function initializeWebSocket({
   ip,
   accessToken,
-  pingInterval = 30000,
-  pongTimeout = 120000,
   callback,
 }: {
   ip: string
   accessToken: string
-  pingInterval?: number
-  pongTimeout?: number
   callback: (o: Object) => void | Promise<void>
 }) {
-  const ws = new WebSocket(`wss://${ip}:8443/v1`, {
-    rejectUnauthorized: false,
-    headers: {
-      authorization: `Bearer ${accessToken}`,
+  const ws = new ReconnectingWebSocket(`wss://${ip}:8443/v1`, [], {
+    minReconnectionDelay: 10,
+    maxReconnectionDelay: 10000,
+    maxRetries: Number.MAX_SAFE_INTEGER,
+    WebSocket: class extends WebSocket {
+      constructor(url: string, protocols: string | string[]) {
+        super(url, protocols, {
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+          rejectUnauthorized: false,
+        })
+      }
     },
+    debug: process.env['NODE_ENV'] === 'development',
   })
 
-  let pongTimeoutObject: NodeJS.Timeout | undefined
-
-  ws.on('open', () => {
-    console.debug(`${new Date().toISOString()} [ws] open`)
-    ping(ws)
-    setInterval(() => ping(ws), pingInterval)
-    pongTimeoutObject = setTimeout(() => terminate(ws), pongTimeout)
-  })
-
-  ws.on('pong', () => {
-    console.debug(`${new Date().toISOString()} [ws] pong`)
-    clearTimeout(pongTimeoutObject)
-    pongTimeoutObject = setTimeout(() => terminate(ws), pongTimeout)
-  })
-
-  ws.on('close', () => {
-    throw new Error('WebSocket connection closed')
-  })
-
-  ws.on('message', (message) => {
-    callback(JSON.parse(String(message)))
+  ws.addEventListener('message', (message) => {
+    callback(JSON.parse(String(message.data)))
   })
 }

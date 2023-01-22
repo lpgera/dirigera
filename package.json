@@ -49,6 +49,7 @@
     "commander": "^9.4.1",
     "got-cjs": "^12.5.4",
     "mdns-server": "^1.0.11",
+    "reconnecting-websocket": "^4.4.0",
     "ws": "^8.11.0"
   }
 }

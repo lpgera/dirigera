@@ -20,14 +20,9 @@ import motionSensors from './api/motionSensors'
 export default async function createDirigeraClient({
   gatewayIP,
   accessToken,
-  wsOptions,
 }: {
   gatewayIP?: string
   accessToken?: string
-  wsOptions?: {
-    pingInterval?: number
-    pongTimeout?: number
-  }
 }) {
   const ip = gatewayIP ?? (await discoverGatewayIP())
 
@@ -160,7 +155,6 @@ export default async function createDirigeraClient({
         ip,
         accessToken,
         callback,
-        ...wsOptions,
       })
     },
   }
