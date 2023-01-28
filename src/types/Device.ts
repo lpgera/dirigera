@@ -4,8 +4,27 @@ import type { DeviceSet } from './DeviceSet'
 
 export interface Device {
   id: string
-  type: string
-  deviceType: string
+  type:
+    | 'airPurifier'
+    | 'blinds'
+    | 'controller'
+    | 'light'
+    | 'sensor'
+    | 'outlet'
+    | 'repeater'
+    | 'speaker'
+  deviceType:
+    | 'airPurifier'
+    | 'blinds'
+    | 'shortcutController'
+    | 'lightController'
+    | 'soundController'
+    | 'blindsController'
+    | 'light'
+    | 'motionSensor'
+    | 'outlet'
+    | 'repeater'
+    | 'speaker'
   createdAt: string
   isReachable: boolean
   lastSeen: string
@@ -18,10 +37,21 @@ export interface Device {
     serialNumber: string
     productCode: string
     permittingJoin: boolean
-    otaStatus: 'upToDate' | string // TODO extend type union
-    otaState: 'readyToCheck' | string // TODO extend type union
+    otaStatus: 'upToDate' | 'updateAvailable'
+    otaState:
+      | 'batteryCheckFailed'
+      | 'checkFailed'
+      | 'checkInProgress'
+      | 'downloadFailed'
+      | 'downloadInProgress'
+      | 'readyToCheck'
+      | 'readyToDownload'
+      | 'readyToUpdate'
+      | 'updateComplete'
+      | 'updateFailed'
+      | 'updateInProgress'
     otaProgress: number
-    otaPolicy: 'autoUpdate' | string // TODO extend type union
+    otaPolicy: 'autoUpdate' | 'autoDownload'
     otaScheduleStart: string
     otaScheduleEnd: string
   }
