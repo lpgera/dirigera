@@ -8,6 +8,7 @@ import {
 } from './authCode'
 import { discoverGatewayIP } from './mdnsDiscovery'
 import { initializeWebSocket } from './ws'
+import type { Home } from './types/Home'
 import lights from './api/lights'
 import outlets from './api/outlets'
 import controllers from './api/controllers'
@@ -94,12 +95,11 @@ export default async function createDirigeraClient({
 
       return accessToken
     },
-    // TODO return type missing
     async home() {
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }
-      return gotInstance.get(`home`).json()
+      return (await gotInstance.get(`home`).json()) as Home
     },
     lights: lights(gotInstance, accessToken),
     outlets: outlets(gotInstance, accessToken),

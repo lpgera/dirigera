@@ -8,6 +8,7 @@ export interface Device {
     | 'airPurifier'
     | 'blinds'
     | 'controller'
+    | 'gateway'
     | 'light'
     | 'sensor'
     | 'outlet'
@@ -20,6 +21,7 @@ export interface Device {
     | 'lightController'
     | 'soundController'
     | 'blindsController'
+    | 'gateway'
     | 'light'
     | 'motionSensor'
     | 'outlet'
@@ -54,6 +56,7 @@ export interface Device {
     otaPolicy: 'autoUpdate' | 'autoDownload'
     otaScheduleStart: string
     otaScheduleEnd: string
+    [key: string]: any
   }
   room: Room
   capabilities: Capabilities
