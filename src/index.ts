@@ -16,6 +16,7 @@ import blinds from './api/blinds'
 import airPurifiers from './api/airPurifiers'
 import repeaters from './api/repeaters'
 import motionSensors from './api/motionSensors'
+import deviceSets from './api/deviceSets'
 
 export default async function createDirigeraClient({
   gatewayIP,
@@ -107,26 +108,7 @@ export default async function createDirigeraClient({
     airPurifiers: airPurifiers(gotInstance, accessToken),
     repeaters: repeaters(gotInstance, accessToken),
     motionSensors: motionSensors(gotInstance, accessToken),
-    // TODO low level API, shouldn't be exposed
-    async setDeviceSetState(
-      id: string,
-      attributes: Record<string, any>,
-      transitionTime?: number
-    ) {
-      if (!accessToken) {
-        throw new Error('Access token is missing.')
-      }
-      return gotInstance
-        .patch(`devices/set/${id}`, {
-          json: [
-            {
-              attributes,
-              transitionTime,
-            },
-          ],
-        })
-        .json()
-    },
+    deviceSets: deviceSets(gotInstance, accessToken),
     // TODO low level API, shouldn't be exposed
     async setRoomState(
       id: string,
