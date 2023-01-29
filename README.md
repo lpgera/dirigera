@@ -2,7 +2,53 @@
 
 A TypeScript client library for IKEA's DIRIGERA smart home hub.
 
-> 🚧 This project is in an early phase with a limited feature set and a very unstable API.
+- [Quick start](#quick-start)
+- [CLI](#cli)
+  - [Help](#help)
+  - [Authentication](#authentication)
+  - [Dump](#dump)
+- [Library](#library)
+  - [Client](#client)
+  - [Hub](#hub)
+  - Devices
+    - [Air purifiers](#air-purifiers)
+    - [Blinds](#blinds)
+    - [Controllers](#controllers)
+    - [Lights](#lights)
+    - [Motion sensors](#motion-sensors)
+    - [Outlets](#outlets)
+    - [Repeaters](#repeaters)
+    - [Speakers](#speakers)
+  - [Device sets](#device-sets)
+  - [Rooms](#rooms)
+  - [Scenes](#scenes)
+  - [Music](#music)
+  - [Users](#users)
+  - [Update events](#update-events)
+
+## Quick start
+
+1. Execute `npx dirigera authenticate` in your terminal and follow the instructions.
+2. Save the obtained access token.
+3. Dump your Dirigera system's information as a JSON to identify device IDs:
+   `npx dirigera dump --access-token <YOUR_ACCESS_TOKEN>`
+4. Create a client instance in your code with the access token:
+
+   ```typescript
+   import createDirigeraClient from 'dirigera'
+
+   const client = await createDirigeraClient({
+     accessToken: 'YOUR_ACCESS_TOKEN',
+   })
+   ```
+
+5. You are ready to control your devices!
+   ```typescript
+   client.lights.setIsOn({
+     id: 'YOUR_DEVICE_ID',
+     isOn: true,
+   })
+   ```
 
 ## CLI
 
@@ -38,7 +84,10 @@ npx dirigera dump --access-token YOUR_ACCESS_TOKEN
 
 ## Library
 
-### Create a client instance
+### Client
+
+You can rely on mDNS discovery to connect to the gateway. This is convenient, however the initialization can take a
+couple of seconds.
 
 ```typescript
 const client = await createDirigeraClient({
@@ -46,7 +95,7 @@ const client = await createDirigeraClient({
 })
 ```
 
-Or by explicitly setting the gateway IP address:
+Alternatively it's possible to explicitly set the gateway IP address.
 
 ```typescript
 const client = await createDirigeraClient({
@@ -55,17 +104,70 @@ const client = await createDirigeraClient({
 })
 ```
 
-### Listen for update events
-
-The gateway publishes events via a WebSocket. You can listen for these events with the following method:
+### [Hub](./src/api/hub.ts)
 
 ```typescript
-client.startListeningForUpdates(async (updateEvent) => {
-  console.log(JSON.stringify(updateEvent))
+const hubStatus = await client.hub.status()
+
+await client.hub.checkFirmwareUpdate()
+
+await client.hub.installFirmwareUpdate()
+```
+
+### Devices
+
+#### [Air purifiers](./src/api/airPurifiers.ts)
+
+```typescript
+const airPurifiers = await client.airPurifiers.list()
+
+const airPurifier = await client.airPurifiers.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+await client.airPurifiers.setFanMode({
+  id: 'YOUR_DEVICE_ID',
+  fanMode: 'auto',
+})
+
+await client.airPurifiers.setFanMode({
+  id: 'YOUR_DEVICE_ID',
+  fanMode: 'off',
 })
 ```
 
-### Lights
+#### [Blinds](./src/api/blinds.ts)
+
+```typescript
+const blinds = await client.blinds.list()
+
+const blind = await client.blinds.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+await client.blinds.setTargetLevel({
+  id: 'YOUR_DEVICE_ID',
+  blindsTargetLevel: 60,
+})
+
+await client.blinds.setState({
+  id: 'YOUR_DEVICE_ID',
+  blindsState: 'stopped',
+})
+```
+
+#### [Controllers](./src/api/controllers.ts)
+
+```typescript
+const controls = await client.controllers.list()
+
+await client.controllers.setCustomName({
+  id: 'YOUR_DEVICE_ID',
+  customName: 'A_CUSTOM_NAME',
+})
+```
+
+#### [Lights](./src/api/lights.ts)
 
 ```typescript
 const lights = await client.lights.list()
@@ -95,7 +197,22 @@ await client.lights.setLightTemperature({
 })
 ```
 
-### Outlets
+#### [Motion sensors](./src/api/motionSensors.ts)
+
+```typescript
+const motionSensors = await client.motionSensors.list()
+
+const motionSensor = await client.motionSensors.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+await client.motionSensors.setOnDuration({
+  id: 'YOUR_DEVICE_ID',
+  onDuration: 300,
+})
+```
+
+#### [Outlets](./src/api/outlets.ts)
 
 ```typescript
 const outlets = await client.outlets.list()
@@ -108,20 +225,21 @@ await client.outlets.setIsOn({
 })
 ```
 
-### Controllers
+#### [Repeaters](./src/api/repeaters.ts)
 
 ```typescript
-const controls = await client.controllers.list()
+const repeaters = await client.repeaters.list()
 
-await client.controllers.setCustomName({
+const repeater = await client.repeaters.get({
   id: 'YOUR_DEVICE_ID',
-  customName: 'A_CUSTOM_NAME',
 })
 ```
 
-### Speakers
+#### [Speakers](./src/api/speakers.ts)
 
 ```typescript
+const speakers = await client.speakers.list()
+
 const speaker = await client.speakers.get({
   id: 'YOUR_DEVICE_ID',
 })
@@ -134,6 +252,88 @@ await client.speakers.setVolume({
 await client.speakers.setPlayback({
   id: 'YOUR_DEVICE_ID',
   playback: 'playbackPaused',
+})
+```
+
+### [Device sets](./src/api/deviceSets.ts)
+
+```typescript
+const deviceSets = await client.deviceSets.list()
+
+await client.deviceSets.setIsOn({
+  id: 'YOUR_DEVICE_SET_ID',
+  isOn: true,
+})
+```
+
+### [Rooms](./src/api/rooms.ts)
+
+```typescript
+const rooms = await client.rooms.list()
+
+const room = await client.rooms.get({
+  id: 'YOUR_ROOM_ID',
+})
+
+await client.rooms.setIsOn({
+  id: 'YOUR_ROOM_ID',
+  isOn: false,
+})
+
+await client.rooms.setIsOn({
+  id: 'YOUR_ROOM_ID',
+  deviceType: 'outlet',
+  isOn: true,
+})
+```
+
+### [Scenes](./src/api/scenes.ts)
+
+```typescript
+const scenes = await client.scenes.list()
+
+const scene = await client.scenes.get({
+  id: 'YOUR_SCENE_ID',
+})
+
+await client.scenes.trigger({
+  id: 'YOUR_SCENE_ID',
+})
+
+await client.scenes.undo({
+  id: 'YOUR_SCENE_ID',
+})
+```
+
+### [Music](./src/api/music.ts)
+
+```typescript
+const music = await client.music.get()
+```
+
+### [Users](./src/api/users.ts)
+
+```typescript
+const users = await client.users.list()
+
+const currentUser = await client.users.getCurrentUser()
+
+await client.users.setCurrentUserName({
+  name: 'NEW_NAME',
+})
+
+await client.users.deleteUser({
+  id: 'YOUR_USER_ID',
+})
+```
+
+### Update events
+
+The gateway publishes events via a WebSocket. You can listen for these events with the following method:
+
+```typescript
+client.startListeningForUpdates(async (updateEvent) => {
+  console.log(JSON.stringify(updateEvent))
 })
 ```
 
