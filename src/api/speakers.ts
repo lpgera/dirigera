@@ -1,10 +1,7 @@
 import type { Got } from 'got-cjs'
 import type { Speaker } from '../types/Speaker'
 
-export default (got: Got, accessToken?: string) => {
-  if (!accessToken) {
-    throw new Error('Access token is missing.')
-  }
+export default (got: Got) => {
   return {
     async list() {
       const devices = (await got.get(`devices`).json()) as any[]

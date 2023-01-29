@@ -100,25 +100,22 @@ export default async function createDirigeraClient({
       return accessToken
     },
     async home() {
-      if (!accessToken) {
-        throw new Error('Access token is missing.')
-      }
       return (await gotInstance.get(`home`).json()) as Home
     },
-    hub: hub(gotInstance, accessToken),
-    lights: lights(gotInstance, accessToken),
-    outlets: outlets(gotInstance, accessToken),
-    controllers: controllers(gotInstance, accessToken),
-    speakers: speakers(gotInstance, accessToken),
-    blinds: blinds(gotInstance, accessToken),
-    airPurifiers: airPurifiers(gotInstance, accessToken),
-    repeaters: repeaters(gotInstance, accessToken),
-    motionSensors: motionSensors(gotInstance, accessToken),
-    deviceSets: deviceSets(gotInstance, accessToken),
-    rooms: rooms(gotInstance, accessToken),
-    scenes: scenes(gotInstance, accessToken),
-    music: music(gotInstance, accessToken),
-    users: users(gotInstance, accessToken),
+    hub: hub(gotInstance),
+    lights: lights(gotInstance),
+    outlets: outlets(gotInstance),
+    controllers: controllers(gotInstance),
+    speakers: speakers(gotInstance),
+    blinds: blinds(gotInstance),
+    airPurifiers: airPurifiers(gotInstance),
+    repeaters: repeaters(gotInstance),
+    motionSensors: motionSensors(gotInstance),
+    deviceSets: deviceSets(gotInstance),
+    rooms: rooms(gotInstance),
+    scenes: scenes(gotInstance),
+    music: music(gotInstance),
+    users: users(gotInstance),
     startListeningForUpdates(callback: (updateEvent: any) => void) {
       if (!accessToken) {
         throw new Error('Access token is missing.')

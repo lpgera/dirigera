@@ -14,8 +14,8 @@ program
   .command('authenticate')
   .description('Get an authentication token from your gateway')
   .option(
-    '--gateway-IP <string>',
-    'Optional. Use if MDNS discovery is not working.'
+    '--gateway-IP [string]',
+    'Optional. Use if mDNS discovery is not working.'
   )
   .action(async (options: { gatewayIP?: string }) => {
     const client = await createDirigeraClient(options)
@@ -29,8 +29,8 @@ program
   .command('dump')
   .description('Dump a JSON of all device data from your gateway')
   .option(
-    '--gateway-IP <string>',
-    'Optional. Use if MDNS discovery is not working.'
+    '--gateway-IP [string]',
+    'Optional. Use if mDNS discovery is not working.'
   )
   .requiredOption(
     '--access-token <string>',
