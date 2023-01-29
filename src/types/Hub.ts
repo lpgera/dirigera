@@ -48,4 +48,5 @@ export interface Hub {
   capabilities: Capabilities
   deviceSet: DeviceSet[]
   remoteLinks: string[]
+  apiVersion?: string
 }
