@@ -12,6 +12,10 @@ export default (got: Got, accessToken?: string) => {
     },
 
     // TODO add device-set management APIs
+    //  * createDeviceSet
+    //  * deleteDeviceSet
+    //  * updateDeviceSet
+    //  * updateDeviceSetConfig
     // TODO cover device-type specific attribute changes
 
     async setIsOn({ id, isOn }: { id: string; isOn: boolean }) {

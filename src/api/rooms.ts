@@ -16,6 +16,10 @@ export default (got: Got, accessToken?: string) => {
     },
 
     // TODO add room management API
+    //  * createRoom
+    //  * deleteRoom
+    //  * moveRoomDevices
+    //  * updateRoom
     // TODO cover device-type specific attribute changes
 
     async setIsOn({
@@ -44,7 +48,7 @@ export default (got: Got, accessToken?: string) => {
     },
 
     // TODO low level API, shouldn't be exposed
-    async setRoomState({
+    async setAttributes({
       id,
       deviceType,
       attributes,
