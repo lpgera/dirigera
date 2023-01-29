@@ -5,7 +5,7 @@ export interface AirPurifier extends Device {
   deviceType: 'airPurifier'
   attributes: Device['attributes'] & {
     fanMode: 'auto' | 'manual' | 'off'
-    fanModeSequence: 'lowMediumHighAuto' // TODO other values?
+    fanModeSequence: 'lowMediumHighAuto'
     motorState: number
     motorRuntime: number
     filterElapsedTime: number

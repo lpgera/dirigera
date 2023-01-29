@@ -1,4 +1,5 @@
 import type { Device } from './Device'
+import type { MusicPlayItem } from './Music'
 
 export interface Speaker extends Device {
   type: 'speaker'
@@ -14,7 +15,17 @@ export interface Speaker extends Device {
       | 'playbackPrevious'
       | 'playbackBuffering'
     playbackLastChangedTimestamp: string
-    playbackAudio: Object // TODO
+    playbackAudio: {
+      serviceType: string
+      providerType: string
+      playItem: MusicPlayItem
+      nextPlayItem: MusicPlayItem
+      playList: {
+        id: string
+        playItems: MusicPlayItem[]
+        title: string
+      }
+    }
     playbackPosition: {
       position: number
       timestamp: string

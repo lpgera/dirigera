@@ -1,5 +1,5 @@
 import type { Got } from 'got-cjs'
-import type { DeviceSet } from '../types/DeviceSet'
+import type { Home } from '../types/Home'
 
 export default (got: Got, accessToken?: string) => {
   if (!accessToken) {
@@ -7,8 +7,8 @@ export default (got: Got, accessToken?: string) => {
   }
   return {
     async list() {
-      const home = (await got.get(`home`).json()) as any // TODO fix type
-      return home.deviceSets as DeviceSet[]
+      const home = (await got.get(`home`).json()) as Home
+      return home.deviceSets
     },
 
     // TODO add device-set management APIs
