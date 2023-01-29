@@ -10,7 +10,7 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
 - [Library](#library)
   - [Client](#client)
   - [Hub](#hub)
-  - Devices
+  - [Devices](#devices)
     - [Air purifiers](#air-purifiers)
     - [Blinds](#blinds)
     - [Controllers](#controllers)
