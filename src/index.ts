@@ -19,6 +19,7 @@ import repeaters from './api/repeaters'
 import motionSensors from './api/motionSensors'
 import deviceSets from './api/deviceSets'
 import rooms from './api/rooms'
+import users from './api/users'
 
 export default async function createDirigeraClient({
   gatewayIP,
@@ -111,6 +112,7 @@ export default async function createDirigeraClient({
     motionSensors: motionSensors(gotInstance, accessToken),
     deviceSets: deviceSets(gotInstance, accessToken),
     rooms: rooms(gotInstance, accessToken),
+    users: users(gotInstance, accessToken),
     startListeningForUpdates(callback: (updateEvent: any) => void) {
       if (!accessToken) {
         throw new Error('Access token is missing.')
