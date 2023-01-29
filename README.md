@@ -322,7 +322,7 @@ await client.users.setCurrentUserName({
   name: 'NEW_NAME',
 })
 
-await client.users.deleteUser({
+await client.users.delete({
   id: 'YOUR_USER_ID',
 })
 ```

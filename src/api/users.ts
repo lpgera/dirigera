@@ -19,7 +19,7 @@ export default (got: Got) => {
       })
     },
 
-    async deleteUser({ id }: { id: string }) {
+    async delete({ id }: { id: string }) {
       await got.delete(`users/${id}`)
     },
   }
