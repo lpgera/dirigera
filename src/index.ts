@@ -24,7 +24,7 @@ import scenes from './api/scenes'
 import music from './api/music'
 import users from './api/users'
 
-export default async function createDirigeraClient({
+export async function createDirigeraClient({
   gatewayIP,
   accessToken,
 }: {

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import createDirigeraClient from './index'
+import { createDirigeraClient } from './index'
 import { version } from '../package.json'
 
 program

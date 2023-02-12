@@ -35,7 +35,7 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
 4. Create a client instance in your code with the access token:
 
    ```typescript
-   import createDirigeraClient from 'dirigera'
+   import { createDirigeraClient } from 'dirigera'
 
    const client = await createDirigeraClient({
      accessToken: 'YOUR_ACCESS_TOKEN',
