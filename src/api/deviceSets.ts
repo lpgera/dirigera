@@ -1,4 +1,5 @@
-import type { Got } from 'got-cjs'
+// @ts-expect-error https://github.com/microsoft/TypeScript/issues/49721
+import type { Got } from 'got'
 import type { Home } from '../types/Home'
 
 export default (got: Got) => {

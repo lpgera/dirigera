@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/node18-strictest/tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "node16",
     "declaration": true,
     "outDir": "dist",
     "resolveJsonModule": true

@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "commander": "^10.0.0",
-    "got-cjs": "^12.5.4",
+    "got": "^12.5.3",
     "mdns-server": "^1.0.11",
     "reconnecting-websocket": "^4.4.0",
     "ws": "^8.12.0"

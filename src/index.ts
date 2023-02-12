@@ -1,6 +1,5 @@
 import readline from 'readline/promises'
 import os from 'os'
-import got from 'got-cjs'
 import {
   calculateCodeChallenge,
   CODE_CHALLENGE_METHOD,
@@ -32,6 +31,8 @@ export async function createDirigeraClient({
   accessToken?: string
 }) {
   const ip = gatewayIP ?? (await discoverGatewayIP())
+
+  const { got } = await import('got')
 
   const gotInstance = got.extend({
     prefixUrl: `https://${ip}:8443/v1`,
