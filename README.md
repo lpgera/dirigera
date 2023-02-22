@@ -32,7 +32,8 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
 2. Save the obtained access token.
 3. Dump your Dirigera system's information as a JSON to identify device IDs:
    `npx dirigera dump --access-token <YOUR_ACCESS_TOKEN>`
-4. Create a client instance in your code with the access token:
+4. Install the library as a dependency: `npm i dirigera`
+5. Create a client instance in your code with the access token:
 
    ```typescript
    import { createDirigeraClient } from 'dirigera'
@@ -42,7 +43,7 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
    })
    ```
 
-5. You are ready to control your devices!
+6. You are ready to control your devices!
    ```typescript
    client.lights.setIsOn({
      id: 'YOUR_DEVICE_ID',
