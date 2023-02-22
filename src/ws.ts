@@ -1,5 +1,6 @@
 import ReconnectingWebSocket from 'reconnecting-websocket'
 import WebSocket from 'ws'
+import crypto from 'crypto'
 
 export function initializeWebSocket({
   ip,
@@ -30,4 +31,17 @@ export function initializeWebSocket({
   ws.addEventListener('message', (message) => {
     callback(JSON.parse(String(message.data)))
   })
+
+  setInterval(() => {
+    ws.send(
+      JSON.stringify({
+        id: crypto.randomUUID(),
+        specversion: '1.1.0',
+        source: `urn:lpgera:dirigera`,
+        time: new Date().toISOString(),
+        type: 'ping',
+        data: null,
+      })
+    )
+  }, 30000)
 }
