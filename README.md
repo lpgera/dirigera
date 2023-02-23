@@ -7,8 +7,6 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
   - [CLI](#cli)
     - [Help](#help)
     - [Authentication](#authentication)
-      - [Method: Store](#method-store)
-      - [Method: CLI](#method-cli)
     - [Dump](#dump)
   - [Library](#library)
     - [Client](#client)
@@ -65,30 +63,6 @@ npx dirigera help [command]
 ### Authentication
 
 To be able to communicate with your DIRIGERA hub, you have to obtain an access token by pairing with it.
-
-#### Method: Store
-
-```typescript
-const client = createDirigeraClient({
-  gatewayIP: 'YOUR_GATEWAY_IP',
-  accessToken: async (accessToken) => {
-    const file = 'token.txt'
-    if (accessToken) {
-      // Save the token for later
-      await writeFile(file, accessToken)
-    }
-    try {
-      // Fetch the saved token
-      return await readFile(file, 'utf8')
-    } catch (err) {
-      // If we return null, the program will halt until we press the pairing button.
-      return null
-    }
-  },
-})
-```
-
-#### Method: CLI
 
 Use the following command to do this via the CLI:
 
@@ -147,6 +121,7 @@ const client = createDirigeraClient({
       // Fetch the saved token
       return await readFile(file, 'utf8')
     } catch (err) {
+      // If we return null, the program will halt until we press the pairing button.
       return null
     }
   },
