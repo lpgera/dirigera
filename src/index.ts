@@ -23,18 +23,47 @@ import scenes from './api/scenes'
 import music from './api/music'
 import users from './api/users'
 
+/** Access Token Store
+ * - Retrieves the access token
+ * - If `accessToken` parameter is specified, you should store the token for later use.
+ *
+ * ```ts
+ * const client = createDirigeraClient({
+ *     accessToken: async (accessToken) => {
+ *         const file = 'token.txt';
+ *         if (accessToken) {
+ *             await writeFile(file, 'token.txt')
+ *         }
+ *         try {
+ *             return await readFile(file, 'utf8');
+ *         } catch(err) {
+ *             return null;
+ *         }
+ *     }
+ * })
+ * ```
+ */
+type AccessTokenStore = (
+  accessToken?: string
+) => string | null | Promise<string | null>
+
 export async function createDirigeraClient({
   gatewayIP,
   accessToken,
 }: {
   gatewayIP?: string
-  accessToken?: string
+  accessToken?: string | null | AccessTokenStore
 }) {
   const ip = gatewayIP ?? (await discoverGatewayIP())
 
+  const accessTokenStore =
+    typeof accessToken === 'function' ? accessToken : null
+  accessToken =
+    typeof accessToken === 'function' ? await accessToken() : accessToken
+
   const { got } = await import('got')
 
-  const gotInstance = got.extend({
+  let gotInstance = got.extend({
     prefixUrl: `https://${ip}:8443/v1`,
     headers: {
       ...(accessToken ? { authorization: `Bearer ${accessToken}` } : null),
@@ -59,34 +88,28 @@ export async function createDirigeraClient({
     },
   })
 
-  return {
-    async authenticate() {
-      const codeVerifier = generateCodeVerifier()
-      const codeChallenge = calculateCodeChallenge(codeVerifier)
+  const authenticate = async () => {
+    const codeVerifier = generateCodeVerifier()
+    const codeChallenge = calculateCodeChallenge(codeVerifier)
 
-      const { code }: { code: string } = await gotInstance
-        .get(`oauth/authorize`, {
-          searchParams: {
-            audience: 'homesmart.local',
-            response_type: 'code',
-            code_challenge: codeChallenge,
-            code_challenge_method: CODE_CHALLENGE_METHOD,
-          },
-        })
-        .json()
-
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
+    const { code }: { code: string } = await gotInstance
+      .get(`oauth/authorize`, {
+        searchParams: {
+          audience: 'homesmart.local',
+          response_type: 'code',
+          code_challenge: codeChallenge,
+          code_challenge_method: CODE_CHALLENGE_METHOD,
+        },
       })
+      .json()
 
-      await rl.question(
-        'Press the Action Button on the bottom of your Dirigera Hub and then press the Enter button here'
-      )
+    console.error(
+      'Action Required: Press the Action Button on the bottom of your Dirigera Hub'
+    )
 
-      rl.close()
-
-      const { access_token: accessToken }: { access_token: string } =
+    const getAccessToken = async () => {
+      // @ts-ignore
+      const { access_token: newAccessToken }: { access_token: string } =
         await gotInstance
           .post(`oauth/token`, {
             form: {
@@ -97,9 +120,39 @@ export async function createDirigeraClient({
             },
           })
           .json()
+          .catch((err) => ({ access_token: undefined }))
 
-      return accessToken
-    },
+      if (!newAccessToken) {
+        // Wait a second before trying again.
+        await new Promise((r) => setTimeout(() => r(true), 1000))
+        return await getAccessToken()
+      }
+
+      return newAccessToken
+    }
+
+    const newAccessToken = await getAccessToken()
+
+    if (accessTokenStore) {
+      await accessTokenStore(newAccessToken)
+    }
+    accessToken = newAccessToken
+    if (accessToken) {
+      gotInstance = gotInstance.extend({
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
+    }
+    return newAccessToken
+  }
+
+  if (accessTokenStore && !accessToken) {
+    await authenticate()
+  }
+
+  return {
+    authenticate,
     async home() {
       return (await gotInstance.get(`home`).json()) as Home
     },
@@ -122,9 +175,10 @@ export async function createDirigeraClient({
         throw new Error('Access token is missing.')
       }
       initializeWebSocket({
-        ip,
+        // @ts-ignore
         accessToken,
         callback,
+        ip,
       })
     },
   }

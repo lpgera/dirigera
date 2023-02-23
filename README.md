@@ -2,29 +2,32 @@
 
 A TypeScript client library for IKEA's DIRIGERA smart home hub.
 
-- [Quick start](#quick-start)
-- [CLI](#cli)
-  - [Help](#help)
-  - [Authentication](#authentication)
-  - [Dump](#dump)
-- [Library](#library)
-  - [Client](#client)
-  - [Hub](#hub)
-  - [Devices](#devices)
-    - [Air purifiers](#air-purifiers)
-    - [Blinds](#blinds)
-    - [Controllers](#controllers)
-    - [Lights](#lights)
-    - [Motion sensors](#motion-sensors)
-    - [Outlets](#outlets)
-    - [Repeaters](#repeaters)
-    - [Speakers](#speakers)
-  - [Device sets](#device-sets)
-  - [Rooms](#rooms)
-  - [Scenes](#scenes)
-  - [Music](#music)
-  - [Users](#users)
-  - [Update events](#update-events)
+- [Dirigera](#dirigera)
+  - [Quick start](#quick-start)
+  - [CLI](#cli)
+    - [Help](#help)
+    - [Authentication](#authentication)
+      - [Method: Store](#method-store)
+      - [Method: CLI](#method-cli)
+    - [Dump](#dump)
+  - [Library](#library)
+    - [Client](#client)
+    - [Hub](#hub)
+    - [Devices](#devices)
+      - [Air purifiers](#air-purifiers)
+      - [Blinds](#blinds)
+      - [Controllers](#controllers)
+      - [Lights](#lights)
+      - [Motion sensors](#motion-sensors)
+      - [Outlets](#outlets)
+      - [Repeaters](#repeaters)
+      - [Speakers](#speakers)
+    - [Device sets](#device-sets)
+    - [Rooms](#rooms)
+    - [Scenes](#scenes)
+    - [Music](#music)
+    - [Users](#users)
+    - [Update events](#update-events)
 
 ## Quick start
 
@@ -63,13 +66,37 @@ npx dirigera help [command]
 
 To be able to communicate with your DIRIGERA hub, you have to obtain an access token by pairing with it.
 
+#### Method: Store
+
+```typescript
+const client = createDirigeraClient({
+  gatewayIP: 'YOUR_GATEWAY_IP',
+  accessToken: async (accessToken) => {
+    const file = 'token.txt'
+    if (accessToken) {
+      // Save the token for later
+      await writeFile(file, accessToken)
+    }
+    try {
+      // Fetch the saved token
+      return await readFile(file, 'utf8')
+    } catch (err) {
+      // If we return null, the program will halt until we press the pairing button.
+      return null
+    }
+  },
+})
+```
+
+#### Method: CLI
+
 Use the following command to do this via the CLI:
 
 ```bash
 npx dirigera authenticate
 ```
 
-You'll be prompted to press the action button on the bottom of the gateway, then to press the Enter key. An access token
+You'll be prompted to press the action button on the bottom of the gateway. An access token
 will be printed on your console afterwards.
 
 Store the access token in a secure place, and never share it with anyone outside your household!
@@ -102,6 +129,27 @@ Alternatively it's possible to explicitly set the gateway IP address.
 const client = await createDirigeraClient({
   gatewayIP: 'YOUR_GATEWAY_IP',
   accessToken: 'YOUR_ACCESS_TOKEN',
+})
+```
+
+You can also specify a combined getter/setter for the access token to make authentication more seamless.
+
+```typescript
+const client = createDirigeraClient({
+  gatewayIP: 'YOUR_GATEWAY_IP',
+  accessToken: async (accessToken) => {
+    const file = 'token.txt'
+    if (accessToken) {
+      // Save the token for later
+      await writeFile(file, accessToken)
+    }
+    try {
+      // Fetch the saved token
+      return await readFile(file, 'utf8')
+    } catch (err) {
+      return null
+    }
+  },
 })
 ```
 
