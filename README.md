@@ -267,6 +267,27 @@ await client.deviceSets.setIsOn({
 })
 ```
 
+### [Devices](./src/api/devices.ts)
+
+Generic device API which includes all subtypes.
+
+```typescript
+const devices = await client.devices.list()
+
+await client.devices.setCustomName({
+  id: 'YOUR_DEVICE_ID',
+  customName: 'A_CUSTOM_NAME',
+})
+
+// Low level API
+await client.devices.setAttributes({
+  id: 'YOUR_DEVICE_ID',
+  attributes: {
+    // ...
+  },
+})
+```
+
 ### [Rooms](./src/api/rooms.ts)
 
 ```typescript
