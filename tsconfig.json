@@ -1,6 +1,7 @@
 {
-  "extends": "@tsconfig/node18-strictest/tsconfig.json",
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node18/tsconfig"],
   "compilerOptions": {
+    "verbatimModuleSyntax": false,
     "moduleResolution": "node16",
     "declaration": true,
     "outDir": "dist",
