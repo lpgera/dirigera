@@ -2,6 +2,9 @@ import ReconnectingWebSocket from 'reconnecting-websocket'
 import WebSocket from 'ws'
 import crypto from 'crypto'
 
+let ws: ReconnectingWebSocket | null = null
+let timer: NodeJS.Timer | null = null
+
 export function initializeWebSocket({
   ip,
   accessToken,
@@ -11,7 +14,7 @@ export function initializeWebSocket({
   accessToken: string
   callback: (o: Object) => void | Promise<void>
 }) {
-  const ws = new ReconnectingWebSocket(`wss://${ip}:8443/v1`, [], {
+  ws = new ReconnectingWebSocket(`wss://${ip}:8443/v1`, [], {
     minReconnectionDelay: 10,
     maxReconnectionDelay: 10000,
     maxRetries: Number.MAX_SAFE_INTEGER,
@@ -32,8 +35,8 @@ export function initializeWebSocket({
     callback(JSON.parse(String(message.data)))
   })
 
-  setInterval(() => {
-    ws.send(
+  timer = setInterval(() => {
+    ws?.send(
       JSON.stringify({
         id: crypto.randomUUID(),
         specversion: '1.1.0',
@@ -44,4 +47,11 @@ export function initializeWebSocket({
       })
     )
   }, 30000)
+}
+
+export function closeWebSocket() {
+  ws?.close()
+  if (timer) {
+    clearInterval(timer)
+  }
 }

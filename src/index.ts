@@ -6,7 +6,7 @@ import {
   generateCodeVerifier,
 } from './authCode'
 import { discoverGatewayIP } from './mdnsDiscovery'
-import { initializeWebSocket } from './ws'
+import { closeWebSocket, initializeWebSocket } from './ws'
 import type { Home } from './types/Home'
 import hub from './api/hub'
 import lights from './api/lights'
@@ -145,6 +145,9 @@ export async function createDirigeraClient({
         accessToken,
         callback,
       })
+    },
+    stopListeningForUpdates() {
+      closeWebSocket()
     },
   }
 }
