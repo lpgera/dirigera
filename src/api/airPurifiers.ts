@@ -17,26 +17,6 @@ export default (got: Got) => {
       return device as AirPurifier
     },
 
-    async setCustomName({
-      id,
-      customName,
-    }: {
-      id: string
-      customName: string
-    }) {
-      await got
-        .patch(`devices/${id}`, {
-          json: [
-            {
-              attributes: {
-                customName,
-              },
-            },
-          ],
-        })
-        .json()
-    },
-
     async setFanMode({
       id,
       fanMode,

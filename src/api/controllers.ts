@@ -16,25 +16,5 @@ export default (got: Got) => {
       }
       return device as Controller
     },
-
-    async setCustomName({
-      id,
-      customName,
-    }: {
-      id: string
-      customName: string
-    }) {
-      await got
-        .patch(`devices/${id}`, {
-          json: [
-            {
-              attributes: {
-                customName,
-              },
-            },
-          ],
-        })
-        .json()
-    },
   }
 }

@@ -16,25 +16,5 @@ export default (got: Got) => {
       }
       return device as Repeater
     },
-
-    async setCustomName({
-      id,
-      customName,
-    }: {
-      id: string
-      customName: string
-    }) {
-      await got
-        .patch(`devices/${id}`, {
-          json: [
-            {
-              attributes: {
-                customName,
-              },
-            },
-          ],
-        })
-        .json()
-    },
   }
 }

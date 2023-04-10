@@ -9,6 +9,7 @@ import { discoverGatewayIP } from './mdnsDiscovery'
 import { closeWebSocket, initializeWebSocket } from './ws'
 import type { Home } from './types/Home'
 import hub from './api/hub'
+import devices from './api/devices'
 import lights from './api/lights'
 import outlets from './api/outlets'
 import controllers from './api/controllers'
@@ -123,6 +124,7 @@ export async function createDirigeraClient({
       return (await gotInstance.get(`home`).json()) as Home
     },
     hub: hub(gotInstance),
+    devices: devices(gotInstance),
     lights: lights(gotInstance),
     outlets: outlets(gotInstance),
     controllers: controllers(gotInstance),

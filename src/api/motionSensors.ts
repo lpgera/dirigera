@@ -19,26 +19,6 @@ export default (got: Got) => {
       return device as MotionSensor
     },
 
-    async setCustomName({
-      id,
-      customName,
-    }: {
-      id: string
-      customName: string
-    }) {
-      await got
-        .patch(`devices/${id}`, {
-          json: [
-            {
-              attributes: {
-                customName,
-              },
-            },
-          ],
-        })
-        .json()
-    },
-
     async setOnDuration({
       id,
       onDuration,

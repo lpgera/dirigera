@@ -17,26 +17,6 @@ export default (got: Got) => {
       return device as Blinds
     },
 
-    async setCustomName({
-      id,
-      customName,
-    }: {
-      id: string
-      customName: string
-    }) {
-      await got
-        .patch(`devices/${id}`, {
-          json: [
-            {
-              attributes: {
-                customName,
-              },
-            },
-          ],
-        })
-        .json()
-    },
-
     async setCurrentLevel({
       id,
       blindsCurrentLevel,
