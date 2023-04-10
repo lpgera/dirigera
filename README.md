@@ -115,7 +115,26 @@ await client.hub.checkFirmwareUpdate()
 await client.hub.installFirmwareUpdate()
 ```
 
-### Devices
+### [Devices](./src/api/devices.ts)
+
+Generic device API which includes all subtypes. It's recommended to use the type-specific APIs instead.
+
+```typescript
+const devices = await client.devices.list()
+
+await client.devices.setCustomName({
+  id: 'YOUR_DEVICE_ID',
+  customName: 'A_CUSTOM_NAME',
+})
+
+// Low level API
+await client.devices.setAttributes({
+  id: 'YOUR_DEVICE_ID',
+  attributes: {
+    // ...
+  },
+})
+```
 
 #### [Air purifiers](./src/api/airPurifiers.ts)
 
@@ -264,27 +283,6 @@ const deviceSets = await client.deviceSets.list()
 await client.deviceSets.setIsOn({
   id: 'YOUR_DEVICE_SET_ID',
   isOn: true,
-})
-```
-
-### [Devices](./src/api/devices.ts)
-
-Generic device API which includes all subtypes.
-
-```typescript
-const devices = await client.devices.list()
-
-await client.devices.setCustomName({
-  id: 'YOUR_DEVICE_ID',
-  customName: 'A_CUSTOM_NAME',
-})
-
-// Low level API
-await client.devices.setAttributes({
-  id: 'YOUR_DEVICE_ID',
-  attributes: {
-    // ...
-  },
 })
 ```
 
