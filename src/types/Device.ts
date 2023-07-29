@@ -17,6 +17,7 @@ export interface Device {
   deviceType:
     | 'airPurifier'
     | 'blinds'
+    | 'environmentSensor'
     | 'shortcutController'
     | 'lightController'
     | 'soundController'

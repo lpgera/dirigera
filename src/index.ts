@@ -18,6 +18,7 @@ import blinds from './api/blinds'
 import airPurifiers from './api/airPurifiers'
 import repeaters from './api/repeaters'
 import motionSensors from './api/motionSensors'
+import environmentSensors from './api/environmentSensors'
 import deviceSets from './api/deviceSets'
 import rooms from './api/rooms'
 import scenes from './api/scenes'
@@ -101,7 +102,7 @@ export async function createDirigeraClient({
       })
 
       await rl.question(
-        'Press the Action Button on the bottom of your Dirigera Hub and then press the Enter button here'
+        'Press the Action Button on the bottom of your Dirigera Hub and then press the Enter button here',
       )
 
       rl.close()
@@ -133,6 +134,7 @@ export async function createDirigeraClient({
     airPurifiers: airPurifiers(gotInstance),
     repeaters: repeaters(gotInstance),
     motionSensors: motionSensors(gotInstance),
+    environmentSensors: environmentSensors(gotInstance),
     deviceSets: deviceSets(gotInstance),
     rooms: rooms(gotInstance),
     scenes: scenes(gotInstance),
