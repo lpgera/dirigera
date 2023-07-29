@@ -14,6 +14,7 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
     - [Air purifiers](#air-purifiers)
     - [Blinds](#blinds)
     - [Controllers](#controllers)
+    - [Environment sensors](#environment-sensors)
     - [Lights](#lights)
     - [Motion sensors](#motion-sensors)
     - [Outlets](#outlets)
@@ -187,6 +188,19 @@ await client.controllers.setCustomName({
 })
 ```
 
+#### [Environment sensors](./src/api/environmentSensors.ts)
+
+```typescript
+const environmentSensors = await client.environmentSensors.list()
+
+const environmentSensor = await client.environmentSensors.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+const { currentTemperature, currentRH, currentPM25 } =
+  environmentSensor.attributes
+```
+
 #### [Lights](./src/api/lights.ts)
 
 ```typescript
@@ -356,7 +370,3 @@ client.startListeningForUpdates(async (updateEvent) => {
   console.log(JSON.stringify(updateEvent))
 })
 ```
-
----
-
-More coming soon!
