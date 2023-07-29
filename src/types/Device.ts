@@ -38,10 +38,11 @@ export interface Device {
     firmwareVersion: string
     hardwareVersion: string
     serialNumber: string
-    productCode: string
-    permittingJoin: boolean
-    otaStatus: 'upToDate' | 'updateAvailable'
-    otaState:
+    productCode?: string
+    relationId?: string
+    permittingJoin?: boolean
+    otaStatus?: 'upToDate' | 'updateAvailable'
+    otaState?:
       | 'batteryCheckFailed'
       | 'checkFailed'
       | 'checkInProgress'
@@ -53,11 +54,10 @@ export interface Device {
       | 'updateComplete'
       | 'updateFailed'
       | 'updateInProgress'
-    otaProgress: number
-    otaPolicy: 'autoUpdate' | 'autoDownload'
-    otaScheduleStart: string
-    otaScheduleEnd: string
-    [key: string]: any
+    otaProgress?: number
+    otaPolicy?: 'autoUpdate' | 'autoDownload'
+    otaScheduleStart?: string
+    otaScheduleEnd?: string
   }
   room: Room
   capabilities: Capabilities

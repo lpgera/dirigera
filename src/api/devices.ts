@@ -1,15 +1,15 @@
 // @ts-expect-error https://github.com/microsoft/TypeScript/issues/49721
 import type { Got } from 'got'
-import type { Device } from '../types/Device'
+import type { AnyDevice } from '../types/AnyDevice'
 
 export default (got: Got) => {
   return {
     async list() {
-      return (await got.get(`devices`).json()) as Device[]
+      return (await got.get(`devices`).json()) as AnyDevice[]
     },
 
     async get({ id }: { id: string }) {
-      return (await got.get(`devices/${id}`).json()) as Device
+      return (await got.get(`devices/${id}`).json()) as AnyDevice
     },
 
     async setCustomName({
@@ -38,7 +38,7 @@ export default (got: Got) => {
       transitionTime,
     }: {
       id: string
-      attributes: Record<string, any>
+      attributes: Partial<AnyDevice['attributes']>
       transitionTime?: number
     }) {
       return got

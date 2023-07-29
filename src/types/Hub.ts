@@ -44,6 +44,10 @@ export interface Hub {
       accuracy: number
     }
     isOn: boolean
+    nextSunSet: string
+    nextSunRise: string
+    homestateValue: string
+    homestateLastChanged: string
   }
   capabilities: Capabilities
   deviceSet: DeviceSet[]

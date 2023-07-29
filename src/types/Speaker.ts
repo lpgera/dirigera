@@ -15,16 +15,32 @@ export interface Speaker extends Device {
       | 'playbackPrevious'
       | 'playbackBuffering'
     playbackLastChangedTimestamp: string
-    playbackAudio: {
-      serviceType: string
-      providerType: string
-      playItem: MusicPlayItem
-      nextPlayItem: MusicPlayItem
-      playList: {
-        id: string
-        playItems: MusicPlayItem[]
-        title: string
-      }
+    playbackAudio:
+      | {
+          serviceType: string
+          providerType: string
+          playItem: MusicPlayItem
+          nextPlayItem: MusicPlayItem
+          playList: {
+            id: string
+            playItems: MusicPlayItem[]
+            title: string
+          }
+        }
+      | {}
+    playbackAvailableActions: {
+      crossfade: boolean
+      pause: boolean
+      repeat: string[]
+      seek: boolean
+      shuffle: boolean
+      playbackNext: boolean
+      playbackPrev: boolean
+    }
+    playbackModes: {
+      crossfade: boolean
+      repeat: string
+      shuffle: boolean
     }
     playbackPosition: {
       position: number

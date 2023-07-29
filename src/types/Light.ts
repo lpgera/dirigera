@@ -12,8 +12,10 @@ export interface Light extends Device {
     colorTemperature?: number
     colorTemperatureMin?: number
     colorTemperatureMax?: number
+    startupTemperature?: number
     colorMode?: 'temperature' | 'color'
     identifyStarted: string
     identifyPeriod: number
+    circadianRhythmMode?: string
   }
 }

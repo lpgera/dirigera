@@ -4,15 +4,16 @@ import type { Music } from './Music'
 import type { Hub } from './Hub'
 import type { DeviceSet } from './DeviceSet'
 import type { Scene } from './Scene'
-import type { Device } from './Device'
+import type { AnyDevice } from './AnyDevice'
 
 export interface Home {
   hub: Hub
-  devices: Device[]
+  devices: AnyDevice[]
   users: User[]
   user: User
   scenes: Scene[]
   rooms: Room[]
   deviceSets: DeviceSet[]
   music: Music
+  circadianRhythms: []
 }
