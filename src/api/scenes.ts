@@ -5,11 +5,11 @@ import type { Scene } from '../types/Scene'
 export default (got: Got) => {
   return {
     async list() {
-      return (await got.get(`scenes`).json()) as Scene[]
+      return await got.get(`scenes`).json<Scene[]>()
     },
 
     async get({ id }: { id: string }) {
-      return (await got.get(`scenes/${id}`).json()) as Scene
+      return await got.get(`scenes/${id}`).json<Scene>()
     },
 
     async trigger({ id }: { id: string }) {

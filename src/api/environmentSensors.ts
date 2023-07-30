@@ -1,18 +1,19 @@
 // @ts-expect-error https://github.com/microsoft/TypeScript/issues/49721
 import type { Got } from 'got'
+import type { Device } from '../types/Device'
 import type { EnvironmentSensor } from '../types/EnvironmentSensor'
 
 export default (got: Got) => {
   return {
     async list() {
-      const devices = (await got.get(`devices`).json()) as any[]
+      const devices = await got.get(`devices`).json<Device[]>()
       return devices.filter(
-        (d) => d.deviceType === 'environmentSensor',
-      ) as EnvironmentSensor[]
+        (d): d is EnvironmentSensor => d.deviceType === 'environmentSensor'
+      )
     },
 
     async get({ id }: { id: string }) {
-      const device = (await got.get(`devices/${id}`).json()) as any
+      const device = await got.get(`devices/${id}`).json<Device>()
       if (device.deviceType !== 'environmentSensor') {
         throw new Error('The requested device is not an environmentSensor')
       }

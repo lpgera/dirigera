@@ -1,16 +1,17 @@
 // @ts-expect-error https://github.com/microsoft/TypeScript/issues/49721
 import type { Got } from 'got'
+import type { Device } from '../types/Device'
 import type { Outlet } from '../types/Outlet'
 
 export default (got: Got) => {
   return {
     async list() {
-      const devices = (await got.get(`devices`).json()) as any[]
-      return devices.filter((d) => d.type === 'outlet') as Outlet[]
+      const devices = await got.get(`devices`).json<Device[]>()
+      return devices.filter((d): d is Outlet => d.type === 'outlet')
     },
 
     async get({ id }: { id: string }) {
-      const device = (await got.get(`devices/${id}`).json()) as any
+      const device = await got.get(`devices/${id}`).json<Device>()
       if (device.type !== 'outlet') {
         throw new Error('The requested device is not an outlet')
       }

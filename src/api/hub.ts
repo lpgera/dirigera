@@ -5,7 +5,7 @@ import type { Hub } from '../types/Hub'
 export default (got: Got) => {
   return {
     async status() {
-      return (await got.get(`hub/status`).json()) as Hub
+      return await got.get(`hub/status`).json<Hub>()
     },
 
     async checkFirmwareUpdate() {

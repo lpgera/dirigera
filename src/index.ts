@@ -123,7 +123,7 @@ export async function createDirigeraClient({
       return accessToken
     },
     async home() {
-      return (await gotInstance.get(`home`).json()) as Home
+      return await gotInstance.get(`home`).json<Home>()
     },
     hub: hub(gotInstance),
     devices: devices(gotInstance),

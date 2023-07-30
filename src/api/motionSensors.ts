@@ -1,18 +1,19 @@
 // @ts-expect-error https://github.com/microsoft/TypeScript/issues/49721
 import type { Got } from 'got'
+import type { Device } from '../types/Device'
 import type { MotionSensor } from '../types/MotionSensor'
 
 export default (got: Got) => {
   return {
     async list() {
-      const devices = (await got.get(`devices`).json()) as any[]
+      const devices = await got.get(`devices`).json<Device[]>()
       return devices.filter(
-        (d) => d.deviceType === 'motionSensor'
-      ) as MotionSensor[]
+        (d): d is MotionSensor => d.deviceType === 'motionSensor'
+      )
     },
 
     async get({ id }: { id: string }) {
-      const device = (await got.get(`devices/${id}`).json()) as any
+      const device = await got.get(`devices/${id}`).json<Device>()
       if (device.deviceType !== 'motionSensor') {
         throw new Error('The requested device is not a motionSensor')
       }

@@ -5,7 +5,7 @@ import type { Music } from '../types/Music'
 export default (got: Got) => {
   return {
     async get() {
-      return (await got.get(`music`).json()) as Music
+      return await got.get(`music`).json<Music>()
     },
   }
 }

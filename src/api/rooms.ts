@@ -6,11 +6,11 @@ import type { Device } from '../types/Device'
 export default (got: Got) => {
   return {
     async list() {
-      return (await got.get(`rooms`).json()) as Room[]
+      return await got.get(`rooms`).json<Room[]>()
     },
 
     async get({ id }: { id: string }) {
-      return (await got.get(`rooms/${id}`).json()) as Room
+      return await got.get(`rooms/${id}`).json<Room>()
     },
 
     // TODO add room management API
@@ -18,7 +18,6 @@ export default (got: Got) => {
     //  * deleteRoom
     //  * moveRoomDevices
     //  * updateRoom
-    // TODO cover device-type specific attribute changes
 
     async setIsOn({
       id,
@@ -29,7 +28,7 @@ export default (got: Got) => {
       deviceType: Device['deviceType']
       isOn: boolean
     }) {
-      return got
+      await got
         .patch(`devices/set/${id}`, {
           searchParams: {
             deviceType,
@@ -45,7 +44,7 @@ export default (got: Got) => {
         .json()
     },
 
-    // TODO low level API, shouldn't be exposed
+    // TODO make attributes type stricter based on deviceType
     async setAttributes({
       id,
       deviceType,
@@ -54,10 +53,10 @@ export default (got: Got) => {
     }: {
       id: string
       deviceType?: Device['deviceType']
-      attributes: Record<string, any>
+      attributes: Partial<Device['attributes']>
       transitionTime?: number
     }) {
-      return got
+      await got
         .patch(`devices/room/${id}`, {
           searchParams: {
             deviceType,

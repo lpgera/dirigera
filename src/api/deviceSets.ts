@@ -1,11 +1,12 @@
 // @ts-expect-error https://github.com/microsoft/TypeScript/issues/49721
 import type { Got } from 'got'
+import type { Device } from '../types/Device'
 import type { Home } from '../types/Home'
 
 export default (got: Got) => {
   return {
     async list() {
-      const home = (await got.get(`home`).json()) as Home
+      const home = await got.get(`home`).json<Home>()
       return home.deviceSets
     },
 
@@ -14,10 +15,9 @@ export default (got: Got) => {
     //  * deleteDeviceSet
     //  * updateDeviceSet
     //  * updateDeviceSetConfig
-    // TODO cover device-type specific attribute changes
 
     async setIsOn({ id, isOn }: { id: string; isOn: boolean }) {
-      return got
+      await got
         .patch(`devices/set/${id}`, {
           json: [
             {
@@ -30,17 +30,16 @@ export default (got: Got) => {
         .json()
     },
 
-    // TODO low level API, shouldn't be exposed
     async setAttributes({
       id,
       attributes,
       transitionTime,
     }: {
       id: string
-      attributes: Record<string, any>
+      attributes: Partial<Device['attributes']>
       transitionTime?: number
     }) {
-      return got
+      await got
         .patch(`devices/set/${id}`, {
           json: [
             {

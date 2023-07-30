@@ -5,11 +5,11 @@ import type { Device } from '../types/Device'
 export default (got: Got) => {
   return {
     async list() {
-      return (await got.get(`devices`).json()) as Device[]
+      return await got.get(`devices`).json<Device[]>()
     },
 
     async get({ id }: { id: string }) {
-      return (await got.get(`devices/${id}`).json()) as Device
+      return await got.get(`devices/${id}`).json<Device>()
     },
 
     async setCustomName({
@@ -41,7 +41,7 @@ export default (got: Got) => {
       attributes: Partial<Device['attributes']>
       transitionTime?: number
     }) {
-      return got
+      await got
         .patch(`devices/${id}`, {
           json: [
             {
