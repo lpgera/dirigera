@@ -1,10 +1,16 @@
-import type { Device } from './Device'
+import type {
+  CommonDeviceAttributes,
+  Device,
+  IdentifiableDeviceAttributes,
+  JoinableDeviceAttributes,
+  OtaUpdatableDeviceAttributes,
+} from './Device'
 
 export interface Repeater extends Device {
   type: 'repeater'
   deviceType: 'repeater'
-  attributes: Device['attributes'] & {
-    identifyPeriod: number
-    identifyStarted: string
-  }
+  attributes: CommonDeviceAttributes &
+    IdentifiableDeviceAttributes &
+    JoinableDeviceAttributes &
+    OtaUpdatableDeviceAttributes
 }

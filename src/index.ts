@@ -26,7 +26,6 @@ import music from './api/music'
 import users from './api/users'
 
 export type DirigeraClient = Awaited<ReturnType<typeof createDirigeraClient>>
-export type { AnyDevice } from './types/AnyDevice'
 export type { AirPurifier } from './types/AirPurifier'
 export type { Blinds } from './types/Blinds'
 export type { Capabilities } from './types/Capabilities'
@@ -104,7 +103,7 @@ export async function createDirigeraClient({
       })
 
       await rl.question(
-        'Press the Action Button on the bottom of your Dirigera Hub and then press the Enter button here',
+        'Press the Action Button on the bottom of your Dirigera Hub and then press the Enter button here'
       )
 
       rl.close()

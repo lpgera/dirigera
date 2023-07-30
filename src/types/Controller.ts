@@ -1,4 +1,16 @@
-import type { Device } from './Device'
+import type {
+  CommonDeviceAttributes,
+  Device,
+  JoinableDeviceAttributes,
+  OtaUpdatableDeviceAttributes,
+} from './Device'
+
+// TODO specific attributes for each controller type
+export interface ControllerAttributes {
+  batteryPercentage: number
+  isOn: boolean
+  lightLevel: number
+}
 
 export interface Controller extends Device {
   type: 'controller'
@@ -7,9 +19,8 @@ export interface Controller extends Device {
     | 'lightController'
     | 'soundController'
     | 'blindsController'
-  attributes: Device['attributes'] & {
-    batteryPercentage: number
-    isOn: boolean
-    lightLevel: number
-  }
+  attributes: CommonDeviceAttributes &
+    JoinableDeviceAttributes &
+    OtaUpdatableDeviceAttributes &
+    ControllerAttributes
 }

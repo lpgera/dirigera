@@ -1,13 +1,23 @@
-import type { Device } from './Device'
+import type {
+  CommonDeviceAttributes,
+  Device,
+  IdentifiableDeviceAttributes,
+  JoinableDeviceAttributes,
+  OtaUpdatableDeviceAttributes,
+} from './Device'
+
+export interface OutletAttributes {
+  isOn: boolean
+  startupOnOff: 'startOn' | 'startPrevious'
+  lightLevel: number
+}
 
 export interface Outlet extends Device {
   type: 'outlet'
   deviceType: 'outlet'
-  attributes: Device['attributes'] & {
-    isOn: boolean
-    startupOnOff: 'startOn' | 'startPrevious'
-    lightLevel: number
-    identifyStarted: string
-    identifyPeriod: number
-  }
+  attributes: CommonDeviceAttributes &
+    IdentifiableDeviceAttributes &
+    JoinableDeviceAttributes &
+    OtaUpdatableDeviceAttributes &
+    OutletAttributes
 }

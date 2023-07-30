@@ -1,56 +1,44 @@
-import type { Capabilities } from './Capabilities'
-import type { DeviceSet } from './DeviceSet'
+import type {
+  CommonDeviceAttributes,
+  Device,
+  IdentifiableDeviceAttributes,
+  JoinableDeviceAttributes,
+  OtaUpdatableDeviceAttributes,
+} from './Device'
 
-export interface Hub {
-  id: string
+export interface HubAttributes {
+  backendConnected: boolean
+  backendConnectionPersistent: boolean
+  backendOnboardingComplete: boolean
+  backendRegion: string
+  backendCountryCode: string
+  userConsents: {
+    name: 'analytics' | 'diagnostics'
+    value: 'enabled' | 'disabled'
+  }[]
+  logLevel: number
+  coredump: boolean
+  timezone: string
+  nextSunSet: string
+  nextSunRise: string
+  homestateValue: string
+  homestateLastChanged: string
+  countryCode: string
+  coordinates: {
+    latitude: number
+    longitude: number
+    accuracy: number
+  }
+  isOn: boolean
+}
+
+export interface Hub extends Device {
   relationId: string
   type: 'gateway'
   deviceType: 'gateway'
-  createdAt: string
-  isReachable: boolean
-  lastSeen: string
-  attributes: {
-    customName: string
-    model: string
-    manufacturer: string
-    firmwareVersion: string
-    hardwareVersion: string
-    serialNumber: string
-    identifyStarted: string
-    identifyPeriod: number
-    otaStatus: string
-    otaState: string
-    otaProgress: number
-    otaPolicy: string
-    otaScheduleStart: string
-    otaScheduleEnd: string
-    permittingJoin: boolean
-    backendConnected: boolean
-    backendConnectionPersistent: boolean
-    backendOnboardingComplete: boolean
-    backendRegion: string
-    backendCountryCode: string
-    userConsents: {
-      name: 'analytics' | 'diagnostics'
-      value: 'enabled' | 'disabled'
-    }[]
-    logLevel: number
-    coredump: boolean
-    timezone: string
-    countryCode: string
-    coordinates: {
-      latitude: number
-      longitude: number
-      accuracy: number
-    }
-    isOn: boolean
-    nextSunSet: string
-    nextSunRise: string
-    homestateValue: string
-    homestateLastChanged: string
-  }
-  capabilities: Capabilities
-  deviceSet: DeviceSet[]
-  remoteLinks: string[]
-  apiVersion?: string
+  attributes: CommonDeviceAttributes &
+    IdentifiableDeviceAttributes &
+    JoinableDeviceAttributes &
+    OtaUpdatableDeviceAttributes &
+    HubAttributes
 }

@@ -7,7 +7,7 @@ export interface Music {
   favorites: {
     id: string
     title: string
-    imageUrl: string
+    imageURL: string
     type: string
   }[]
 }
@@ -17,6 +17,6 @@ export interface MusicPlayItem {
   title: string
   artist: string
   album: string
-  imageUrl: string
+  imageURL: string
   duration: number
 }
