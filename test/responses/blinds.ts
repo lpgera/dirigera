@@ -1,0 +1,48 @@
+import type { Blinds } from '../../src'
+
+export const blinds: Blinds = {
+  id: '00000000-0000-0000-0000-000000000000',
+  type: 'blinds',
+  deviceType: 'blinds',
+  createdAt: '2000-01-01T00:00:00.000Z',
+  isReachable: false,
+  lastSeen: '2000-01-01T00:00:00.000Z',
+  attributes: {
+    customName: 'Custom name',
+    model: 'TREDANSEN block-out cellul blind',
+    manufacturer: 'IKEA of Sweden',
+    firmwareVersion: '24.4.10',
+    hardwareVersion: '1',
+    serialNumber: '00000000-0000-0000-0000-000000000000',
+    productCode: 'E2022',
+    batteryPercentage: 93,
+    blindsTargetLevel: 0,
+    blindsCurrentLevel: 0,
+    blindsState: 'stopped',
+    permittingJoin: false,
+    otaStatus: 'upToDate',
+    otaState: 'readyToCheck',
+    otaProgress: 0,
+    otaPolicy: 'autoUpdate',
+    otaScheduleStart: '00:00',
+    otaScheduleEnd: '00:00',
+  },
+  capabilities: {
+    canSend: [],
+    canReceive: [
+      'customName',
+      'blindsCurrentLevel',
+      'blindsTargetLevel',
+      'blindsState',
+    ],
+  },
+  room: {
+    id: '00000000-0000-0000-0000-000000000000',
+    name: 'Room',
+    color: 'ikea_green_no_65',
+    icon: 'rooms_arm_chair',
+  },
+  deviceSet: [],
+  remoteLinks: ['00000000-0000-0000-0000-000000000000'],
+  isHidden: false,
+}

@@ -1,0 +1,41 @@
+import type { Repeater } from '../../src'
+
+export const repeater: Repeater = {
+  id: '00000000-0000-0000-0000-000000000000',
+  type: 'repeater',
+  deviceType: 'repeater',
+  createdAt: '2000-01-01T00:00:00.000Z',
+  isReachable: true,
+  lastSeen: '2000-01-01T00:00:00.000Z',
+  attributes: {
+    customName: 'Custom name',
+    firmwareVersion: '2.3.086',
+    hardwareVersion: '1',
+    manufacturer: 'IKEA of Sweden',
+    model: 'TRADFRI signal repeater',
+    productCode: 'E1746',
+    serialNumber: '00000000-0000-0000-0000-000000000000',
+    identifyPeriod: 0,
+    identifyStarted: '2000-01-01T00:00:00.000Z',
+    permittingJoin: false,
+    otaPolicy: 'autoUpdate',
+    otaProgress: 0,
+    otaScheduleEnd: '00:00',
+    otaScheduleStart: '00:00',
+    otaState: 'readyToCheck',
+    otaStatus: 'upToDate',
+  },
+  capabilities: {
+    canSend: [],
+    canReceive: ['customName'],
+  },
+  room: {
+    id: '00000000-0000-0000-0000-000000000000',
+    name: 'Room',
+    color: 'ikea_green_no_65',
+    icon: 'rooms_arm_chair',
+  },
+  deviceSet: [],
+  remoteLinks: [],
+  isHidden: false,
+}

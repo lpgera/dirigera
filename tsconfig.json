@@ -1,5 +1,6 @@
 {
   "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node18/tsconfig"],
+  "exclude": ["test", "dist"],
   "compilerOptions": {
     "verbatimModuleSyntax": false,
     "moduleResolution": "node16",

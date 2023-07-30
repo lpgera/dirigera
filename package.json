@@ -6,7 +6,7 @@
   "types": "dist/src/index.d.ts",
   "bin": "dist/src/bin.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tsc --noEmit --p ./test",
     "prepare": "husky install",
     "prepack": "rm -rf dist && git stash -u && tsc",
     "postversion": "git push && git push --tags"

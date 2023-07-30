@@ -1,7 +1,6 @@
 import type {
   CommonDeviceAttributes,
   Device,
-  IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
@@ -17,7 +16,6 @@ export interface Blinds extends Device {
   type: 'blinds'
   deviceType: 'blinds'
   attributes: CommonDeviceAttributes &
-    IdentifiableDeviceAttributes &
     JoinableDeviceAttributes &
     OtaUpdatableDeviceAttributes &
     BlindsAttributes

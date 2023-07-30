@@ -1,4 +1,5 @@
 import createMdnsServer from 'mdns-server'
+import './mdns-server.d.ts'
 
 const name = '_ihsp._tcp.local.'
 
