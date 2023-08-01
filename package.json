@@ -6,7 +6,7 @@
   "types": "dist/src/index.d.ts",
   "bin": "dist/src/bin.js",
   "scripts": {
-    "test": "tsc --noEmit --p ./test",
+    "test": "tsc --noEmit --p tsconfig.test.json",
     "prepare": "husky install",
     "prepublishOnly": "npm run test",
     "prepack": "rm -rf dist && git stash -u && tsc",
