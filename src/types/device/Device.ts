@@ -1,6 +1,6 @@
-import type { Capabilities } from './Capabilities'
-import type { Room } from './Room'
-import type { DeviceSet } from './DeviceSet'
+import type { Capabilities } from '../Capabilities'
+import type { Room } from '../Room'
+import type { DeviceSet } from '../DeviceSet'
 import type { AirPurifierAttributes } from './AirPurifier'
 import type { BlindsAttributes } from './Blinds'
 import type { ControllerAttributes } from './Controller'
@@ -8,8 +8,9 @@ import type { EnvironmentSensorAttributes } from './EnvironmentSensor'
 import type { HubAttributes } from './Hub'
 import type { LightAttributes } from './Light'
 import type { MotionSensorAttributes } from './MotionSensor'
-import type { SpeakerAttributes } from './Speaker'
 import type { OutletAttributes } from './Outlet'
+import type { RepeaterAttributes } from './Repeater'
+import type { SpeakerAttributes } from './Speaker'
 
 export interface CommonDeviceAttributes {
   customName: string
@@ -92,6 +93,7 @@ export interface Device {
     Partial<LightAttributes> &
     Partial<MotionSensorAttributes> &
     Partial<OutletAttributes> &
+    Partial<RepeaterAttributes> &
     Partial<SpeakerAttributes>
   capabilities: Capabilities
   room?: Room

@@ -5,8 +5,13 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
+import type { Room } from '../Room'
 
-export interface AirPurifierAttributes {
+export interface AirPurifierAttributes
+  extends CommonDeviceAttributes,
+    IdentifiableDeviceAttributes,
+    JoinableDeviceAttributes,
+    OtaUpdatableDeviceAttributes {
   fanMode: 'auto' | 'manual' | 'off'
   fanModeSequence: 'lowMediumHighAuto'
   motorState: number
@@ -22,9 +27,7 @@ export interface AirPurifierAttributes {
 export interface AirPurifier extends Device {
   type: 'airPurifier'
   deviceType: 'airPurifier'
-  attributes: CommonDeviceAttributes &
-    IdentifiableDeviceAttributes &
-    JoinableDeviceAttributes &
-    OtaUpdatableDeviceAttributes &
-    AirPurifierAttributes
+  attributes: AirPurifierAttributes
+  room: Room
+  isHidden: boolean
 }

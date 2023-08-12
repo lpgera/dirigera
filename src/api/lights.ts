@@ -1,7 +1,7 @@
 // @ts-expect-error https://github.com/microsoft/TypeScript/issues/49721
 import type { Got } from 'got'
-import type { Device } from '../types/Device'
-import type { Light } from '../types/Light'
+import type { Device } from '../types/device/Device'
+import type { Light } from '../types/device/Light'
 
 export default (got: Got) => {
   return {

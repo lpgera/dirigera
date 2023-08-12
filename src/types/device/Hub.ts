@@ -6,7 +6,11 @@ import type {
   OtaUpdatableDeviceAttributes,
 } from './Device'
 
-export interface HubAttributes {
+export interface HubAttributes
+  extends CommonDeviceAttributes,
+    IdentifiableDeviceAttributes,
+    JoinableDeviceAttributes,
+    OtaUpdatableDeviceAttributes {
   backendConnected: boolean
   backendConnectionPersistent: boolean
   backendOnboardingComplete: boolean
@@ -36,9 +40,5 @@ export interface Hub extends Device {
   relationId: string
   type: 'gateway'
   deviceType: 'gateway'
-  attributes: CommonDeviceAttributes &
-    IdentifiableDeviceAttributes &
-    JoinableDeviceAttributes &
-    OtaUpdatableDeviceAttributes &
-    HubAttributes
+  attributes: HubAttributes
 }

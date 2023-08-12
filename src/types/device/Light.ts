@@ -5,8 +5,13 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
+import type { Room } from '../Room'
 
-export interface LightAttributes {
+export interface LightAttributes
+  extends CommonDeviceAttributes,
+    IdentifiableDeviceAttributes,
+    JoinableDeviceAttributes,
+    OtaUpdatableDeviceAttributes {
   isOn: boolean
   startupOnOff: 'startOn' | 'startPrevious'
   lightLevel: number
@@ -25,9 +30,7 @@ export interface LightAttributes {
 export interface Light extends Device {
   type: 'light'
   deviceType: 'light'
-  attributes: CommonDeviceAttributes &
-    IdentifiableDeviceAttributes &
-    JoinableDeviceAttributes &
-    OtaUpdatableDeviceAttributes &
-    LightAttributes
+  attributes: LightAttributes
+  room: Room
+  isHidden: boolean
 }

@@ -5,8 +5,13 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
+import type { Room } from '../Room'
 
-export interface EnvironmentSensorAttributes {
+export interface EnvironmentSensorAttributes
+  extends CommonDeviceAttributes,
+    IdentifiableDeviceAttributes,
+    JoinableDeviceAttributes,
+    OtaUpdatableDeviceAttributes {
   currentTemperature: number
   currentRH: number
   currentPM25: number
@@ -18,9 +23,7 @@ export interface EnvironmentSensorAttributes {
 export interface EnvironmentSensor extends Device {
   type: 'sensor'
   deviceType: 'environmentSensor'
-  attributes: CommonDeviceAttributes &
-    IdentifiableDeviceAttributes &
-    JoinableDeviceAttributes &
-    OtaUpdatableDeviceAttributes &
-    EnvironmentSensorAttributes
+  attributes: EnvironmentSensorAttributes
+  room: Room
+  isHidden: boolean
 }

@@ -4,8 +4,12 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
+import type { Room } from '../Room'
 
-export interface MotionSensorAttributes {
+export interface MotionSensorAttributes
+  extends CommonDeviceAttributes,
+    JoinableDeviceAttributes,
+    OtaUpdatableDeviceAttributes {
   batteryPercentage: number
   isOn: boolean
   sensorConfig: {
@@ -25,8 +29,7 @@ export interface MotionSensorAttributes {
 export interface MotionSensor extends Device {
   type: 'sensor'
   deviceType: 'motionSensor'
-  attributes: CommonDeviceAttributes &
-    JoinableDeviceAttributes &
-    OtaUpdatableDeviceAttributes &
-    MotionSensorAttributes
+  attributes: MotionSensorAttributes
+  room: Room
+  isHidden: boolean
 }

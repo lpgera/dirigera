@@ -4,9 +4,13 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
+import type { Room } from '../Room'
 
 // TODO specific attributes for each controller type
-export interface ControllerAttributes {
+export interface ControllerAttributes
+  extends CommonDeviceAttributes,
+    JoinableDeviceAttributes,
+    OtaUpdatableDeviceAttributes {
   batteryPercentage: number
   isOn: boolean
   lightLevel: number
@@ -19,8 +23,7 @@ export interface Controller extends Device {
     | 'lightController'
     | 'soundController'
     | 'blindsController'
-  attributes: CommonDeviceAttributes &
-    JoinableDeviceAttributes &
-    OtaUpdatableDeviceAttributes &
-    ControllerAttributes
+  attributes: ControllerAttributes
+  room: Room
+  isHidden: boolean
 }

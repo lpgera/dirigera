@@ -4,8 +4,12 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
+import type { Room } from '../Room'
 
-export interface BlindsAttributes {
+export interface BlindsAttributes
+  extends CommonDeviceAttributes,
+    JoinableDeviceAttributes,
+    OtaUpdatableDeviceAttributes {
   batteryPercentage: number
   blindsTargetLevel: number
   blindsCurrentLevel: number
@@ -15,8 +19,7 @@ export interface BlindsAttributes {
 export interface Blinds extends Device {
   type: 'blinds'
   deviceType: 'blinds'
-  attributes: CommonDeviceAttributes &
-    JoinableDeviceAttributes &
-    OtaUpdatableDeviceAttributes &
-    BlindsAttributes
+  attributes: BlindsAttributes
+  room: Room
+  isHidden: boolean
 }
