@@ -216,7 +216,7 @@ await client.lights.setIsOn({
 await client.lights.setLightLevel({
   id: 'YOUR_DEVICE_ID',
   lightLevel: 50,
-  transition: 5000,
+  transitionTime: 5000,
 })
 
 await client.lights.setLightColor({
