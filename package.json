@@ -37,15 +37,15 @@
     "ws": "^8.13.0"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.0",
-    "@tsconfig/strictest": "^2.0.1",
+    "@tsconfig/node18": "^18.2.1",
+    "@tsconfig/strictest": "^2.0.2",
     "@types/node": "^18.15.11",
     "@types/ws": "^8.5.5",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
-    "prettier": "^3.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   },
   "volta": {
     "node": "18.17.0"
