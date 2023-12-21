@@ -8,6 +8,7 @@ import type { EnvironmentSensorAttributes } from './EnvironmentSensor'
 import type { HubAttributes } from './Hub'
 import type { LightAttributes } from './Light'
 import type { MotionSensorAttributes } from './MotionSensor'
+import type { OpenCloseSensorAttributes } from './OpenCloseSensor'
 import type { OutletAttributes } from './Outlet'
 import type { RepeaterAttributes } from './Repeater'
 import type { SpeakerAttributes } from './Speaker'
@@ -75,6 +76,7 @@ export interface Device {
     | 'gateway'
     | 'light'
     | 'motionSensor'
+    | 'openCloseSensor'
     | 'outlet'
     | 'repeater'
     | 'speaker'
@@ -92,6 +94,7 @@ export interface Device {
     Partial<HubAttributes> &
     Partial<LightAttributes> &
     Partial<MotionSensorAttributes> &
+    Partial<OpenCloseSensorAttributes> &
     Partial<OutletAttributes> &
     Partial<RepeaterAttributes> &
     Partial<SpeakerAttributes>
@@ -100,4 +103,5 @@ export interface Device {
   deviceSet: DeviceSet[]
   remoteLinks: string[]
   isHidden?: boolean
+  customIcon?: string
 }
