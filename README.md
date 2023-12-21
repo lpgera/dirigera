@@ -18,6 +18,7 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
     - [Lights](#lights)
     - [Motion sensors](#motion-sensors)
     - [Outlets](#outlets)
+    - [Open/close sensors](#openclose-sensors)
     - [Repeaters](#repeaters)
     - [Speakers](#speakers)
   - [Device sets](#device-sets)
@@ -257,6 +258,18 @@ await client.outlets.setIsOn({
   id: 'YOUR_DEVICE_ID',
   isOn: true,
 })
+```
+
+#### [Open/close sensors](./src/api/openCloseSensors.ts)
+
+```typescript
+const openCloseSensors = await client.openCloseSensors.list()
+
+const openCloseSensor = await client.openCloseSensors.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+const { isOpen, batteryPercentage } = openCloseSensor.attributes
 ```
 
 #### [Repeaters](./src/api/repeaters.ts)
