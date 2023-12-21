@@ -3,7 +3,7 @@ import WebSocket from 'ws'
 import crypto from 'crypto'
 
 let ws: ReconnectingWebSocket | null = null
-let timer: NodeJS.Timer | null = null
+let timeout: NodeJS.Timeout | null = null
 
 export function initializeWebSocket({
   ip,
@@ -35,7 +35,7 @@ export function initializeWebSocket({
     callback(JSON.parse(String(message.data)))
   })
 
-  timer = setInterval(() => {
+  timeout = setInterval(() => {
     ws?.send(
       JSON.stringify({
         id: crypto.randomUUID(),
@@ -51,7 +51,7 @@ export function initializeWebSocket({
 
 export function closeWebSocket() {
   ws?.close()
-  if (timer) {
-    clearInterval(timer)
+  if (timeout) {
+    clearInterval(timeout)
   }
 }
