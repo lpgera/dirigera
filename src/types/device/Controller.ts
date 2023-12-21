@@ -14,6 +14,7 @@ export interface ControllerAttributes
   batteryPercentage: number
   isOn: boolean
   lightLevel: number
+  circadianPresets: any[]
 }
 
 export interface Controller extends Device {

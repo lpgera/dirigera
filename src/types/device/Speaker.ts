@@ -26,9 +26,9 @@ export interface SpeakerAttributes
       artist: string
       album: string
     }
-    playList?: {
+    playlist?: {
       id: string
-      playItems: MusicPlayItem[]
+      playItems?: MusicPlayItem[]
       title: string
     }
   }
