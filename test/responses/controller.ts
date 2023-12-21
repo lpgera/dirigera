@@ -25,6 +25,7 @@ export const lightController: Controller = {
     otaPolicy: 'autoUpdate',
     otaScheduleStart: '00:00',
     otaScheduleEnd: '00:00',
+    circadianPresets: [],
   },
   capabilities: {
     canSend: ['isOn', 'lightLevel'],

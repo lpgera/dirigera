@@ -40,7 +40,6 @@ const home: Home = {
     playlists: [],
     favorites: [],
   },
-  circadianRhythms: [],
 }
 
 home

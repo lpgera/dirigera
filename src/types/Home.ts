@@ -15,5 +15,4 @@ export interface Home {
   rooms: Room[]
   deviceSets: DeviceSet[]
   music: Music
-  circadianRhythms: []
 }
