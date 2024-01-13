@@ -1,5 +1,4 @@
-import readline from 'readline/promises'
-import os from 'os'
+import os from 'node:os'
 import {
   calculateCodeChallenge,
   CODE_CHALLENGE_METHOD,
@@ -84,7 +83,7 @@ export async function createDirigeraClient({
   })
 
   return {
-    async authenticate() {
+    async authenticate({ verbose = false }: { verbose?: boolean } = {}) {
       const codeVerifier = generateCodeVerifier()
       const codeChallenge = calculateCodeChallenge(codeVerifier)
 
@@ -99,30 +98,53 @@ export async function createDirigeraClient({
         })
         .json()
 
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      })
+      const { default: pRetry } = await import('p-retry')
 
-      await rl.question(
-        'Press the Action Button on the bottom of your Dirigera Hub and then press the Enter button here'
+      if (verbose) {
+        console.log(
+          'Press the Action Button on the bottom of your Dirigera Hub within 60 seconds.'
+        )
+      }
+
+      return await pRetry(
+        async () => {
+          const { access_token }: { access_token: string } = await gotInstance
+            .post(`oauth/token`, {
+              form: {
+                code,
+                name: os.hostname(),
+                grant_type: 'authorization_code',
+                code_verifier: codeVerifier,
+              },
+            })
+            .json()
+
+          if (!access_token) {
+            throw new Error('Access token is missing.')
+          }
+
+          if (verbose) {
+            process.stdout.write('\n')
+          }
+
+          return access_token
+        },
+        {
+          retries: 59,
+          minTimeout: 1000,
+          factor: 1,
+          onFailedAttempt: (error) => {
+            if (verbose) {
+              process.stdout.write(
+                `\rTime left: ${String(error.retriesLeft).padStart(2, ' ')} seconds`
+              )
+              if (error.retriesLeft === 0) {
+                process.stdout.write('\n')
+              }
+            }
+          },
+        }
       )
-
-      rl.close()
-
-      const { access_token: accessToken }: { access_token: string } =
-        await gotInstance
-          .post(`oauth/token`, {
-            form: {
-              code,
-              name: os.hostname(),
-              grant_type: 'authorization_code',
-              code_verifier: codeVerifier,
-            },
-          })
-          .json()
-
-      return accessToken
     },
     async home() {
       return await gotInstance.get(`home`).json<Home>()

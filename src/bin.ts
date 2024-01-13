@@ -20,7 +20,7 @@ program
   .action(async (options: { gatewayIP?: string }) => {
     const client = await createDirigeraClient(options)
 
-    const accessToken = await client.authenticate()
+    const accessToken = await client.authenticate({ verbose: true })
 
     console.log(`🔑 Your access token: ${accessToken}`)
   })

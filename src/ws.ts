@@ -1,6 +1,6 @@
+import crypto from 'node:crypto'
 import ReconnectingWebSocket from 'reconnecting-websocket'
 import WebSocket from 'ws'
-import crypto from 'crypto'
 
 let ws: ReconnectingWebSocket | null = null
 let timeout: NodeJS.Timeout | null = null
