@@ -7,7 +7,7 @@
   "bin": "dist/src/bin.js",
   "scripts": {
     "test": "tsc --noEmit --p tsconfig.test.json",
-    "prepare": "husky install",
+    "prepare": "husky",
     "prepublishOnly": "npm run test",
     "prepack": "rm -rf dist && git stash -u && tsc",
     "postversion": "git push && git push --tags"
@@ -40,12 +40,12 @@
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
     "@tsconfig/strictest": "^2.0.2",
-    "@types/node": "^20.11.0",
+    "@types/node": "^20.11.7",
     "@types/ws": "^8.5.10",
-    "husky": "^8.0.3",
+    "husky": "^9.0.6",
     "lint-staged": "^15.2.0",
-    "prettier": "^3.2.1",
-    "ts-node": "^10.9.2",
+    "prettier": "^3.2.4",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
   "volta": {
