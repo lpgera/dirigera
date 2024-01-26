@@ -7,6 +7,7 @@ import {
 import { discoverGatewayIP } from './mdnsDiscovery'
 import { closeWebSocket, initializeWebSocket } from './ws'
 import type { Home } from './types/Home'
+import type { Event } from './types/event/Event'
 import hub from './api/hub'
 import devices from './api/devices'
 import lights from './api/lights'
@@ -45,6 +46,28 @@ export type { Room } from './types/Room'
 export type { Scene } from './types/Scene'
 export type { Speaker } from './types/device/Speaker'
 export type { User } from './types/User'
+
+export type { Event } from './types/event/Event'
+export type { DeviceAddedEvent } from './types/event/DeviceAddedEvent'
+export type { DeviceConfigurationChangedEvent } from './types/event/DeviceConfigurationChangedEvent'
+export type { DeviceDiscoveredEvent } from './types/event/DeviceDiscoveredEvent'
+export type { DeviceRemovedEvent } from './types/event/DeviceRemovedEvent'
+export type { DeviceSetCreatedEvent } from './types/event/DeviceSetCreatedEvent'
+export type { DeviceSetDeletedEvent } from './types/event/DeviceSetDeletedEvent'
+export type { DeviceSetUpdatedEvent } from './types/event/DeviceSetUpdatedEvent'
+export type { DeviceStateChangedEvent } from './types/event/DeviceStateChangedEvent'
+export type { MusicUpdatedEvent } from './types/event/MusicUpdatedEvent'
+export type { PingEvent } from './types/event/PingEvent'
+export type { PongEvent } from './types/event/PongEvent'
+export type { RoomCreatedEvent } from './types/event/RoomCreatedEvent'
+export type { RoomDeletedEvent } from './types/event/RoomDeletedEvent'
+export type { RoomUpdatedEvent } from './types/event/RoomUpdatedEvent'
+export type { SceneCompletedEvent } from './types/event/SceneCompletedEvent'
+export type { SceneCreatedEvent } from './types/event/SceneCreatedEvent'
+export type { SceneDeletedEvent } from './types/event/SceneDeletedEvent'
+export type { SceneTriggeredEvent } from './types/event/SceneTriggeredEvent'
+export type { SceneUpdatedEvent } from './types/event/SceneUpdatedEvent'
+export type { TerminationEvent } from './types/event/TerminationEvent'
 
 export async function createDirigeraClient({
   gatewayIP,
@@ -166,7 +189,7 @@ export async function createDirigeraClient({
     scenes: scenes(gotInstance),
     music: music(gotInstance),
     users: users(gotInstance),
-    startListeningForUpdates(callback: (updateEvent: any) => void) {
+    startListeningForUpdates(callback: (updateEvent: Event) => void) {
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }

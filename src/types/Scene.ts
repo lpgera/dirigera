@@ -35,13 +35,14 @@ export interface Scene {
   actions: {
     id: string
     type: 'device' | 'deviceSet'
+    enabled?: boolean
     deviceId?: string
     attributes: Record<string, any>
   }[]
   commands: any[]
   createdAt: string
-  lastCompleted: string
-  lastTriggered: string
+  lastCompleted?: string
+  lastTriggered?: string
   undoAllowedDuration: number
   lastUndo?: string
 }

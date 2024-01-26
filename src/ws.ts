@@ -1,6 +1,7 @@
 import crypto from 'node:crypto'
 import ReconnectingWebSocket from 'reconnecting-websocket'
 import WebSocket from 'ws'
+import type { Event } from './types/event/Event'
 
 let ws: ReconnectingWebSocket | null = null
 let timeout: NodeJS.Timeout | null = null
@@ -12,7 +13,7 @@ export function initializeWebSocket({
 }: {
   ip: string
   accessToken: string
-  callback: (o: Object) => void | Promise<void>
+  callback: (o: Event) => void | Promise<void>
 }) {
   ws = new ReconnectingWebSocket(`wss://${ip}:8443/v1`, [], {
     minReconnectionDelay: 10,
