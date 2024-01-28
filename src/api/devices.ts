@@ -52,6 +52,24 @@ export default (got: Got) => {
         .json()
     },
 
-    // TODO identifyDevice, stopIdentifyDevice
+    async startIdentifying({ id }: { id: string }) {
+      await got
+        .put(`devices/${id}/identify`, {
+          json: {
+            period: 30,
+          },
+        })
+        .json()
+    },
+
+    async stopIdentifying({ id }: { id: string }) {
+      await got
+        .put(`devices/${id}/identify`, {
+          json: {
+            period: 0,
+          },
+        })
+        .json()
+    },
   }
 }
