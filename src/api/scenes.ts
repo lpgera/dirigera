@@ -19,6 +19,45 @@ export default (got: Got) => {
       await got.post(`scenes/${id}/undo`).json()
     },
 
-    // TODO create, delete, update
+    async create({
+      info,
+      type,
+      actions,
+      triggers,
+    }: Pick<Scene, 'info' | 'type' | 'actions' | 'triggers'>) {
+      return await got
+        .post(`scenes`, {
+          json: {
+            info,
+            type,
+            actions,
+            triggers,
+          },
+        })
+        .json<{ id: string }>()
+    },
+
+    async delete({ id }: { id: string }) {
+      await got.delete(`scenes/${id}`)
+    },
+
+    async update({
+      id,
+      info,
+      type,
+      actions,
+      triggers,
+    }: Pick<Scene, 'id' | 'info' | 'type' | 'actions' | 'triggers'>) {
+      await got
+        .put(`scenes/${id}`, {
+          json: {
+            info,
+            type,
+            actions,
+            triggers,
+          },
+        })
+        .json()
+    },
   }
 }
