@@ -80,7 +80,7 @@ export interface Scene {
     type: 'device' | 'deviceSet'
     enabled?: boolean
     deviceId?: string
-    attributes: Record<string, any>
+    attributes: Record<string, any> // TODO
   }[]
   commands: {
     id: string

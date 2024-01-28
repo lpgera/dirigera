@@ -14,7 +14,5 @@ export default (got: Got) => {
     async installFirmwareUpdate() {
       await got.put(`hub/ota/update`).json()
     },
-
-    // TODO setFirmwareEnvironment, setPersistentMode
   }
 }
