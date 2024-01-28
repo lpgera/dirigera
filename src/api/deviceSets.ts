@@ -1,6 +1,7 @@
 import type { Got } from 'got' with { 'resolution-mode': 'require' }
 import type { Device } from '../types/device/Device'
 import type { Home } from '../types/Home'
+import type { DeviceSet } from '../types/DeviceSet'
 
 export default (got: Got) => {
   return {
@@ -9,11 +10,53 @@ export default (got: Got) => {
       return home.deviceSets
     },
 
-    // TODO add device-set management APIs
-    //  * createDeviceSet
-    //  * deleteDeviceSet
-    //  * updateDeviceSet
-    //  * updateDeviceSetConfig
+    async createDeviceSet({ name, icon }: Pick<DeviceSet, 'name' | 'icon'>) {
+      return await got
+        .post(`device-set`, {
+          json: {
+            name,
+            icon,
+          },
+        })
+        .json<{ id: string }>()
+    },
+
+    async deleteDeviceSet({ id }: { id: string }) {
+      await got.delete(`device-set/${id}`)
+    },
+
+    async updateDeviceSet({ id, name, icon }: DeviceSet) {
+      await got
+        .put(`device-set/${id}`, {
+          json: {
+            name,
+            icon,
+          },
+        })
+        .json()
+    },
+
+    async updateDeviceSetConfig({
+      id,
+      deviceIds,
+      roomId,
+      remoteLinkIds,
+    }: {
+      id: string
+      deviceIds: string[]
+      roomId?: string
+      remoteLinkIds?: string[]
+    }) {
+      await got
+        .patch(`device-set/${id}/config`, {
+          json: {
+            deviceIds,
+            roomId,
+            remoteLinkIds,
+          },
+        })
+        .json()
+    },
 
     async setIsOn({ id, isOn }: { id: string; isOn: boolean }) {
       await got

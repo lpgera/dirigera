@@ -25,7 +25,7 @@ export default (got: Got) => {
             color,
           },
         })
-        .json<Room>()
+        .json<{ id: string }>()
     },
 
     async deleteRoom({ id }: { id: string }) {
@@ -41,7 +41,7 @@ export default (got: Got) => {
             color,
           },
         })
-        .json<Room>()
+        .json()
     },
 
     async moveRoomDevices({
