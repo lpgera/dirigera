@@ -5,7 +5,6 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
-import type { Room } from '../Room'
 
 export interface RepeaterAttributes
   extends CommonDeviceAttributes,
@@ -17,6 +16,5 @@ export interface Repeater extends Device {
   type: 'repeater'
   deviceType: 'repeater'
   attributes: RepeaterAttributes
-  room: Room
   isHidden: boolean
 }

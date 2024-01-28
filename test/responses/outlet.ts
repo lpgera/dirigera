@@ -42,3 +42,42 @@ export const outlet: Outlet = {
   remoteLinks: [],
   isHidden: false,
 }
+
+const outletWithoutRoom: Outlet = {
+  id: '00000000-0000-0000-0000-000000000000',
+  type: 'outlet',
+  deviceType: 'outlet',
+  createdAt: '2000-01-01T00:00:00.000Z',
+  isReachable: true,
+  lastSeen: '2000-01-01T00:00:00.000Z',
+  attributes: {
+    customName: 'Christmas lights',
+    model: 'TRADFRI control outlet',
+    manufacturer: 'IKEA of Sweden',
+    firmwareVersion: '2.3.089',
+    hardwareVersion: '1',
+    serialNumber: '00000000-0000-0000-0000-000000000000',
+    productCode: 'E1603',
+    isOn: false,
+    startupOnOff: 'startPrevious',
+    lightLevel: 62,
+    identifyStarted: '2000-01-01T00:00:00.000Z',
+    identifyPeriod: 0,
+    permittingJoin: false,
+    otaStatus: 'upToDate',
+    otaState: 'readyToCheck',
+    otaProgress: 0,
+    otaPolicy: 'autoUpdate',
+    otaScheduleStart: '00:00',
+    otaScheduleEnd: '00:00',
+  },
+  capabilities: {
+    canSend: [],
+    canReceive: ['customName', 'isOn', 'lightLevel'],
+  },
+  deviceSet: [],
+  remoteLinks: [],
+  isHidden: false,
+}
+
+outletWithoutRoom

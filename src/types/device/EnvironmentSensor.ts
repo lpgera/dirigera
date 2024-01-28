@@ -5,7 +5,6 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
-import type { Room } from '../Room'
 
 export interface EnvironmentSensorAttributes
   extends CommonDeviceAttributes,
@@ -24,6 +23,5 @@ export interface EnvironmentSensor extends Device {
   type: 'sensor'
   deviceType: 'environmentSensor'
   attributes: EnvironmentSensorAttributes
-  room: Room
   isHidden: boolean
 }

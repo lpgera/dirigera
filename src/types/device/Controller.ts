@@ -4,7 +4,6 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
-import type { Room } from '../Room'
 
 // TODO specific attributes for each controller type
 export interface ControllerAttributes
@@ -25,6 +24,5 @@ export interface Controller extends Device {
     | 'soundController'
     | 'blindsController'
   attributes: ControllerAttributes
-  room: Room
   isHidden: boolean
 }

@@ -4,7 +4,6 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
-import type { Room } from '../Room'
 
 export interface MotionSensorAttributes
   extends CommonDeviceAttributes,
@@ -30,6 +29,5 @@ export interface MotionSensor extends Device {
   type: 'sensor'
   deviceType: 'motionSensor'
   attributes: MotionSensorAttributes
-  room: Room
   isHidden: boolean
 }

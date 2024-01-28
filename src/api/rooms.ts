@@ -12,11 +12,53 @@ export default (got: Got) => {
       return await got.get(`rooms/${id}`).json<Room>()
     },
 
-    // TODO add room management API
-    //  * createRoom
-    //  * deleteRoom
-    //  * moveRoomDevices
-    //  * updateRoom
+    async createRoom({
+      name,
+      icon,
+      color,
+    }: Pick<Room, 'name' | 'icon' | 'color'>) {
+      return await got
+        .post(`rooms`, {
+          json: {
+            name,
+            icon,
+            color,
+          },
+        })
+        .json<Room>()
+    },
+
+    async deleteRoom({ id }: { id: string }) {
+      await got.delete(`rooms/${id}`)
+    },
+
+    async updateRoom({ id, name, icon, color }: Room) {
+      await got
+        .put(`rooms/${id}`, {
+          json: {
+            name,
+            icon,
+            color,
+          },
+        })
+        .json<Room>()
+    },
+
+    async moveRoomDevices({
+      id,
+      deviceIds,
+    }: {
+      id: string
+      deviceIds: string[]
+    }) {
+      await got
+        .patch(`rooms/${id}/devices`, {
+          json: {
+            deviceIds,
+          },
+        })
+        .json()
+    },
 
     async setIsOn({
       id,

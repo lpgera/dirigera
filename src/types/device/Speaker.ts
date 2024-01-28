@@ -4,7 +4,6 @@ import type {
   IdentifiableDeviceAttributes,
 } from './Device'
 import type { MusicPlayItem } from '../Music'
-import type { Room } from '../Room'
 
 export interface SpeakerAttributes
   extends CommonDeviceAttributes,
@@ -59,6 +58,5 @@ export interface Speaker extends Device {
   type: 'speaker'
   deviceType: 'speaker'
   attributes: SpeakerAttributes
-  room: Room
   isHidden: boolean
 }

@@ -5,7 +5,6 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
-import type { Room } from '../Room'
 
 export interface OutletAttributes
   extends CommonDeviceAttributes,
@@ -21,6 +20,5 @@ export interface Outlet extends Device {
   type: 'outlet'
   deviceType: 'outlet'
   attributes: OutletAttributes
-  room: Room
   isHidden: boolean
 }

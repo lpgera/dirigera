@@ -5,7 +5,6 @@ import type {
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
-import type { Room } from '../Room'
 
 export interface AirPurifierAttributes
   extends CommonDeviceAttributes,
@@ -28,6 +27,5 @@ export interface AirPurifier extends Device {
   type: 'airPurifier'
   deviceType: 'airPurifier'
   attributes: AirPurifierAttributes
-  room: Room
   isHidden: boolean
 }
