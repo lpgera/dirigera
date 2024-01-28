@@ -12,7 +12,7 @@ export default (got: Got) => {
       return await got.get(`rooms/${id}`).json<Room>()
     },
 
-    async createRoom({
+    async create({
       name,
       icon,
       color,
@@ -28,11 +28,11 @@ export default (got: Got) => {
         .json<{ id: string }>()
     },
 
-    async deleteRoom({ id }: { id: string }) {
+    async delete({ id }: { id: string }) {
       await got.delete(`rooms/${id}`)
     },
 
-    async updateRoom({ id, name, icon, color }: Room) {
+    async update({ id, name, icon, color }: Room) {
       await got
         .put(`rooms/${id}`, {
           json: {
@@ -44,7 +44,7 @@ export default (got: Got) => {
         .json()
     },
 
-    async moveRoomDevices({
+    async moveDevices({
       id,
       deviceIds,
     }: {

@@ -10,7 +10,7 @@ export default (got: Got) => {
       return home.deviceSets
     },
 
-    async createDeviceSet({ name, icon }: Pick<DeviceSet, 'name' | 'icon'>) {
+    async create({ name, icon }: Pick<DeviceSet, 'name' | 'icon'>) {
       return await got
         .post(`device-set`, {
           json: {
@@ -21,11 +21,11 @@ export default (got: Got) => {
         .json<{ id: string }>()
     },
 
-    async deleteDeviceSet({ id }: { id: string }) {
+    async delete({ id }: { id: string }) {
       await got.delete(`device-set/${id}`)
     },
 
-    async updateDeviceSet({ id, name, icon }: DeviceSet) {
+    async update({ id, name, icon }: DeviceSet) {
       await got
         .put(`device-set/${id}`, {
           json: {
@@ -36,7 +36,7 @@ export default (got: Got) => {
         .json()
     },
 
-    async updateDeviceSetConfig({
+    async updateConfiguration({
       id,
       deviceIds,
       roomId,
@@ -48,7 +48,7 @@ export default (got: Got) => {
       remoteLinkIds?: string[]
     }) {
       await got
-        .patch(`device-set/${id}/config`, {
+        .patch(`device-set/${id}/configuration`, {
           json: {
             deviceIds,
             roomId,
