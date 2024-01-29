@@ -32,7 +32,7 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
 
 1. Execute `npx dirigera authenticate` in your terminal and follow the instructions.
 2. Save the obtained access token.
-3. Dump your Dirigera system's information as a JSON to identify device IDs:
+3. [Optional] To get your device IDs, dump your Dirigera system's information as a JSON:
    `npx dirigera dump --access-token <YOUR_ACCESS_TOKEN>`
 4. Install the library as a dependency: `npm i dirigera`
 5. Create a client instance in your code with the access token:
@@ -47,7 +47,7 @@ A TypeScript client library for IKEA's DIRIGERA smart home hub.
 
 6. You are ready to control your devices!
    ```typescript
-   client.lights.setIsOn({
+   await client.lights.setIsOn({
      id: 'YOUR_DEVICE_ID',
      isOn: true,
    })
@@ -89,8 +89,7 @@ npx dirigera dump --access-token YOUR_ACCESS_TOKEN
 
 ### Client
 
-You can rely on mDNS discovery to connect to the gateway. This is convenient, however the initialization can take a
-couple of seconds.
+You can rely on mDNS discovery to connect to the gateway without specifying an IP address.
 
 ```typescript
 const client = await createDirigeraClient({
@@ -98,13 +97,27 @@ const client = await createDirigeraClient({
 })
 ```
 
-Alternatively it's possible to explicitly set the gateway IP address.
+Alternatively, if mDNS discovery fails, it's possible to explicitly set the IP address.
 
 ```typescript
 const client = await createDirigeraClient({
   gatewayIP: 'YOUR_GATEWAY_IP',
   accessToken: 'YOUR_ACCESS_TOKEN',
 })
+```
+
+If you want to authenticate without using the CLI, you can use the following method:
+
+```typescript
+const client = await createDirigeraClient()
+
+const accessToken = await client.authenticate() // You have to press the action button on the gateway after this
+```
+
+To get every device, room, scene, etc. in a single object:
+
+```typescript
+const home = await client.home()
 ```
 
 ### [Hub](./src/api/hub.ts)
@@ -119,26 +132,39 @@ await client.hub.installFirmwareUpdate()
 
 ### [Devices](./src/api/devices.ts)
 
-Generic device API which includes all subtypes. It's recommended to use the type-specific APIs instead.
+Generic device API.
 
 ```typescript
 const devices = await client.devices.list()
+
+const device = await client.devices.get({
+  id: 'YOUR_DEVICE_ID',
+})
 
 await client.devices.setCustomName({
   id: 'YOUR_DEVICE_ID',
   customName: 'A_CUSTOM_NAME',
 })
 
-// Low level API
 await client.devices.setAttributes({
   id: 'YOUR_DEVICE_ID',
   attributes: {
     // ...
   },
 })
+
+await client.devices.startIdentifying({
+  id: 'YOUR_DEVICE_ID',
+})
+
+await client.devices.stopIdentifying({
+  id: 'YOUR_DEVICE_ID',
+})
 ```
 
 #### [Air purifiers](./src/api/airPurifiers.ts)
+
+Not tested, feedback required.
 
 ```typescript
 const airPurifiers = await client.airPurifiers.list()
@@ -149,22 +175,39 @@ const airPurifier = await client.airPurifiers.get({
 
 await client.airPurifiers.setFanMode({
   id: 'YOUR_DEVICE_ID',
-  fanMode: 'auto',
+  fanMode: 'auto', // 'auto' | 'manual' | 'off'
 })
 
-await client.airPurifiers.setFanMode({
+await client.airPurifiers.setMotorState({
   id: 'YOUR_DEVICE_ID',
-  fanMode: 'off',
+  motorState: 0,
+})
+
+await client.airPurifiers.setChildLock({
+  id: 'YOUR_DEVICE_ID',
+  childLock: true,
+})
+
+await client.airPurifiers.setStatusLight({
+  id: 'YOUR_DEVICE_ID',
+  statusLight: true,
 })
 ```
 
 #### [Blinds](./src/api/blinds.ts)
+
+Not tested, feedback required.
 
 ```typescript
 const blinds = await client.blinds.list()
 
 const blind = await client.blinds.get({
   id: 'YOUR_DEVICE_ID',
+})
+
+await client.blinds.setCurrentLevel({
+  id: 'YOUR_DEVICE_ID',
+  blindsCurrentLevel: 0,
 })
 
 await client.blinds.setTargetLevel({
@@ -174,18 +217,17 @@ await client.blinds.setTargetLevel({
 
 await client.blinds.setState({
   id: 'YOUR_DEVICE_ID',
-  blindsState: 'stopped',
+  blindsState: 'stopped', // 'stopped' | 'up' | 'down'
 })
 ```
 
 #### [Controllers](./src/api/controllers.ts)
 
 ```typescript
-const controls = await client.controllers.list()
+const controllers = await client.controllers.list()
 
-await client.controllers.setCustomName({
+const controller = await client.controllers.get({
   id: 'YOUR_DEVICE_ID',
-  customName: 'A_CUSTOM_NAME',
 })
 ```
 
@@ -234,6 +276,8 @@ await client.lights.setLightTemperature({
 
 #### [Motion sensors](./src/api/motionSensors.ts)
 
+Not tested, feedback required.
+
 ```typescript
 const motionSensors = await client.motionSensors.list()
 
@@ -244,6 +288,23 @@ const motionSensor = await client.motionSensors.get({
 await client.motionSensors.setOnDuration({
   id: 'YOUR_DEVICE_ID',
   onDuration: 300,
+})
+
+await client.motionSensors.setScheduleOn({
+  id: 'YOUR_DEVICE_ID',
+  scheduleOn: true,
+})
+
+await client.motionSensors.setSchedule({
+  id: 'YOUR_DEVICE_ID',
+  schedule: {
+    onCondition: {
+      time: '22:00',
+    },
+    offCondition: {
+      time: '06:00',
+    },
+  },
 })
 ```
 
@@ -298,7 +359,7 @@ await client.speakers.setVolume({
 
 await client.speakers.setPlayback({
   id: 'YOUR_DEVICE_ID',
-  playback: 'playbackPaused',
+  playback: 'playbackPaused', // 'playbackPlaying' | 'playbackPaused' | 'playbackNext' | 'playbackPrevious'
 })
 ```
 
@@ -311,6 +372,35 @@ await client.deviceSets.setIsOn({
   id: 'YOUR_DEVICE_SET_ID',
   isOn: true,
 })
+
+const { id } = await client.deviceSets.create({
+  name: 'A_CUSTOM_NAME',
+  icon: 'lighting_chandelier',
+})
+
+await client.deviceSets.delete({
+  id: 'YOUR_DEVICE_SET_ID',
+})
+
+await client.deviceSets.update({
+  id: 'YOUR_DEVICE_SET_ID',
+  name: 'A_NEW_CUSTOM_NAME',
+  icon: 'lighting_cone_pendant',
+})
+
+await client.deviceSets.updateConfiguration({
+  id: 'YOUR_DEVICE_SET_ID',
+  deviceIds: ['YOUR_DEVICE_ID'],
+  roomId: 'YOUR_ROOM_ID', // optional
+  remoteLinkIds: ['YOUR_REMOTE_ID'], // optional
+})
+
+await client.deviceSets.setAttributes({
+  id: 'YOUR_DEVICE_SET_ID',
+  attributes: {
+    // ...
+  },
+})
 ```
 
 ### [Rooms](./src/api/rooms.ts)
@@ -322,15 +412,41 @@ const room = await client.rooms.get({
   id: 'YOUR_ROOM_ID',
 })
 
-await client.rooms.setIsOn({
+const { id } = await client.rooms.create({
+  name: 'A_CUSTOM_NAME',
+  icon: 'rooms_arm_chair',
+  color: 'ikea_green_no_65',
+})
+
+await client.rooms.delete({
   id: 'YOUR_ROOM_ID',
-  isOn: false,
+})
+
+await client.rooms.update({
+  id: 'YOUR_ROOM_ID',
+  name: 'A_NEW_CUSTOM_NAME',
+  icon: 'rooms_bathtub',
+  color: 'ikea_yellow_no_24',
+})
+
+await client.rooms.moveDevices({
+  id: 'YOUR_ROOM_ID',
+  deviceIds: ['YOUR_DEVICE_ID'],
 })
 
 await client.rooms.setIsOn({
   id: 'YOUR_ROOM_ID',
-  deviceType: 'outlet',
+  deviceType: 'outlet', // optional filter by device type
   isOn: true,
+})
+
+await client.rooms.setAttributes({
+  id: 'YOUR_ROOM_ID',
+  deviceType: 'light', // optional filter by device type
+  transitionTime: 5000, // optional
+  attributes: {
+    // ...
+  },
 })
 ```
 
@@ -349,6 +465,47 @@ await client.scenes.trigger({
 
 await client.scenes.undo({
   id: 'YOUR_SCENE_ID',
+})
+
+const { id } = await client.scenes.create({
+  info: {
+    name: 'A_CUSTOM_NAME',
+    icon: 'scenes_arrive_home',
+  },
+  type: 'userScene',
+  actions: [
+    {
+      type: 'device',
+      enabled: true,
+      deviceId: 'YOUR_DEVICE_ID',
+      attributes: {
+        // ...
+      },
+    },
+  ],
+})
+
+await client.scenese.delete({
+  id: 'YOUR_SCENE_ID',
+})
+
+await client.scenes.update({
+  id: 'YOUR_SCENE_ID',
+  info: {
+    name: 'A_NEW_CUSTOM_NAME',
+    icon: 'scenes_book',
+  },
+  type: 'userScene',
+  actions: [
+    {
+      type: 'device',
+      enabled: true,
+      deviceId: 'YOUR_DEVICE_ID',
+      attributes: {
+        // ...
+      },
+    },
+  ],
 })
 ```
 
@@ -379,7 +536,11 @@ await client.users.delete({
 The gateway publishes events via a WebSocket. You can listen for these events with the following method:
 
 ```typescript
-client.startListeningForUpdates(async (updateEvent) => {
+import { Event } from 'dirigera'
+
+client.startListeningForUpdates(async (updateEvent: Event) => {
   console.log(JSON.stringify(updateEvent))
 })
 ```
+
+For a list of available types, check out [Event.ts](./src/types/event/Event.ts).
