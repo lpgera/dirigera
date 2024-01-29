@@ -66,7 +66,7 @@ export default (got: Got) => {
       isOn,
     }: {
       id: string
-      deviceType: Device['deviceType']
+      deviceType?: Device['deviceType']
       isOn: boolean
     }) {
       await got

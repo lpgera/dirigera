@@ -75,7 +75,7 @@ export async function createDirigeraClient({
 }: {
   gatewayIP?: string
   accessToken?: string
-}) {
+} = {}) {
   const ip = gatewayIP ?? (await discoverGatewayIP())
 
   const { got } = await import('got')
