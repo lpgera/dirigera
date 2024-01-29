@@ -31,7 +31,7 @@
   "homepage": "https://github.com/lpgera/dirigera#readme",
   "dependencies": {
     "commander": "^11.1.0",
-    "got": "^14.0.0",
+    "got": "^14.1.0",
     "mdns-server": "^1.0.11",
     "p-retry": "^6.2.0",
     "reconnecting-websocket": "^4.4.0",
@@ -40,16 +40,16 @@
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
     "@tsconfig/strictest": "^2.0.2",
-    "@types/node": "^20.11.7",
+    "@types/node": "^20.11.10",
     "@types/ws": "^8.5.10",
-    "husky": "^9.0.6",
+    "husky": "^9.0.7",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.4",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
   "volta": {
-    "node": "20.10.0"
+    "node": "20.11.0"
   },
   "lint-staged": {
     "*.{ts,md,json}": "prettier --write"
