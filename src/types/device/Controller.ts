@@ -5,7 +5,7 @@ import type {
   OtaUpdatableDeviceAttributes,
 } from './Device'
 
-interface CommonControllerAttributes
+export interface CommonControllerAttributes
   extends CommonDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
