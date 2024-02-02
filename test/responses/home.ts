@@ -2,7 +2,11 @@ import type { Home } from '../../src'
 import { hub } from './hub'
 import { airPurifier } from './airPurifier'
 import { blinds } from './blinds'
-import { lightController, shortcutController } from './controller'
+import {
+  lightController,
+  shortcutController,
+  blindsController,
+} from './controller'
 import { environmentSensor } from './environmentSensor'
 import { colorTemperatureLight, dimmableLight, rgbLight } from './light'
 import { motionSensor } from './motionSensor'
@@ -21,6 +25,7 @@ const home: Home = {
     blinds,
     lightController,
     shortcutController,
+    blindsController,
     environmentSensor,
     hub,
     rgbLight,

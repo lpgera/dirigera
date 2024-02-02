@@ -5,8 +5,7 @@ import type {
   OtaUpdatableDeviceAttributes,
 } from './Device'
 
-// TODO specific attributes for each controller type
-export interface ControllerAttributes
+interface CommonControllerAttributes
   extends CommonDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
@@ -16,13 +15,36 @@ export interface ControllerAttributes
   circadianPresets?: any[]
 }
 
-export interface Controller extends Device {
+interface CommonControllerProperties extends Device {
   type: 'controller'
-  deviceType:
-    | 'shortcutController'
-    | 'lightController'
-    | 'soundController'
-    | 'blindsController'
-  attributes: ControllerAttributes
   isHidden: boolean
 }
+
+export interface ShortcutController extends CommonControllerProperties {
+  deviceType: 'shortcutController'
+  attributes: CommonControllerAttributes
+}
+
+export interface LightController extends CommonControllerProperties {
+  deviceType: 'lightController'
+  attributes: CommonControllerAttributes
+}
+
+export interface BlindsController extends CommonControllerProperties {
+  deviceType: 'blindsController'
+  attributes: CommonControllerAttributes & {
+    blindsCurrentLevel: number
+    blindsState: 'stopped' | 'up' | 'down'
+  }
+}
+
+export interface SoundController extends CommonControllerProperties {
+  deviceType: 'soundController'
+  attributes: CommonControllerAttributes
+}
+
+export type Controller =
+  | ShortcutController
+  | LightController
+  | SoundController
+  | BlindsController

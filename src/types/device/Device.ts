@@ -3,7 +3,7 @@ import type { Room } from '../Room'
 import type { DeviceSet } from '../DeviceSet'
 import type { AirPurifierAttributes } from './AirPurifier'
 import type { BlindsAttributes } from './Blinds'
-import type { ControllerAttributes } from './Controller'
+import type { Controller } from './Controller'
 import type { EnvironmentSensorAttributes } from './EnvironmentSensor'
 import type { HubAttributes } from './Hub'
 import type { LightAttributes } from './Light'
@@ -89,7 +89,7 @@ export interface Device {
     Partial<OtaUpdatableDeviceAttributes> &
     Partial<AirPurifierAttributes> &
     Partial<BlindsAttributes> &
-    Partial<ControllerAttributes> &
+    Partial<Controller['attributes']> &
     Partial<EnvironmentSensorAttributes> &
     Partial<HubAttributes> &
     Partial<LightAttributes> &
