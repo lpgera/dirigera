@@ -39,6 +39,53 @@ export const scene: Scene = {
         buttonIndex: 0,
         deviceId: '00000000-0000-0000-0000-000000000000',
       },
+      endTriggerEvent: {
+        type: 'time',
+        trigger: {
+          time: '00:00',
+        },
+      },
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000000',
+      type: 'time',
+      disabled: false,
+      trigger: {
+        days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        time: '00:00',
+      },
+      endTrigger: {
+        type: 'duration',
+        trigger: {
+          duration: 1800,
+        },
+      },
+      endTriggerEvent: {
+        type: 'duration',
+        trigger: {
+          duration: 1800,
+        },
+      },
+      nextTriggerAt: '2000-01-01T00:00:00.000Z',
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000000',
+      type: 'sunriseSunset',
+      disabled: false,
+      trigger: {
+        days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        type: 'sunrise',
+        offset: 15,
+      },
+      nextTriggerAt: '2000-01-01T00:00:00.000Z',
+      endTriggerEvent: {
+        type: 'sunriseSunset',
+        trigger: {
+          type: 'sunrise',
+          offset: 0,
+        },
+        nextTriggerAt: null,
+      },
     },
   ],
   actions: [

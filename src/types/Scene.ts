@@ -1,5 +1,100 @@
 import type { Device } from './device/Device'
 
+interface CommonSceneTriggerProperties {
+  id?: string
+  type:
+    | 'time'
+    | 'sunriseSunset'
+    | 'motionSensor'
+    | 'controller'
+    | 'app'
+    | 'duration'
+    | 'event'
+    | 'other'
+  triggeredAt?: string
+  disabled: boolean
+  endTrigger?: SceneEndTrigger
+  endTriggerEvent?: SceneEndTrigger
+}
+
+type SceneEndTrigger =
+  | {
+      type: 'duration'
+      trigger: {
+        duration: number
+      }
+    }
+  | {
+      type: 'time'
+      trigger: {
+        time: string
+      }
+    }
+  | {
+      type: 'sunriseSunset'
+      trigger: {
+        type: 'sunrise' | 'sunset'
+        offset: number
+      }
+      nextTriggerAt?: string | null
+    }
+
+type TimeSceneTrigger = CommonSceneTriggerProperties & {
+  type: 'time'
+  trigger: {
+    days: string[]
+    time: string
+  }
+  nextTriggerAt: string
+}
+
+type SunriseSunsetSceneTrigger = CommonSceneTriggerProperties & {
+  type: 'sunriseSunset'
+  trigger: {
+    days: string[]
+    type: 'sunrise' | 'sunset'
+    offset: number
+  }
+  nextTriggerAt: string
+}
+
+type ControllerSceneTrigger = CommonSceneTriggerProperties & {
+  type: 'controller'
+  trigger: {
+    days: string[]
+    controllerType: 'shortcutController'
+    clickPattern: 'singlePress' | 'doublePress' | 'longPress'
+    buttonIndex: 0
+    deviceId: string
+  }
+}
+
+type AppSceneTrigger = CommonSceneTriggerProperties & {
+  type: 'app'
+}
+
+type EventSceneTrigger = CommonSceneTriggerProperties & {
+  type: 'event'
+  trigger: {
+    days: string[]
+    deviceId: string
+    undo?: boolean
+    filter: {
+      attribute: Partial<Device['attributes']>
+    }
+    notifications?: {
+      type: 'opened' | 'closed'
+    }[]
+  }
+}
+
+type SceneTrigger =
+  | TimeSceneTrigger
+  | SunriseSunsetSceneTrigger
+  | ControllerSceneTrigger
+  | AppSceneTrigger
+  | EventSceneTrigger
+
 export interface Scene {
   id: string
   info: {
@@ -42,52 +137,15 @@ export interface Scene {
       | 'scenes_yoga'
   }
   type: 'userScene' | 'customScene' | 'playlistScene'
-  triggers: {
-    id: string
-    type:
-      | 'time'
-      | 'sunriseSunset'
-      | 'motionSensor'
-      | 'controller'
-      | 'app'
-      | 'duration'
-      | 'event'
-      | 'other'
-    triggeredAt?: string
-    disabled: boolean
-    trigger?:
-      | {
-          days: string[]
-          controllerType: 'shortcutController'
-          clickPattern: 'singlePress' | 'doublePress' | 'longPress'
-          buttonIndex: 0
-          deviceId: string
-        }
-      | {
-          days: string[]
-          deviceId: string
-          undo?: boolean
-          filter: {
-            attribute: Partial<Device['attributes']>
-          }
-          notifications?: {
-            type: 'opened' | 'closed'
-          }[]
-        } // TODO app, event, other, sunriseSunset, motionSensor, remote, time
-  }[]
+  triggers: SceneTrigger[]
   actions: {
     id?: string
     type: 'device' | 'deviceSet'
     enabled?: boolean
     deviceId?: string
-    attributes: Record<string, any> // TODO
+    attributes: Partial<Device['attributes']>
   }[]
-  commands: {
-    id: string
-    type: 'device' | 'deviceSet'
-    enabled?: boolean
-    commands: any[] // TODO
-  }[]
+  commands: any[]
   createdAt: string
   lastCompleted?: string
   lastTriggered?: string

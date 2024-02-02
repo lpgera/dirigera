@@ -13,10 +13,10 @@ export interface Music {
 }
 
 export interface MusicPlayItem {
-  id: string
+  id?: string
   title: string
-  artist: string
-  album: string
-  imageURL: string
-  duration: number
+  artist?: string
+  album?: string
+  imageURL?: string
+  duration?: number
 }
