@@ -11,7 +11,7 @@ export interface AirPurifierAttributes
     IdentifiableDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
-  fanMode: 'auto' | 'manual' | 'off'
+  fanMode: 'auto' | 'low' | 'medium' | 'high' | 'on' | 'off'
   fanModeSequence: 'lowMediumHighAuto'
   motorState: number
   motorRuntime: number

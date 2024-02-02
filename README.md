@@ -164,8 +164,6 @@ await client.devices.stopIdentifying({
 
 #### [Air purifiers](./src/api/airPurifiers.ts)
 
-Not tested, feedback required.
-
 ```typescript
 const airPurifiers = await client.airPurifiers.list()
 
@@ -175,12 +173,12 @@ const airPurifier = await client.airPurifiers.get({
 
 await client.airPurifiers.setFanMode({
   id: 'YOUR_DEVICE_ID',
-  fanMode: 'auto', // 'auto' | 'manual' | 'off'
+  fanMode: 'auto', // 'auto' | 'low' | 'medium' | 'high' | 'off'
 })
 
 await client.airPurifiers.setMotorState({
   id: 'YOUR_DEVICE_ID',
-  motorState: 0,
+  motorState: 0, // between 0 and 50
 })
 
 await client.airPurifiers.setChildLock({
@@ -543,4 +541,4 @@ client.startListeningForUpdates(async (updateEvent: Event) => {
 })
 ```
 
-For a list of available types, check out [Event.ts](./src/types/event/Event.ts).
+For a list of available event types, check out [Event.ts](./src/types/event/Event.ts).
