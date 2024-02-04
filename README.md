@@ -276,6 +276,11 @@ await client.lights.setLightTemperature({
   id: 'YOUR_DEVICE_ID',
   colorTemperature: 2700, // between colorTemperatureMax and colorTemperatureMin
 })
+
+await client.lights.setStartupOnOff({
+  id: 'YOUR_DEVICE_ID',
+  startupOnOff: 'startOn', // 'startOn' | 'startPrevious'
+})
 ```
 
 #### [Motion sensors](./src/api/motionSensors.ts)
@@ -322,6 +327,11 @@ const outlet = await client.outlets.get({ id: 'YOUR_DEVICE_ID' })
 await client.outlets.setIsOn({
   id: 'YOUR_DEVICE_ID',
   isOn: true,
+})
+
+await client.outlets.setStartupOnOff({
+  id: 'YOUR_DEVICE_ID',
+  startupOnOff: 'startOn', // 'startOn' | 'startPrevious'
 })
 ```
 

@@ -30,5 +30,25 @@ export default (got: Got) => {
         })
         .json()
     },
+
+    async setStartupOnOff({
+      id,
+      startupOnOff,
+    }: {
+      id: string
+      startupOnOff: Outlet['attributes']['startupOnOff']
+    }) {
+      await got
+        .patch(`devices/${id}`, {
+          json: [
+            {
+              attributes: {
+                startupOnOff,
+              },
+            },
+          ],
+        })
+        .json()
+    },
   }
 }
