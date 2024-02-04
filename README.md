@@ -1,6 +1,10 @@
 # Dirigera
 
-A TypeScript client library for IKEA's DIRIGERA smart home hub.
+An unofficial TypeScript client library for IKEA's DIRIGERA smart home hub.
+
+The library is based on reverse-engineering the communication with the DIRIGERA hub. Changes to the hub's firmware may
+break functionality. Some of the type definitions are incomplete, and some of the methods are not tested. Feedback and
+contributions are welcome!
 
 - [Quick start](#quick-start)
 - [CLI](#cli)
@@ -146,11 +150,13 @@ await client.devices.setCustomName({
   customName: 'A_CUSTOM_NAME',
 })
 
+// low level method to set attributes, use device type specific apis if possible
 await client.devices.setAttributes({
   id: 'YOUR_DEVICE_ID',
   attributes: {
     // ...
   },
+  transitionTime: 5000, // optional, in milliseconds
 })
 
 await client.devices.startIdentifying({
@@ -238,7 +244,7 @@ const environmentSensor = await client.environmentSensors.get({
   id: 'YOUR_DEVICE_ID',
 })
 
-const { currentTemperature, currentRH, currentPM25 } =
+const { currentTemperature, currentRH, currentPM25, vocIndex } =
   environmentSensor.attributes
 ```
 
@@ -256,19 +262,19 @@ await client.lights.setIsOn({
 
 await client.lights.setLightLevel({
   id: 'YOUR_DEVICE_ID',
-  lightLevel: 50,
-  transitionTime: 5000,
+  lightLevel: 50, // between 1 and 100
+  transitionTime: 5000, // optional, in milliseconds
 })
 
 await client.lights.setLightColor({
   id: 'YOUR_DEVICE_ID',
-  colorHue: 260,
-  colorSaturation: 0.8,
+  colorHue: 260, // between 0 and 359
+  colorSaturation: 0.8, // between 0 and 1
 })
 
 await client.lights.setLightTemperature({
   id: 'YOUR_DEVICE_ID',
-  colorTemperature: 2700,
+  colorTemperature: 2700, // between colorTemperatureMax and colorTemperatureMin
 })
 ```
 
@@ -285,7 +291,7 @@ const motionSensor = await client.motionSensors.get({
 
 await client.motionSensors.setOnDuration({
   id: 'YOUR_DEVICE_ID',
-  onDuration: 300,
+  onDuration: 300, // in seconds
 })
 
 await client.motionSensors.setScheduleOn({
@@ -352,7 +358,7 @@ const speaker = await client.speakers.get({
 
 await client.speakers.setVolume({
   id: 'YOUR_DEVICE_ID',
-  volume: 20,
+  volume: 20, // between 0 and 100
 })
 
 await client.speakers.setPlayback({
@@ -362,6 +368,8 @@ await client.speakers.setPlayback({
 ```
 
 ### [Device sets](./src/api/deviceSets.ts)
+
+For a list of available icons check out [DeviceSet.ts](./src/types/DeviceSet.ts).
 
 ```typescript
 const deviceSets = await client.deviceSets.list()
@@ -398,10 +406,13 @@ await client.deviceSets.setAttributes({
   attributes: {
     // ...
   },
+  transitionTime: 5000, // optional, in milliseconds
 })
 ```
 
 ### [Rooms](./src/api/rooms.ts)
+
+For a list of available colors and icons check out [Room.ts](./src/types/Room.ts).
 
 ```typescript
 const rooms = await client.rooms.list()
@@ -441,14 +452,21 @@ await client.rooms.setIsOn({
 await client.rooms.setAttributes({
   id: 'YOUR_ROOM_ID',
   deviceType: 'light', // optional filter by device type
-  transitionTime: 5000, // optional
   attributes: {
     // ...
   },
+  transitionTime: 5000, // optional
 })
 ```
 
 ### [Scenes](./src/api/scenes.ts)
+
+Scenes are a very powerful way to set up automations. Scenes can be triggered by using the application, at a scheduled
+time, at sunset/sunrise, by a button press on a shortcut controller or by a device event, such as an open/close sensor
+being triggered. Scenes can optionally also be ended at a scheduled time, a duration after they are triggered or at
+sunrise/sunset. The actions can set the attributes of devices or device sets, such as turning on a light.
+
+For a list of available icons check out [Scene.ts](./src/types/Scene.ts).
 
 ```typescript
 const scenes = await client.scenes.list()
@@ -465,6 +483,7 @@ await client.scenes.undo({
   id: 'YOUR_SCENE_ID',
 })
 
+// simple scene, triggerable from app
 const { id } = await client.scenes.create({
   info: {
     name: 'A_CUSTOM_NAME',
@@ -483,17 +502,29 @@ const { id } = await client.scenes.create({
   ],
 })
 
-await client.scenese.delete({
-  id: 'YOUR_SCENE_ID',
-})
-
-await client.scenes.update({
-  id: 'YOUR_SCENE_ID',
+// triggered and ended by time schedule
+const { id: timeTriggerSceneId } = await client.scenes.create({
   info: {
-    name: 'A_NEW_CUSTOM_NAME',
-    icon: 'scenes_book',
+    name: 'A_CUSTOM_NAME',
+    icon: 'scenes_arrive_home',
   },
   type: 'userScene',
+  triggers: [
+    {
+      type: 'time',
+      trigger: {
+        days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], // optional, defaults to every day
+        time: '8:00',
+      },
+      // optional
+      endTriggerEvent: {
+        type: 'time',
+        trigger: {
+          time: '20:00',
+        },
+      },
+    },
+  ],
   actions: [
     {
       type: 'device',
@@ -504,6 +535,15 @@ await client.scenes.update({
       },
     },
   ],
+})
+
+await client.scenese.delete({
+  id: 'YOUR_SCENE_ID',
+})
+
+await client.scenes.update({
+  id: 'YOUR_SCENE_ID',
+  // ... all the fields from the create method
 })
 ```
 
@@ -534,9 +574,7 @@ await client.users.delete({
 The gateway publishes events via a WebSocket. You can listen for these events with the following method:
 
 ```typescript
-import { Event } from 'dirigera'
-
-client.startListeningForUpdates(async (updateEvent: Event) => {
+client.startListeningForUpdates(async (updateEvent) => {
   console.log(JSON.stringify(updateEvent))
 })
 ```
