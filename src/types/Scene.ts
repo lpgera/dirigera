@@ -12,7 +12,7 @@ interface CommonSceneTriggerProperties {
     | 'event'
     | 'other'
   triggeredAt?: string
-  disabled: boolean
+  disabled?: boolean
   endTrigger?: SceneEndTrigger
   endTriggerEvent?: SceneEndTrigger
 }
@@ -42,10 +42,10 @@ type SceneEndTrigger =
 type TimeSceneTrigger = CommonSceneTriggerProperties & {
   type: 'time'
   trigger: {
-    days: string[]
+    days?: string[]
     time: string
   }
-  nextTriggerAt: string
+  nextTriggerAt?: string
 }
 
 type SunriseSunsetSceneTrigger = CommonSceneTriggerProperties & {
@@ -55,7 +55,7 @@ type SunriseSunsetSceneTrigger = CommonSceneTriggerProperties & {
     type: 'sunrise' | 'sunset'
     offset: number
   }
-  nextTriggerAt: string
+  nextTriggerAt?: string
 }
 
 type ControllerSceneTrigger = CommonSceneTriggerProperties & {
@@ -137,7 +137,7 @@ export interface Scene {
       | 'scenes_yoga'
   }
   type: 'userScene' | 'customScene' | 'playlistScene'
-  triggers: SceneTrigger[]
+  triggers?: SceneTrigger[]
   actions: {
     id?: string
     type: 'device' | 'deviceSet'
@@ -145,7 +145,18 @@ export interface Scene {
     deviceId?: string
     attributes: Partial<Device['attributes']>
   }[]
-  commands: any[]
+  commands: {
+    id: string
+    type: 'device'
+    enabled?: boolean
+    commands: {
+      type: 'playAudioClipByName'
+      playAudioClipName:
+        | 'ikea://notify/03_device_open'
+        | 'ikea://notify/04_device_close'
+      volume: number
+    }[]
+  }[]
   createdAt: string
   lastCompleted?: string
   lastTriggered?: string
