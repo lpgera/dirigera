@@ -11,11 +11,15 @@ declare module 'mdns-server' {
 
   interface MdnsServer {
     on(event: 'ready', handler: () => void): MdnsServer
+
     on(event: 'response', handler: (response: Response) => void): MdnsServer
+
     on(event: 'error', handler: (e: Error) => void): MdnsServer
 
     initServer(): void
+
     query(options: Question[]): void
+
     destroy(): void
   }
 

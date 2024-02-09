@@ -51,8 +51,8 @@ const event3: DeviceStateChangedEvent = {
     deviceType: 'gateway',
     lastSeen: '2000-01-01T00:00:00.000Z',
     deviceSet: [],
-    remoteLinks: []
-  }
+    remoteLinks: [],
+  },
 }
 
 event3

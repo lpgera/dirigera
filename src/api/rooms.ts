@@ -12,11 +12,7 @@ export default (got: Got) => {
       return await got.get(`rooms/${id}`).json<Room>()
     },
 
-    async create({
-      name,
-      icon,
-      color,
-    }: Pick<Room, 'name' | 'icon' | 'color'>) {
+    async create({ name, icon, color }: Pick<Room, 'name' | 'icon' | 'color'>) {
       return await got
         .post(`rooms`, {
           json: {
@@ -44,13 +40,7 @@ export default (got: Got) => {
         .json()
     },
 
-    async moveDevices({
-      id,
-      deviceIds,
-    }: {
-      id: string
-      deviceIds: string[]
-    }) {
+    async moveDevices({ id, deviceIds }: { id: string; deviceIds: string[] }) {
       await got
         .patch(`rooms/${id}/devices`, {
           json: {
