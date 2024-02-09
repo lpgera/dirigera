@@ -75,8 +75,8 @@ Use the following command to do this via the CLI:
 npx dirigera authenticate
 ```
 
-You'll be prompted to press the action button on the bottom of the gateway, then to press the Enter key. An access token
-will be printed on your console afterwards.
+You'll be prompted to press the action button on the bottom of the gateway within 60 seconds. If the pairing is
+successful, an access token will be printed on your console.
 
 Store the access token in a secure place, and never share it with anyone outside your household!
 
