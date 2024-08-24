@@ -296,7 +296,7 @@ const motionSensor = await client.motionSensors.get({
 
 await client.motionSensors.setOnDuration({
   id: 'YOUR_DEVICE_ID',
-  onDuration: 300, // in seconds
+  onDuration: 300, // in seconds, between 60 and 86400
 })
 
 await client.motionSensors.setScheduleOn({
@@ -312,6 +312,20 @@ await client.motionSensors.setSchedule({
     },
     offCondition: {
       time: '06:00',
+    },
+  },
+})
+
+await client.motionSensors.setSchedule({
+  id: 'YOUR_DEVICE_ID',
+  schedule: {
+    onCondition: {
+      time: 'sunset',
+      offset: 60, // in minutes
+    },
+    offCondition: {
+      time: 'sunrise',
+      offset: -60, // in minutes
     },
   },
 })

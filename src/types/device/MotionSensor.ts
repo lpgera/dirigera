@@ -1,6 +1,7 @@
 import type {
   CommonDeviceAttributes,
   Device,
+  IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
@@ -8,21 +9,27 @@ import type {
 export interface MotionSensorAttributes
   extends CommonDeviceAttributes,
     JoinableDeviceAttributes,
-    OtaUpdatableDeviceAttributes {
+    Partial<OtaUpdatableDeviceAttributes>,
+    Partial<IdentifiableDeviceAttributes> {
   batteryPercentage: number
   isOn: boolean
+  isDetected?: boolean
+  motionDetectedDelay?: number
   sensorConfig: {
     scheduleOn: boolean
     onDuration: number
-    schedule: {
+    schedule?: {
       onCondition: {
         time: string
+        offset?: number
       }
       offCondition: {
         time: string
+        offset?: number
       }
     }
   }
+  circadianPresets?: any[]
 }
 
 export interface MotionSensor extends Device {
