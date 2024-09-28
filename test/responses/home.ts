@@ -10,7 +10,7 @@ import {
 import { environmentSensor } from './environmentSensor'
 import { colorTemperatureLight, dimmableLight, rgbLight } from './light'
 import { motionSensor1, motionSensor2 } from './motionSensor'
-import { outlet } from './outlet'
+import { outlet1, outlet2 } from './outlet'
 import { repeater } from './repeater'
 import { speaker } from './speaker'
 import { hostUser, memberUser } from './user'
@@ -33,7 +33,8 @@ const home: Home = {
     dimmableLight,
     motionSensor1,
     motionSensor2,
-    outlet,
+    outlet1,
+    outlet2,
     repeater,
     speaker,
   ],

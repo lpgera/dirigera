@@ -347,6 +347,16 @@ await client.outlets.setStartupOnOff({
   id: 'YOUR_DEVICE_ID',
   startupOnOff: 'startOn', // 'startOn' | 'startPrevious'
 })
+
+await client.outlet.setStatusLight({
+  id: 'YOUR_DEVICE_ID',
+  statusLight: false,
+})
+
+await client.outlet.setChildLock({
+  id: 'YOUR_DEVICE_ID',
+  childLock: true,
+})
 ```
 
 #### [Open/close sensors](./src/api/openCloseSensors.ts)

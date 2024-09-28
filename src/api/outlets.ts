@@ -50,5 +50,45 @@ export default (got: Got) => {
         })
         .json()
     },
+
+    async setStatusLight({
+      id,
+      statusLight,
+    }: {
+      id: string
+      statusLight: Outlet['attributes']['statusLight']
+    }) {
+      await got
+        .patch(`devices/${id}`, {
+          json: [
+            {
+              attributes: {
+                statusLight,
+              },
+            },
+          ],
+        })
+        .json()
+    },
+
+    async setChildLock({
+      id,
+      childLock,
+    }: {
+      id: string
+      childLock: Outlet['attributes']['childLock']
+    }) {
+      await got
+        .patch(`devices/${id}`, {
+          json: [
+            {
+              attributes: {
+                childLock,
+              },
+            },
+          ],
+        })
+        .json()
+    },
   }
 }
