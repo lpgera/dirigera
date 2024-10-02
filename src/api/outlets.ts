@@ -90,5 +90,19 @@ export default (got: Got) => {
         })
         .json()
     },
+
+    async resetEnergyConsumption({ id }: { id: string }) {
+      await got
+        .patch(`devices/${id}`, {
+          json: [
+            {
+              attributes: {
+                energyConsumedAtLastReset: 0,
+              },
+            },
+          ],
+        })
+        .json()
+    },
   }
 }

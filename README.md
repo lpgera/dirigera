@@ -350,12 +350,16 @@ await client.outlets.setStartupOnOff({
 
 await client.outlet.setStatusLight({
   id: 'YOUR_DEVICE_ID',
-  statusLight: false,
+  statusLight: true, // true disables the status light, false enables it ¯\_(ツ)_/¯
 })
 
 await client.outlet.setChildLock({
   id: 'YOUR_DEVICE_ID',
   childLock: true,
+})
+
+await client.outlet.resetEnergyConsumption({
+  id: 'YOUR_DEVICE_ID',
 })
 ```
 
