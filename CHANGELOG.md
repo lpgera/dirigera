@@ -2,7 +2,8 @@
 
 ## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.1.0...HEAD)
 
--
+- Add support for VALLHORN's light sensor functionality by introducing the `client.lightSensors` API and the
+  `LightSensor` type, including the `illuminance` attribute.
 
 ## [1.1.0](https://github.com/lpgera/dirigera/compare/v1.0.0...v1.1.0) - 2024-10-02
 

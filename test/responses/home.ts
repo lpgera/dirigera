@@ -9,6 +9,7 @@ import {
 } from './controller'
 import { environmentSensor } from './environmentSensor'
 import { colorTemperatureLight, dimmableLight, rgbLight } from './light'
+import { lightSensor } from './lightSensor'
 import { motionSensor1, motionSensor2 } from './motionSensor'
 import { outlet1, outlet2 } from './outlet'
 import { repeater } from './repeater'
@@ -31,6 +32,7 @@ const home: Home = {
     rgbLight,
     colorTemperatureLight,
     dimmableLight,
+    lightSensor,
     motionSensor1,
     motionSensor2,
     outlet1,

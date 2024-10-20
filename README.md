@@ -20,6 +20,7 @@ contributions are welcome!
     - [Controllers](#controllers)
     - [Environment sensors](#environment-sensors)
     - [Lights](#lights)
+    - [Light sensors](#light-sensors)
     - [Motion sensors](#motion-sensors)
     - [Outlets](#outlets)
     - [Open/close sensors](#openclose-sensors)
@@ -283,9 +284,21 @@ await client.lights.setStartupOnOff({
 })
 ```
 
-#### [Motion sensors](./src/api/motionSensors.ts)
+#### [Light sensors](./src/api/lightSensors.ts)
 
-Not tested, feedback required.
+The VALLHORN motion sensor has a light sensor built-in.
+
+```typescript
+const lightSensors = await client.lightSensors.list()
+
+const lightSensor = await client.lightSensors.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+const { illuminance } = lightSensor.attributes
+```
+
+#### [Motion sensors](./src/api/motionSensors.ts)
 
 ```typescript
 const motionSensors = await client.motionSensors.list()

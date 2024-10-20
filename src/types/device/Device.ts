@@ -7,6 +7,7 @@ import type { Controller } from './Controller'
 import type { EnvironmentSensorAttributes } from './EnvironmentSensor'
 import type { HubAttributes } from './Hub'
 import type { LightAttributes } from './Light'
+import type { LightSensorAttributes } from './LightSensor'
 import type { MotionSensorAttributes } from './MotionSensor'
 import type { OpenCloseSensorAttributes } from './OpenCloseSensor'
 import type { OutletAttributes } from './Outlet'
@@ -61,10 +62,11 @@ export interface Device {
     | 'controller'
     | 'gateway'
     | 'light'
-    | 'sensor'
     | 'outlet'
     | 'repeater'
+    | 'sensor'
     | 'speaker'
+    | 'unknown'
   deviceType:
     | 'airPurifier'
     | 'blinds'
@@ -75,6 +77,7 @@ export interface Device {
     | 'blindsController'
     | 'gateway'
     | 'light'
+    | 'lightSensor'
     | 'motionSensor'
     | 'openCloseSensor'
     | 'outlet'
@@ -93,6 +96,7 @@ export interface Device {
     Partial<EnvironmentSensorAttributes> &
     Partial<HubAttributes> &
     Partial<LightAttributes> &
+    Partial<LightSensorAttributes> &
     Partial<MotionSensorAttributes> &
     Partial<OpenCloseSensorAttributes> &
     Partial<OutletAttributes> &
