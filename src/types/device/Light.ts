@@ -12,7 +12,7 @@ export interface LightAttributes
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
   isOn: boolean
-  startupOnOff: 'startOn' | 'startPrevious'
+  startupOnOff: 'startOn' | 'startPrevious' | 'startToggle'
   lightLevel: number
   colorHue?: number
   colorSaturation?: number
