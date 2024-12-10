@@ -280,7 +280,7 @@ await client.lights.setLightTemperature({
 
 await client.lights.setStartupOnOff({
   id: 'YOUR_DEVICE_ID',
-  startupOnOff: 'startOn', // 'startOn' | 'startPrevious'
+  startupOnOff: 'startOn', // 'startOn' | 'startPrevious' | 'startToggle'
 })
 ```
 
@@ -358,7 +358,8 @@ await client.outlets.setIsOn({
 
 await client.outlets.setStartupOnOff({
   id: 'YOUR_DEVICE_ID',
-  startupOnOff: 'startOn', // 'startOn' | 'startPrevious'
+  startupOnOff: 'startOn', // 'startOn' | 'startPrevious' | 'startToggle'
+
 })
 
 await client.outlet.setStatusLight({

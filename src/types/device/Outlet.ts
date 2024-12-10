@@ -12,7 +12,7 @@ export interface OutletAttributes
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
   isOn: boolean
-  startupOnOff: 'startOn' | 'startPrevious'
+  startupOnOff: 'startOn' | 'startPrevious' | 'startToggle'
   lightLevel: number
   startUpCurrentLevel?: number
   currentActivePower?: number
