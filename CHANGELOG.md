@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.2.0...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.3.0...HEAD)
+
+-
+
+## [1.3.0](https://github.com/lpgera/dirigera/compare/v1.2.0...v1.3.0) - 2024-12-10
 
 - Add startupOnOff startToggle mode for lights and outlets.
 - Update dependencies.
