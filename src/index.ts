@@ -1,9 +1,11 @@
 import os from 'node:os'
+import { Agent } from 'node:https'
 import {
   calculateCodeChallenge,
   CODE_CHALLENGE_METHOD,
   generateCodeVerifier,
 } from './authCode'
+import certificate from './certificate'
 import { discoverGatewayIP } from './mdnsDiscovery'
 import { closeWebSocket, initializeWebSocket } from './ws'
 import type { Home } from './types/Home'
@@ -76,9 +78,11 @@ export type { TerminationEvent } from './types/event/TerminationEvent'
 export async function createDirigeraClient({
   gatewayIP,
   accessToken,
+  rejectUnauthorized = true,
 }: {
   gatewayIP?: string
   accessToken?: string
+  rejectUnauthorized?: boolean
 } = {}) {
   const ip = gatewayIP ?? (await discoverGatewayIP())
 
@@ -89,9 +93,17 @@ export async function createDirigeraClient({
     headers: {
       ...(accessToken ? { authorization: `Bearer ${accessToken}` } : null),
     },
-    https: {
-      rejectUnauthorized: false,
-    },
+    ...(rejectUnauthorized
+      ? {
+          agent: {
+            https: new Agent({
+              ca: [certificate],
+              checkServerIdentity: () => undefined,
+            }),
+          },
+        }
+      : { https: { rejectUnauthorized: false } }),
+
     hooks: {
       beforeError: [
         (error) => {

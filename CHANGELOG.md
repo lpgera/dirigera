@@ -4,6 +4,7 @@
 
 - Add support for BADRING water sensors by introducing the `client.waterSensors` API and the `WaterSensor` type
   including the `waterLeakDetected` attribute.
+- Verify the HTTPS certificate of the hub for better security.
 
 ## [1.3.0](https://github.com/lpgera/dirigera/compare/v1.2.0...v1.3.0) - 2024-12-10
 

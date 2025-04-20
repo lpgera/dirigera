@@ -33,6 +33,7 @@ contributions are welcome!
   - [Music](#music)
   - [Users](#users)
   - [Update events](#update-events)
+- [Troubleshooting](#troubleshooting)
 
 ## Quick start
 
@@ -644,3 +645,17 @@ client.startListeningForUpdates(async (updateEvent) => {
 ```
 
 For a list of available event types, check out [Event.ts](./src/types/event/Event.ts).
+
+## Troubleshooting
+
+<details>
+  <summary>Error: self-signed certificate in certificate chain</summary>
+
+The DIRIGERA hub uses a self-signed certificate for HTTPS. By default this library verifies the certificate, which may
+cause issues if it changes on the hub for any reason. If you encounter this error you can disable the certificate
+verification by:
+
+- Adding the `--no-reject-unauthorized` flag when running the CLI commands.
+- Adding the `rejectUnauthorized: false` option when creating the client instance using `createDirigeraClient`.
+
+</details>

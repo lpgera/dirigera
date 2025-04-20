@@ -17,13 +17,19 @@ program
     '--gateway-IP [string]',
     'Optional. Use if mDNS discovery is not working.'
   )
-  .action(async (options: { gatewayIP?: string }) => {
-    const client = await createDirigeraClient(options)
+  .option(
+    '--no-reject-unauthorized',
+    'Optional. Use it to ignore certificate errors.'
+  )
+  .action(
+    async (options: { gatewayIP?: string; rejectUnauthorized?: boolean }) => {
+      const client = await createDirigeraClient(options)
 
-    const accessToken = await client.authenticate({ verbose: true })
+      const accessToken = await client.authenticate({ verbose: true })
 
-    console.log(`🔑 Your access token: ${accessToken}`)
-  })
+      console.log(`🔑 Your access token: ${accessToken}`)
+    }
+  )
 
 program
   .command('dump')
@@ -36,12 +42,22 @@ program
     '--access-token <string>',
     `Get an access token by running 'dirigera authenticate' first!`
   )
-  .action(async (options: { gatewayIP?: string; accessToken: string }) => {
-    const client = await createDirigeraClient(options)
+  .option(
+    '--no-reject-unauthorized',
+    'Optional. Use it to ignore certificate errors.'
+  )
+  .action(
+    async (options: {
+      gatewayIP?: string
+      accessToken: string
+      rejectUnauthorized?: boolean
+    }) => {
+      const client = await createDirigeraClient(options)
 
-    const dump = await client.home()
+      const dump = await client.home()
 
-    console.log(JSON.stringify(dump, null, 2))
-  })
+      console.log(JSON.stringify(dump, null, 2))
+    }
+  )
 
 program.parse()
