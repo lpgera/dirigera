@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.3.0...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.4.0...HEAD)
+
+-
+
+## [1.4.0](https://github.com/lpgera/dirigera/compare/v1.3.0...v1.4.0) - 2025-04-20
 
 - Add support for BADRING water sensors by introducing the `client.waterSensors` API and the `WaterSensor` type
   including the `waterLeakDetected` attribute.
