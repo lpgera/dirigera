@@ -14,6 +14,7 @@ import { motionSensor1, motionSensor2 } from './motionSensor'
 import { outlet1, outlet2 } from './outlet'
 import { repeater } from './repeater'
 import { speaker } from './speaker'
+import { waterSensor } from './waterSensor'
 import { hostUser, memberUser } from './user'
 import { scene } from './scene'
 import { room } from './room'
@@ -39,6 +40,7 @@ const home: Home = {
     outlet2,
     repeater,
     speaker,
+    waterSensor,
   ],
   users: [hostUser, memberUser],
   user: hostUser,

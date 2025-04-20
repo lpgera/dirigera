@@ -26,6 +26,7 @@ contributions are welcome!
     - [Open/close sensors](#openclose-sensors)
     - [Repeaters](#repeaters)
     - [Speakers](#speakers)
+    - [Water sensors](#water-sensors)
   - [Device sets](#device-sets)
   - [Rooms](#rooms)
   - [Scenes](#scenes)
@@ -416,6 +417,18 @@ await client.speakers.setPlayback({
   id: 'YOUR_DEVICE_ID',
   playback: 'playbackPaused', // 'playbackPlaying' | 'playbackPaused' | 'playbackNext' | 'playbackPrevious'
 })
+```
+
+#### [Water sensors](./src/api/waterSensors.ts)
+
+```typescript
+const waterSensors = await client.waterSensors.list()
+
+const waterSensor = await client.waterSensors.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+const { waterLeakDetected, batteryPercentage } = waterSensor.attributes
 ```
 
 ### [Device sets](./src/api/deviceSets.ts)

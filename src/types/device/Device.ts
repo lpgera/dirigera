@@ -83,6 +83,7 @@ export interface Device {
     | 'outlet'
     | 'repeater'
     | 'speaker'
+    | 'waterSensor'
   createdAt: string
   isReachable: boolean
   lastSeen: string

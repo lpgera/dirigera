@@ -21,6 +21,7 @@ import motionSensors from './api/motionSensors'
 import lightSensors from './api/lightSensors'
 import environmentSensors from './api/environmentSensors'
 import openCloseSensors from './api/openCloseSensors'
+import waterSensors from './api/waterSensors'
 import deviceSets from './api/deviceSets'
 import rooms from './api/rooms'
 import scenes from './api/scenes'
@@ -48,6 +49,7 @@ export type { Room } from './types/Room'
 export type { Scene } from './types/Scene'
 export type { Speaker } from './types/device/Speaker'
 export type { User } from './types/User'
+export type { WaterSensor } from './types/device/WaterSensor'
 
 export type { Event } from './types/event/Event'
 export type { DeviceAddedEvent } from './types/event/DeviceAddedEvent'
@@ -187,6 +189,7 @@ export async function createDirigeraClient({
     lightSensors: lightSensors(gotInstance),
     environmentSensors: environmentSensors(gotInstance),
     openCloseSensors: openCloseSensors(gotInstance),
+    waterSensors: waterSensors(gotInstance),
     deviceSets: deviceSets(gotInstance),
     rooms: rooms(gotInstance),
     scenes: scenes(gotInstance),
