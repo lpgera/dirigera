@@ -9,6 +9,7 @@ import type { DeviceStateChangedEvent } from './DeviceStateChangedEvent'
 import type { MusicUpdatedEvent } from './MusicUpdatedEvent'
 import type { PingEvent } from './PingEvent'
 import type { PongEvent } from './PongEvent'
+import type { RemotePressEvent } from './RemotePressEvent'
 import type { RoomCreatedEvent } from './RoomCreatedEvent'
 import type { RoomDeletedEvent } from './RoomDeletedEvent'
 import type { RoomUpdatedEvent } from './RoomUpdatedEvent'
@@ -39,6 +40,7 @@ export type Event =
   | MusicUpdatedEvent
   | PingEvent
   | PongEvent
+  | RemotePressEvent
   | RoomCreatedEvent
   | RoomDeletedEvent
   | RoomUpdatedEvent

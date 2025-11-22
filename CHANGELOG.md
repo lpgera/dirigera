@@ -2,7 +2,8 @@
 
 ## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.4.0...HEAD)
 
--
+- Add new `remotePressEvent` event type with three supported click patterns: `singlePress`, `doublePress` and
+  `longPress`. Currently, not all remotes support all three events.
 
 ## [1.4.0](https://github.com/lpgera/dirigera/compare/v1.3.0...v1.4.0) - 2025-04-20
 

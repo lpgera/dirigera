@@ -65,6 +65,7 @@ export type { DeviceStateChangedEvent } from './types/event/DeviceStateChangedEv
 export type { MusicUpdatedEvent } from './types/event/MusicUpdatedEvent'
 export type { PingEvent } from './types/event/PingEvent'
 export type { PongEvent } from './types/event/PongEvent'
+export type { RemotePressEvent } from './types/event/RemotePressEvent'
 export type { RoomCreatedEvent } from './types/event/RoomCreatedEvent'
 export type { RoomDeletedEvent } from './types/event/RoomDeletedEvent'
 export type { RoomUpdatedEvent } from './types/event/RoomUpdatedEvent'
@@ -172,12 +173,12 @@ export async function createDirigeraClient({
           retries: 59,
           minTimeout: 1000,
           factor: 1,
-          onFailedAttempt: (error) => {
+          onFailedAttempt: (context) => {
             if (verbose) {
               process.stdout.write(
-                `\rTime left: ${String(error.retriesLeft).padStart(2, ' ')} seconds`
+                `\rTime left: ${String(context.retriesLeft).padStart(2, ' ')} seconds`
               )
-              if (error.retriesLeft === 0) {
+              if (context.retriesLeft === 0) {
                 process.stdout.write('\n')
               }
             }
