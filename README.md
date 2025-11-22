@@ -154,6 +154,7 @@ await client.devices.setCustomName({
 })
 
 // low level method to set attributes, use device type specific apis if possible
+// some attributes may not be combined with each other and require separate setAttributes calls
 await client.devices.setAttributes({
   id: 'YOUR_DEVICE_ID',
   attributes: {
@@ -466,6 +467,7 @@ await client.deviceSets.updateConfiguration({
   remoteLinkIds: ['YOUR_REMOTE_ID'], // optional
 })
 
+// some attributes may not be combined with each other and require separate setAttributes calls
 await client.deviceSets.setAttributes({
   id: 'YOUR_DEVICE_SET_ID',
   attributes: {
@@ -514,6 +516,7 @@ await client.rooms.setIsOn({
   isOn: true,
 })
 
+// some attributes may not be combined with each other and require separate setAttributes calls
 await client.rooms.setAttributes({
   id: 'YOUR_ROOM_ID',
   deviceType: 'light', // optional filter by device type
