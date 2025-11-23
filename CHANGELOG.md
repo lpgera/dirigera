@@ -1,9 +1,15 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.4.0...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.5.0...HEAD)
+
+-
+
+## [1.5.0](https://github.com/lpgera/dirigera/compare/v1.4.0...v1.5.0) - 2025-11-23
 
 - Add new `remotePressEvent` event type with three supported click patterns: `singlePress`, `doublePress` and
   `longPress`. Currently, not all remotes support all three events.
+- Add notice to `.setAttributes()` functions in docs about some attributes not being able to combined with each other.
+- Update dependencies.
 
 ## [1.4.0](https://github.com/lpgera/dirigera/compare/v1.3.0...v1.4.0) - 2025-04-20
 
