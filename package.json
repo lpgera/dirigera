@@ -33,7 +33,7 @@
     "commander": "^14.0.2",
     "got": "^14.6.5",
     "mdns-server": "^1.0.11",
-    "p-retry": "^7.1.0",
+    "p-retry": "^7.1.1",
     "reconnecting-websocket": "^4.4.0",
     "ws": "^8.18.3"
   },
@@ -44,8 +44,8 @@
     "@types/ws": "^8.18.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "prettier": "^3.6.2",
-    "tsx": "^4.20.6",
+    "prettier": "^3.7.4",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "volta": {
