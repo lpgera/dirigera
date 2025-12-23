@@ -75,6 +75,7 @@ export interface Device {
     | 'lightController'
     | 'soundController'
     | 'blindsController'
+    | 'genericSwitch'
     | 'gateway'
     | 'light'
     | 'lightSensor'

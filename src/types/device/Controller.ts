@@ -6,7 +6,8 @@ import type {
 } from './Device'
 
 export interface CommonControllerAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
   batteryPercentage: number
@@ -43,8 +44,27 @@ export interface SoundController extends CommonControllerProperties {
   attributes: CommonControllerAttributes
 }
 
+export interface GenericSwitch extends CommonControllerProperties {
+  deviceType: 'genericSwitch'
+  attributes: CommonDeviceAttributes &
+    OtaUpdatableDeviceAttributes &
+    JoinableDeviceAttributes & {
+      identifyPeriod: number
+      identifyStarted: string
+      switchGroup: number
+      switchLabel: string
+      discriminator: number
+      qrCode: string
+      setupCode: string
+      windowOpen: boolean
+      controlMode: 'light' | 'speaker'
+      batteryPercentage: number
+    }
+}
+
 export type Controller =
   | ShortcutController
   | LightController
   | SoundController
   | BlindsController
+  | GenericSwitch

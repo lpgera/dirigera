@@ -231,6 +231,8 @@ await client.blinds.setState({
 
 #### [Controllers](./src/api/controllers.ts)
 
+Some controllers, such as the BILRESA remote appear as multiple devices.
+
 ```typescript
 const controllers = await client.controllers.list()
 
