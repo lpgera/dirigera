@@ -7,7 +7,12 @@ import {
   shortcutController,
   blindsController,
 } from './controller'
-import { environmentSensor } from './environmentSensor'
+import {
+  environmentSensor1,
+  environmentSensor2,
+  environmentSensor3,
+  environmentSensor4,
+} from './environmentSensor'
 import { colorTemperatureLight, dimmableLight, rgbLight } from './light'
 import { lightSensor } from './lightSensor'
 import { motionSensor1, motionSensor2 } from './motionSensor'
@@ -28,7 +33,10 @@ const home: Home = {
     lightController,
     shortcutController,
     blindsController,
-    environmentSensor,
+    environmentSensor1,
+    environmentSensor2,
+    environmentSensor3,
+    environmentSensor4,
     hub,
     rgbLight,
     colorTemperatureLight,

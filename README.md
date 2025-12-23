@@ -241,6 +241,10 @@ const controller = await client.controllers.get({
 
 #### [Environment sensors](./src/api/environmentSensors.ts)
 
+Supports VINDSTYRKA, TIMMERFLOTTE and ALPSTUGA sensors. The available attributes vary between models.
+
+The TIMMERFLOTTE sensor appears as two devices, one measures temperature, the other measures relative humidity.
+
 ```typescript
 const environmentSensors = await client.environmentSensors.list()
 
@@ -250,6 +254,14 @@ const environmentSensor = await client.environmentSensors.get({
 
 const { currentTemperature, currentRH, currentPM25, vocIndex } =
   environmentSensor.attributes
+
+// The ALPSTUGA screen can be turned on and off
+await client.devices.setAttributes({
+  id: 'YOUR_DEVICE_ID',
+  attributes: {
+    isOn: false,
+  },
+})
 ```
 
 #### [Lights](./src/api/lights.ts)

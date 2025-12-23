@@ -2,7 +2,7 @@
 
 ## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.5.0...HEAD)
 
--
+- Add TIMMERFLOTTE and ALPSTUGA environmentSensor support.
 
 ## [1.5.0](https://github.com/lpgera/dirigera/compare/v1.4.0...v1.5.0) - 2025-11-23
 
