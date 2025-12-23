@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.5.0...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.6.0...HEAD)
+
+-
+
+## [1.6.0](https://github.com/lpgera/dirigera/compare/v1.5.0...v1.6.0) - 2025-12-23
 
 - Add TIMMERFLOTTE and ALPSTUGA environmentSensor support.
 - Add support for genericSwitch device type and the BILRESA scroll wheel remote.
