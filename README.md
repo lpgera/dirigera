@@ -22,6 +22,7 @@ contributions are welcome!
     - [Lights](#lights)
     - [Light sensors](#light-sensors)
     - [Motion sensors](#motion-sensors)
+    - [Occupancy sensors](#occupancy-sensors)
     - [Outlets](#outlets)
     - [Open/close sensors](#openclose-sensors)
     - [Repeaters](#repeaters)
@@ -359,6 +360,16 @@ await client.motionSensors.setSchedule({
     },
   },
 })
+```
+
+#### [Occupancy sensors](./src/api/occupancySensors.ts)
+
+The MYGGSPRAY sensor introduced a new device type called occupancy sensor. It works the same way as motion sensors:
+
+```typescript
+const occupancySensors = await client.occupancySensors.list()
+
+// For other available methods, see the motion sensors above.
 ```
 
 #### [Outlets](./src/api/outlets.ts)

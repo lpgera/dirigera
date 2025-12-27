@@ -3,13 +3,19 @@ import type {
   Device,
   IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
+  OtaUpdatableDeviceAttributes,
 } from './Device'
 
 export interface LightSensorAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     JoinableDeviceAttributes,
-    Partial<IdentifiableDeviceAttributes> {
+    Partial<IdentifiableDeviceAttributes>,
+    Partial<OtaUpdatableDeviceAttributes> {
   illuminance: number
+  maxIlluminance?: number
+  minIlluminance?: number
+  batteryPercentage?: number
 }
 
 export interface LightSensor extends Device {

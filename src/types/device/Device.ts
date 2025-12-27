@@ -84,6 +84,7 @@ export interface Device {
     | 'light'
     | 'lightSensor'
     | 'motionSensor'
+    | 'occupancySensor'
     | 'openCloseSensor'
     | 'outlet'
     | 'repeater'

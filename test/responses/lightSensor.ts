@@ -1,6 +1,6 @@
 import { LightSensor } from '../../src/types/device/LightSensor'
 
-export const lightSensor: LightSensor = {
+export const lightSensor1: LightSensor = {
   id: '00000000-0000-0000-0000-000000000000',
   relationId: '00000000-0000-0000-0000-000000000000',
   type: 'unknown',
@@ -24,6 +24,49 @@ export const lightSensor: LightSensor = {
   capabilities: {
     canSend: [],
     canReceive: ['customName'],
+  },
+  deviceSet: [],
+  remoteLinks: [],
+  isHidden: false,
+}
+
+export const lightSensor2: LightSensor = {
+  id: '00000000-0000-0000-0000-000000000000',
+  relationId: '00000000-0000-0000-0000-000000000000',
+  type: 'unknown',
+  deviceType: 'lightSensor',
+  createdAt: '2000-01-01T00:00:00.000Z',
+  isReachable: true,
+  lastSeen: '2000-01-01T00:00:00.000Z',
+  attributes: {
+    identifyPeriod: 0,
+    identifyStarted: '2000-01-01T00:00:00.000Z',
+    illuminance: 0,
+    maxIlluminance: 40001,
+    minIlluminance: 1,
+    customName: 'MYGGSPRAY wrlss mtn sensor',
+    firmwareVersion: '1.0.7',
+    hardwareVersion: 'P2.0',
+    manufacturer: 'IKEA of Sweden',
+    model: 'MYGGSPRAY wrlss mtn sensor',
+    productCode: 'E2494',
+    serialNumber: 'UNKNOWN_SERIAL_NUMBER',
+    discriminator: -1,
+    permittingJoin: false,
+    qrCode: '',
+    setupCode: '',
+    windowOpen: false,
+    otaPolicy: 'autoUpdate',
+    otaProgress: 0,
+    otaScheduleEnd: '00:00',
+    otaScheduleStart: '00:00',
+    otaState: 'readyToCheck',
+    otaStatus: 'upToDate',
+    batteryPercentage: 86,
+  },
+  capabilities: {
+    canSend: [],
+    canReceive: ['customName', 'windowOpen'],
   },
   deviceSet: [],
   remoteLinks: [],

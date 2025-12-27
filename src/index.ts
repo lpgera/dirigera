@@ -20,6 +20,7 @@ import blinds from './api/blinds'
 import airPurifiers from './api/airPurifiers'
 import repeaters from './api/repeaters'
 import motionSensors from './api/motionSensors'
+import occupancySensors from './api/occupancySensors'
 import lightSensors from './api/lightSensors'
 import environmentSensors from './api/environmentSensors'
 import openCloseSensors from './api/openCloseSensors'
@@ -199,6 +200,7 @@ export async function createDirigeraClient({
     airPurifiers: airPurifiers(gotInstance),
     repeaters: repeaters(gotInstance),
     motionSensors: motionSensors(gotInstance),
+    occupancySensors: occupancySensors(gotInstance),
     lightSensors: lightSensors(gotInstance),
     environmentSensors: environmentSensors(gotInstance),
     openCloseSensors: openCloseSensors(gotInstance),
