@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.6.0...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.7.0...HEAD)
+
+-
+
+## [1.7.0](https://github.com/lpgera/dirigera/compare/v1.6.0...v1.7.0) - 2025-12-27
 
 - Add support for the BILRESA dual button remote, including blind and shortcut control modes.
 - Add MYGGSPRAY occupancy sensor and light sensor support.
