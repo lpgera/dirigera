@@ -22,10 +22,6 @@ export interface EnvironmentSensorAttributes
   currentCO2?: number
   maxMeasuredCO2?: number
   minMeasuredCO2?: number
-  discriminator?: number
-  qrCode?: string
-  setupCode?: string
-  windowOpen?: boolean
   batteryPercentage?: number
 }
 

@@ -1,6 +1,7 @@
-import type {
+import {
   CommonDeviceAttributes,
   Device,
+  IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
 } from './Device'
@@ -48,16 +49,11 @@ export interface GenericSwitch extends CommonControllerProperties {
   deviceType: 'genericSwitch'
   attributes: CommonDeviceAttributes &
     OtaUpdatableDeviceAttributes &
-    JoinableDeviceAttributes & {
-      identifyPeriod: number
-      identifyStarted: string
-      switchGroup: number
+    JoinableDeviceAttributes &
+    IdentifiableDeviceAttributes & {
+      switchGroup?: number
       switchLabel: string
-      discriminator: number
-      qrCode: string
-      setupCode: string
-      windowOpen: boolean
-      controlMode: 'light' | 'speaker'
+      controlMode: 'light' | 'speaker' | 'blind' | 'shortcut'
       batteryPercentage: number
     }
 }

@@ -7,10 +7,12 @@ import type {
 } from './Device'
 
 export interface LightAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     IdentifiableDeviceAttributes,
     JoinableDeviceAttributes,
-    OtaUpdatableDeviceAttributes {
+    OtaUpdatableDeviceAttributes,
+    IdentifiableDeviceAttributes {
   isOn: boolean
   startupOnOff: 'startOn' | 'startPrevious' | 'startToggle'
   lightLevel: number
@@ -21,8 +23,6 @@ export interface LightAttributes
   colorTemperatureMax?: number
   startupTemperature?: number
   colorMode?: 'temperature' | 'color'
-  identifyStarted: string
-  identifyPeriod: number
   circadianRhythmMode?: string
 }
 

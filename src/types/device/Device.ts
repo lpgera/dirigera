@@ -22,6 +22,10 @@ export interface CommonDeviceAttributes {
   model: string
   productCode?: string
   serialNumber: string
+  discriminator?: number
+  qrCode?: string
+  setupCode?: string
+  windowOpen?: boolean
 }
 
 export interface IdentifiableDeviceAttributes {

@@ -17,12 +17,12 @@
     "url": "git+https://github.com/lpgera/dirigera.git"
   },
   "keywords": [
+    "ikea",
+    "dirigera",
     "iot",
     "smarthome",
     "matter",
     "thread",
-    "ikea",
-    "dirigera",
     "typescript"
   ],
   "author": "lpgera",

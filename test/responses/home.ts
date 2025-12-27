@@ -7,6 +7,7 @@ import {
   shortcutController,
   blindsController,
   scrollWheelController,
+  dualButtonController,
 } from './controller'
 import {
   environmentSensor1,
@@ -35,6 +36,7 @@ const home: Home = {
     shortcutController,
     blindsController,
     scrollWheelController,
+    dualButtonController,
     environmentSensor1,
     environmentSensor2,
     environmentSensor3,
