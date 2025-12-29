@@ -2,7 +2,7 @@
 
 ## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.7.0...HEAD)
 
--
+- Add BILRESA control mode changing endpoint.
 
 ## [1.7.0](https://github.com/lpgera/dirigera/compare/v1.6.0...v1.7.0) - 2025-12-27
 

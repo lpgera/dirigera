@@ -240,6 +240,13 @@ const controllers = await client.controllers.list()
 const controller = await client.controllers.get({
   id: 'YOUR_DEVICE_ID',
 })
+
+// Set the control mode of a BILRESA remote.
+// The scroll wheel version supports 'light' and 'speaker' modes, the dual button version supports all four modes.
+await client.controllers.setControlMode({
+  id: 'YOUR_DEVICE_ID',
+  controlMode: 'light', // 'light' | 'speaker' | 'blind' | 'shortcut'
+})
 ```
 
 #### [Environment sensors](./src/api/environmentSensors.ts)
