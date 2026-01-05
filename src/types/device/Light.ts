@@ -34,5 +34,8 @@ export interface Light extends Device {
   deviceType: 'light'
   attributes: LightAttributes
   isHidden: boolean
-  adaptiveProfile: {}
+  adaptiveProfile: {
+    id?: string
+    active?: boolean
+  }
 }

@@ -59,7 +59,10 @@ export const rgbLight: Light = {
   deviceSet: [],
   remoteLinks: ['00000000-0000-0000-0000-000000000000'],
   isHidden: false,
-  adaptiveProfile: {},
+  adaptiveProfile: {
+    id: '00000000-0000-0000-0000-000000000000',
+    active: true,
+  },
 }
 
 export const colorTemperatureLight: Light = {

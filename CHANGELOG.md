@@ -2,7 +2,8 @@
 
 ## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.8.0...HEAD)
 
--
+- Update dependencies.
+- Add stricter typing for currently active adaptiveProfile of lights.
 
 ## [1.8.0](https://github.com/lpgera/dirigera/compare/v1.7.0...v1.8.0) - 2026-01-05
 
