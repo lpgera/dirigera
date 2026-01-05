@@ -115,6 +115,7 @@ export interface Device {
   remoteLinks: string[]
   isHidden?: boolean
   customIcon?: string
+  adaptiveProfile?: {}
   dynamicFeatures?: {
     type: string
     enabled: boolean

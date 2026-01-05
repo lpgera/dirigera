@@ -34,7 +34,10 @@ export const rgbLight: Light = {
     otaPolicy: 'autoUpdate',
     otaScheduleStart: '00:00',
     otaScheduleEnd: '00:00',
-    circadianRhythmMode: '',
+    deviceOnBehavior: {
+      behavior: 'adaptiveProfile',
+      profileId: '00000000-0000-0000-0000-000000000000',
+    },
   },
   capabilities: {
     canSend: [],
@@ -56,6 +59,7 @@ export const rgbLight: Light = {
   deviceSet: [],
   remoteLinks: ['00000000-0000-0000-0000-000000000000'],
   isHidden: false,
+  adaptiveProfile: {},
 }
 
 export const colorTemperatureLight: Light = {
@@ -90,7 +94,10 @@ export const colorTemperatureLight: Light = {
     otaPolicy: 'autoUpdate',
     otaScheduleStart: '00:00',
     otaScheduleEnd: '00:00',
-    circadianRhythmMode: '',
+    deviceOnBehavior: {
+      behavior: 'lastValue',
+      profileId: '',
+    },
   },
   capabilities: {
     canSend: [],
@@ -111,6 +118,7 @@ export const colorTemperatureLight: Light = {
   ],
   remoteLinks: ['00000000-0000-0000-0000-000000000000'],
   isHidden: false,
+  adaptiveProfile: {},
 }
 
 export const dimmableLight: Light = {
@@ -140,6 +148,10 @@ export const dimmableLight: Light = {
     otaPolicy: 'autoUpdate',
     otaScheduleStart: '00:00',
     otaScheduleEnd: '00:00',
+    deviceOnBehavior: {
+      behavior: 'lastValue',
+      profileId: '',
+    },
   },
   capabilities: {
     canSend: [],
@@ -154,4 +166,5 @@ export const dimmableLight: Light = {
   deviceSet: [],
   remoteLinks: [],
   isHidden: false,
+  adaptiveProfile: {},
 }

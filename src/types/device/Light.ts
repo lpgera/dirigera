@@ -23,7 +23,10 @@ export interface LightAttributes
   colorTemperatureMax?: number
   startupTemperature?: number
   colorMode?: 'temperature' | 'color'
-  circadianRhythmMode?: string
+  deviceOnBehavior?: {
+    behavior: 'lastValue' | 'adaptiveProfile'
+    profileId: string
+  }
 }
 
 export interface Light extends Device {
@@ -31,4 +34,5 @@ export interface Light extends Device {
   deviceType: 'light'
   attributes: LightAttributes
   isHidden: boolean
+  adaptiveProfile: {}
 }
