@@ -33,7 +33,7 @@
   "homepage": "https://github.com/lpgera/dirigera#readme",
   "dependencies": {
     "commander": "^14.0.2",
-    "got": "^14.6.5",
+    "got": "^14.6.6",
     "mdns-server": "^1.0.11",
     "p-retry": "^7.1.1",
     "reconnecting-websocket": "^4.4.0",
