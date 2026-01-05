@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.7.0...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.8.0...HEAD)
+
+-
+
+## [1.8.0](https://github.com/lpgera/dirigera/compare/v1.7.0...v1.8.0) - 2026-01-05
 
 - Add BILRESA control mode changing endpoint.
 - Fix Hub types.
