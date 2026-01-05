@@ -1,6 +1,6 @@
 import type { Scene } from '../../src'
 
-export const scene: Scene = {
+export const scene1: Scene = {
   id: '00000000-0000-0000-0000-000000000000',
   info: {
     name: 'All off',
@@ -120,6 +120,61 @@ export const scene: Scene = {
     },
   ],
   commands: [],
+  createdAt: '2000-01-01T00:00:00.000Z',
+  lastCompleted: '2000-01-01T00:00:00.000Z',
+  lastTriggered: '2000-01-01T00:00:00.000Z',
+  undoAllowedDuration: 30,
+}
+
+export const scene2: Scene = {
+  id: '00000000-0000-0000-0000-000000000000',
+  info: {
+    name: 'Rise and shine',
+    icon: 'scenes_sun_horizon',
+  },
+  type: 'wakeUpScene',
+  triggers: [
+    {
+      id: '00000000-0000-0000-0000-000000000000',
+      type: 'time',
+      triggeredAt: '2000-01-01T00:00:00.000Z',
+      disabled: false,
+      trigger: {
+        days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        time: '00:00',
+      },
+      nextTriggerAt: '2000-01-01T00:00:00.000Z',
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000000',
+      type: 'app',
+      disabled: false,
+    },
+  ],
+  actions: [],
+  commands: [
+    {
+      type: 'device',
+      id: '00000000-0000-0000-0000-000000000000',
+      enabled: true,
+      commands: [
+        {
+          type: 'transitionLight',
+          duration: 2400,
+          startState: {
+            lightLevel: 1,
+            colorTemperature: 1000,
+            isOn: true,
+          },
+          endState: {
+            lightLevel: 100,
+            colorTemperature: 3000,
+            isOn: true,
+          },
+        },
+      ],
+    },
+  ],
   createdAt: '2000-01-01T00:00:00.000Z',
   lastCompleted: '2000-01-01T00:00:00.000Z',
   lastTriggered: '2000-01-01T00:00:00.000Z',

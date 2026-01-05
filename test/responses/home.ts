@@ -24,7 +24,7 @@ import { repeater } from './repeater'
 import { speaker } from './speaker'
 import { waterSensor } from './waterSensor'
 import { hostUser, memberUser } from './user'
-import { scene } from './scene'
+import { scene1, scene2 } from './scene'
 import { room } from './room'
 import { deviceSet } from './deviceSet'
 
@@ -59,7 +59,7 @@ const home: Home = {
   ],
   users: [hostUser, memberUser],
   user: hostUser,
-  scenes: [scene],
+  scenes: [scene1, scene2],
   rooms: [room],
   deviceSets: [deviceSet],
   music: {

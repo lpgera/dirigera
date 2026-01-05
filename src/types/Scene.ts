@@ -136,7 +136,7 @@ export interface Scene {
       | 'scenes_weights'
       | 'scenes_yoga'
   }
-  type: 'userScene' | 'customScene' | 'playlistScene'
+  type: 'userScene' | 'customScene' | 'playlistScene' | 'wakeUpScene'
   triggers?: SceneTrigger[]
   actions: {
     id?: string
@@ -149,13 +149,29 @@ export interface Scene {
     id: string
     type: 'device'
     enabled?: boolean
-    commands: {
-      type: 'playAudioClipByName'
-      playAudioClipName:
-        | 'ikea://notify/03_device_open'
-        | 'ikea://notify/04_device_close'
-      volume: number
-    }[]
+    commands: (
+      | {
+          type: 'playAudioClipByName'
+          playAudioClipName:
+            | 'ikea://notify/03_device_open'
+            | 'ikea://notify/04_device_close'
+          volume: number
+        }
+      | {
+          type: 'transitionLight'
+          duration: number
+          startState: {
+            lightLevel: number
+            colorTemperature: number
+            isOn: boolean
+          }
+          endState: {
+            lightLevel: number
+            colorTemperature: number
+            isOn: boolean
+          }
+        }
+    )[]
   }[]
   createdAt: string
   lastCompleted?: string
