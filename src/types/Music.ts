@@ -10,6 +10,7 @@ export interface Music {
     imageURL: string
     type: string
   }[]
+  authorized: boolean
 }
 
 export interface MusicPlayItem {

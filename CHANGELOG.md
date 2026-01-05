@@ -6,6 +6,7 @@
 - Fix Hub types.
 - Fix Light types.
 - Fix Scene types.
+- Fix Music types.
 
 ## [1.7.0](https://github.com/lpgera/dirigera/compare/v1.6.0...v1.7.0) - 2025-12-27
 

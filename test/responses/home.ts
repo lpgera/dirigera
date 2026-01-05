@@ -65,6 +65,7 @@ const home: Home = {
   music: {
     playlists: [],
     favorites: [],
+    authorized: true,
   },
 }
 
