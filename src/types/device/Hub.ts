@@ -7,7 +7,8 @@ import type {
 } from './Device'
 
 export interface HubAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     IdentifiableDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
@@ -25,8 +26,7 @@ export interface HubAttributes
   timezone: string
   nextSunSet: string
   nextSunRise: string
-  homestateValue: string
-  homestateLastChanged: string
+  homestate: string
   countryCode: string
   coordinates: {
     latitude: number
@@ -41,4 +41,10 @@ export interface Hub extends Device {
   type: 'gateway'
   deviceType: 'gateway'
   attributes: HubAttributes
+  dynamicFeatures: {
+    type: string
+    enabled: boolean
+    featureVersion: string
+  }[]
+  environment: string
 }

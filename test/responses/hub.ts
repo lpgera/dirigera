@@ -44,8 +44,7 @@ export const hub: Hub = {
     timezone: 'Europe/Zurich',
     nextSunSet: '2000-01-01T00:00:00.000Z',
     nextSunRise: '2000-01-01T00:00:00.000Z',
-    homestateValue: 'home',
-    homestateLastChanged: '2000-01-01T00:00:00.000Z',
+    homestate: 'home',
     countryCode: 'XZ',
     coordinates: {
       latitude: 0,
@@ -69,4 +68,12 @@ export const hub: Hub = {
   },
   deviceSet: [],
   remoteLinks: [],
+  dynamicFeatures: [
+    {
+      type: 'matterControllerEnabled',
+      enabled: true,
+      featureVersion: '1.0',
+    },
+  ],
+  environment: 'prod',
 }
