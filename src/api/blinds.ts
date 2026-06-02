@@ -17,26 +17,6 @@ export default (got: Got) => {
       return device as Blinds
     },
 
-    async setCurrentLevel({
-      id,
-      blindsCurrentLevel,
-    }: {
-      id: string
-      blindsCurrentLevel: number
-    }) {
-      await got
-        .patch(`devices/${id}`, {
-          json: [
-            {
-              attributes: {
-                blindsCurrentLevel,
-              },
-            },
-          ],
-        })
-        .json()
-    },
-
     async setTargetLevel({
       id,
       blindsTargetLevel,

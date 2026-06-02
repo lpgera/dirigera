@@ -211,10 +211,6 @@ const blinds = await client.blinds.list()
 const blind = await client.blinds.get({
   id: 'YOUR_DEVICE_ID',
 })
-// blind.attributes.blindsCurrentLevel — where the blind currently is (0–100)
-// blind.attributes.blindsTargetLevel  — where the blind is heading (0–100)
-// blind.attributes.blindsState        — 'stopped' | 'up' | 'down'
-// blind.attributes.batteryPercentage  — battery level of the blind motor
 
 // Move the blind to a specific level and stop there.
 // 0 = fully up (open), 50 = halfway down, 100 = fully down (closed).
@@ -224,15 +220,11 @@ await client.blinds.setTargetLevel({
 })
 
 // Start moving the blind continuously up or down, or stop it.
-// The blind stops automatically and sets its state to 'stopped'
-// when it reaches level 0 (fully up) or 100 (fully down).
 await client.blinds.setState({
   id: 'YOUR_DEVICE_ID',
   blindsState: 'up', // 'stopped' | 'up' | 'down'
 })
 ```
-
-> **Note:** `setCurrentLevel` is not supported by the hub and returns an API error.
 
 #### [Controllers](./src/api/controllers.ts)
 
