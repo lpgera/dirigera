@@ -1,5 +1,6 @@
 import os from 'node:os'
 import { Agent } from 'node:https'
+import got from 'got'
 import {
   calculateCodeChallenge,
   CODE_CHALLENGE_METHOD,
@@ -88,8 +89,6 @@ export async function createDirigeraClient({
   rejectUnauthorized?: boolean
 } = {}) {
   const ip = gatewayIP ?? (await discoverGatewayIP())
-
-  const { got } = await import('got')
 
   const gotInstance = got.extend({
     prefixUrl: `https://${ip}:8443/v1`,
