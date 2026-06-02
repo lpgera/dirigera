@@ -1,4 +1,4 @@
-import { LightSensor } from '../../src/types/device/LightSensor'
+import { type LightSensor } from '../../src/index.ts'
 
 export const lightSensor1: LightSensor = {
   id: '00000000-0000-0000-0000-000000000000',

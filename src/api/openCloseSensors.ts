@@ -1,6 +1,6 @@
-import type { Got } from 'got' with { 'resolution-mode': 'require' }
-import type { Device } from '../types/device/Device'
-import type { OpenCloseSensor } from '../types/device/OpenCloseSensor'
+import type { Got } from 'got'
+import type { Device } from '../types/device/Device.ts'
+import type { OpenCloseSensor } from '../types/device/OpenCloseSensor.ts'
 
 export default (got: Got) => {
   return {

@@ -1,6 +1,6 @@
-import type { Got } from 'got' with { 'resolution-mode': 'require' }
-import type { Room } from '../types/Room'
-import type { Device } from '../types/device/Device'
+import type { Got } from 'got'
+import type { Room } from '../types/Room.ts'
+import type { Device } from '../types/device/Device.ts'
 
 export default (got: Got) => {
   return {

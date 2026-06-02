@@ -1,5 +1,5 @@
-import type { CommonEventProperties } from './Event'
-import type { Scene } from '../Scene'
+import type { CommonEventProperties } from './Event.ts'
+import type { Scene } from '../Scene.ts'
 
 export type SceneUpdatedEvent = {
   type: 'sceneUpdated'

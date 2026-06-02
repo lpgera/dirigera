@@ -3,10 +3,11 @@ import type {
   Device,
   IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
-} from './Device'
+} from './Device.ts'
 
 export interface OpenCloseSensorAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     IdentifiableDeviceAttributes,
     JoinableDeviceAttributes {
   isOpen: boolean

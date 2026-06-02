@@ -1,4 +1,4 @@
-import type { RoomDeletedEvent } from '../../src'
+import type { RoomDeletedEvent } from '../../src/index.ts'
 
 const event: RoomDeletedEvent = {
   id: '00000000-0000-0000-0000-000000000000',

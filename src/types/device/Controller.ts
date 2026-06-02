@@ -1,10 +1,10 @@
 import {
-  CommonDeviceAttributes,
-  Device,
-  IdentifiableDeviceAttributes,
-  JoinableDeviceAttributes,
-  OtaUpdatableDeviceAttributes,
-} from './Device'
+  type CommonDeviceAttributes,
+  type Device,
+  type IdentifiableDeviceAttributes,
+  type JoinableDeviceAttributes,
+  type OtaUpdatableDeviceAttributes,
+} from './Device.ts'
 
 export interface CommonControllerAttributes
   extends

@@ -2,6 +2,7 @@
   "name": "dirigera",
   "version": "1.8.1",
   "description": "A TypeScript client for IKEA's DIRIGERA smart home hub",
+  "type": "module",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "bin": "dist/src/bin.js",
@@ -40,7 +41,7 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
-    "@tsconfig/node20": "^20.1.8",
+    "@tsconfig/node24": "^24.0.4",
     "@tsconfig/strictest": "^2.0.8",
     "@types/node": "^24.10.1",
     "@types/ws": "^8.18.1",

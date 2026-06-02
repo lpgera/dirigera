@@ -1,4 +1,4 @@
-import type { WaterSensor } from '../../src'
+import type { WaterSensor } from '../../src/index.ts'
 
 export const waterSensor: WaterSensor = {
   id: '00000000-0000-0000-0000-000000000000',

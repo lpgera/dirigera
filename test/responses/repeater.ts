@@ -1,4 +1,4 @@
-import type { Repeater } from '../../src'
+import type { Repeater } from '../../src/index.ts'
 
 export const repeater: Repeater = {
   id: '00000000-0000-0000-0000-000000000000',

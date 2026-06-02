@@ -1,4 +1,4 @@
-import type { DeviceSetDeletedEvent } from '../../src'
+import type { DeviceSetDeletedEvent } from '../../src/index.ts'
 
 const event: DeviceSetDeletedEvent = {
   id: '00000000-0000-0000-0000-000000000000',

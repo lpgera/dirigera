@@ -1,4 +1,4 @@
-import type { RoomCreatedEvent } from '../../src'
+import type { RoomCreatedEvent } from '../../src/index.ts'
 
 const event: RoomCreatedEvent = {
   id: '00000000-0000-0000-0000-000000000000',

@@ -1,4 +1,4 @@
-import type { SceneUpdatedEvent } from '../../src'
+import type { SceneUpdatedEvent } from '../../src/index.ts'
 
 const event: SceneUpdatedEvent = {
   id: '00000000-0000-0000-0000-000000000000',

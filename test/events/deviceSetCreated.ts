@@ -1,4 +1,4 @@
-import type { DeviceSetCreatedEvent } from '../../src'
+import type { DeviceSetCreatedEvent } from '../../src/index.ts'
 
 const event: DeviceSetCreatedEvent = {
   id: '00000000-0000-0000-0000-000000000000',

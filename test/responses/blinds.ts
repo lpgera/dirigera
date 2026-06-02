@@ -1,4 +1,4 @@
-import type { Blinds } from '../../src'
+import type { Blinds } from '../../src/index.ts'
 
 export const blinds: Blinds = {
   id: '00000000-0000-0000-0000-000000000000',

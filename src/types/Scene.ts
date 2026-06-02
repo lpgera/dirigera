@@ -1,4 +1,4 @@
-import type { Device } from './device/Device'
+import type { Device } from './device/Device.ts'
 
 interface CommonSceneTriggerProperties {
   id?: string

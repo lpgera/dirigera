@@ -1,6 +1,6 @@
-import type { Got } from 'got' with { 'resolution-mode': 'require' }
-import type { Device } from '../types/device/Device'
-import type { MotionSensor } from '../types/device/MotionSensor'
+import type { Got } from 'got'
+import type { Device } from '../types/device/Device.ts'
+import type { MotionSensor } from '../types/device/MotionSensor.ts'
 
 export default (got: Got) => {
   return {

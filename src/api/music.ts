@@ -1,5 +1,5 @@
-import type { Got } from 'got' with { 'resolution-mode': 'require' }
-import type { Music } from '../types/Music'
+import type { Got } from 'got'
+import type { Music } from '../types/Music.ts'
 
 export default (got: Got) => {
   return {

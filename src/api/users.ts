@@ -1,5 +1,5 @@
-import type { Got } from 'got' with { 'resolution-mode': 'require' }
-import type { User } from '../types/User'
+import type { Got } from 'got'
+import type { User } from '../types/User.ts'
 
 export default (got: Got) => {
   return {

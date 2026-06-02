@@ -1,4 +1,4 @@
-import type { Scene } from '../../src'
+import type { Scene } from '../../src/index.ts'
 
 export const scene1: Scene = {
   id: '00000000-0000-0000-0000-000000000000',

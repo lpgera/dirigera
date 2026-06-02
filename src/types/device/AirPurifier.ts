@@ -4,10 +4,11 @@ import type {
   IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
-} from './Device'
+} from './Device.ts'
 
 export interface AirPurifierAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     IdentifiableDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
