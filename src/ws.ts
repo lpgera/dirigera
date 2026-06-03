@@ -33,7 +33,7 @@ export function initializeWebSocket({
     debug: process.env['NODE_ENV'] === 'development',
   }) as ReconnectingWebSocket.default
 
-  ws.addEventListener('message', (message: MessageEvent) => {
+  ws.addEventListener('message', (message) => {
     callback(JSON.parse(String(message.data)))
   })
 
