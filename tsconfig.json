@@ -1,12 +1,10 @@
 {
-  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node24/tsconfig"],
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node22/tsconfig"],
   "exclude": ["test", "dist"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
     "erasableSyntaxOnly": true,
-    "esModuleInterop": true,
-    "moduleResolution": "NodeNext",
     "declaration": true,
     "outDir": "dist",
     "resolveJsonModule": true
