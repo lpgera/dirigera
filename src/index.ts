@@ -1,6 +1,7 @@
 import os from 'node:os'
 import { Agent } from 'node:https'
 import got from 'got'
+import pRetry from 'p-retry'
 import {
   calculateCodeChallenge,
   CODE_CHALLENGE_METHOD,
@@ -138,8 +139,6 @@ export async function createDirigeraClient({
           },
         })
         .json()
-
-      const { default: pRetry } = await import('p-retry')
 
       if (verbose) {
         console.log(
