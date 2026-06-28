@@ -37,7 +37,7 @@
     "mdns-server": "^1.0.11",
     "p-retry": "^7.1.1",
     "reconnecting-websocket": "^4.4.0",
-    "ws": "^8.18.3"
+    "ws": "^8.21.0"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.8",
@@ -45,10 +45,10 @@
     "@types/node": "^24.10.1",
     "@types/ws": "^8.18.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "prettier": "^3.7.4",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "lint-staged": "^17.0.8",
+    "prettier": "^3.9.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
   },
   "volta": {
     "node": "24.12.0"
