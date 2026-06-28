@@ -1,4 +1,4 @@
-import { OccupancySensor } from '../../src/types/device/OccupancySensor'
+import { type OccupancySensor } from '../../src/index.ts'
 
 export const occupancySensor: OccupancySensor = {
   id: '00000000-0000-0000-0000-000000000000',

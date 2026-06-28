@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import { program } from 'commander'
-import { createDirigeraClient } from './index'
-import { version } from '../package.json'
+import { createDirigeraClient } from './index.ts'
+import packageJson from '../package.json' with { type: 'json' }
 
 program
-  .version(version)
+  .version(packageJson.version)
   .description(
     'CLI utility to help get started with the dirigera library and to debug issues'
   )

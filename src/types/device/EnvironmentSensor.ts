@@ -4,7 +4,7 @@ import type {
   IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
-} from './Device'
+} from './Device.ts'
 
 export interface EnvironmentSensorAttributes
   extends

@@ -1,12 +1,13 @@
 import {
-  CommonDeviceAttributes,
-  Device,
-  JoinableDeviceAttributes,
-  OtaUpdatableDeviceAttributes,
-} from './Device'
+  type CommonDeviceAttributes,
+  type Device,
+  type JoinableDeviceAttributes,
+  type OtaUpdatableDeviceAttributes,
+} from './Device.ts'
 
 export interface WaterSensorAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
   batteryPercentage: number

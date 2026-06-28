@@ -1,4 +1,4 @@
-import type { OpenCloseSensor } from '../../src'
+import type { OpenCloseSensor } from '../../src/index.ts'
 
 export const openCloseSensor: OpenCloseSensor = {
   id: '00000000-0000-0000-0000-000000000000',

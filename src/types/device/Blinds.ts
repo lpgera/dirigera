@@ -3,10 +3,11 @@ import type {
   Device,
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
-} from './Device'
+} from './Device.ts'
 
 export interface BlindsAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes {
   batteryPercentage: number

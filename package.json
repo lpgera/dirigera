@@ -2,6 +2,7 @@
   "name": "dirigera",
   "version": "1.8.2",
   "description": "A TypeScript client for IKEA's DIRIGERA smart home hub",
+  "type": "module",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "bin": "dist/src/bin.js",
@@ -32,26 +33,28 @@
   },
   "homepage": "https://github.com/lpgera/dirigera#readme",
   "dependencies": {
-    "commander": "^14.0.2",
-    "got": "^14.6.6",
+    "commander": "^15.0.0",
+    "got": "^15.0.7",
     "mdns-server": "^1.0.11",
-    "p-retry": "^7.1.1",
+    "p-retry": "^8.0.0",
     "reconnecting-websocket": "^4.4.0",
     "ws": "^8.21.0"
   },
   "devDependencies": {
-    "@tsconfig/node20": "^20.1.8",
+    "@tsconfig/node22": "^22.0.5",
     "@tsconfig/strictest": "^2.0.8",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.9.1",
     "@types/ws": "^8.18.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
     "prettier": "^3.9.1",
-    "tsx": "^4.22.4",
     "typescript": "^6.0.3"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "volta": {
-    "node": "24.12.0"
+    "node": "24.16.0"
   },
   "lint-staged": {
     "*.{ts,md,json}": "prettier --write"

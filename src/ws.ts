@@ -1,9 +1,9 @@
 import crypto from 'node:crypto'
 import ReconnectingWebSocket from 'reconnecting-websocket'
 import WebSocket from 'ws'
-import type { Event } from './types/event/Event'
+import type { Event } from './types/event/Event.ts'
 
-let ws: ReconnectingWebSocket | null = null
+let ws: ReconnectingWebSocket.default | null = null
 let timeout: NodeJS.Timeout | null = null
 
 export function initializeWebSocket({
@@ -15,7 +15,8 @@ export function initializeWebSocket({
   accessToken: string
   callback: (o: Event) => void | Promise<void>
 }) {
-  ws = new ReconnectingWebSocket(`wss://${ip}:8443/v1`, [], {
+  // https://github.com/pladaria/reconnecting-websocket/issues/196
+  ws = new (ReconnectingWebSocket as any)(`wss://${ip}:8443/v1`, [], {
     minReconnectionDelay: 10,
     maxReconnectionDelay: 10000,
     maxRetries: Number.MAX_SAFE_INTEGER,
@@ -30,7 +31,7 @@ export function initializeWebSocket({
       }
     },
     debug: process.env['NODE_ENV'] === 'development',
-  })
+  }) as ReconnectingWebSocket.default
 
   ws.addEventListener('message', (message) => {
     callback(JSON.parse(String(message.data)))

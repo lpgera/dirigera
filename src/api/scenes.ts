@@ -1,5 +1,5 @@
-import type { Got } from 'got' with { 'resolution-mode': 'require' }
-import type { Scene } from '../types/Scene'
+import type { Got } from 'got'
+import type { Scene } from '../types/Scene.ts'
 
 export default (got: Got) => {
   return {

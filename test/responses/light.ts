@@ -1,4 +1,4 @@
-import type { Light } from '../../src'
+import type { Light } from '../../src/index.ts'
 
 export const rgbLight: Light = {
   id: '00000000-0000-0000-0000-000000000000',

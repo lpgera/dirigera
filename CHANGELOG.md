@@ -2,7 +2,9 @@
 
 ## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.8.2...HEAD)
 
--
+- Breaking: The package is now ESM-only.
+- Breaking: Node.js versions below 22 are no longer supported.
+- Update dependencies.
 
 ## [1.8.2](https://github.com/lpgera/dirigera/compare/v1.8.1...v1.8.2) - 2026-06-28
 

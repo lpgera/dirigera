@@ -1,4 +1,4 @@
-import type { SceneDeletedEvent } from '../../src'
+import type { SceneDeletedEvent } from '../../src/index.ts'
 
 const event: SceneDeletedEvent = {
   id: '00000000-0000-0000-0000-000000000000',

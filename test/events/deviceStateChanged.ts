@@ -1,4 +1,4 @@
-import type { DeviceStateChangedEvent } from '../../src'
+import type { DeviceStateChangedEvent } from '../../src/index.ts'
 
 const event1: DeviceStateChangedEvent = {
   id: '00000000-0000-0000-0000-000000000000',

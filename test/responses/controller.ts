@@ -1,4 +1,4 @@
-import type { Controller } from '../../src'
+import type { Controller } from '../../src/index.ts'
 
 export const lightController: Controller = {
   id: '00000000-0000-0000-0000-000000000000',

@@ -1,5 +1,5 @@
-import type { CommonEventProperties } from './Event'
-import type { Room } from '../Room'
+import type { CommonEventProperties } from './Event.ts'
+import type { Room } from '../Room.ts'
 
 export type RoomCreatedEvent = {
   type: 'roomCreated'

@@ -1,4 +1,4 @@
-import type { EnvironmentSensor } from '../../src'
+import type { EnvironmentSensor } from '../../src/index.ts'
 
 export const environmentSensor1: EnvironmentSensor = {
   id: '00000000-0000-0000-0000-000000000000',

@@ -2,12 +2,11 @@ import type {
   CommonDeviceAttributes,
   Device,
   IdentifiableDeviceAttributes,
-} from './Device'
-import type { MusicPlayItem } from '../Music'
+} from './Device.ts'
+import type { MusicPlayItem } from '../Music.ts'
 
 export interface SpeakerAttributes
-  extends CommonDeviceAttributes,
-    IdentifiableDeviceAttributes {
+  extends CommonDeviceAttributes, IdentifiableDeviceAttributes {
   playback:
     | 'playbackIdle'
     | 'playbackPlaying'

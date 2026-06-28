@@ -1,4 +1,4 @@
-import type { MotionSensor } from '../../src'
+import type { MotionSensor } from '../../src/index.ts'
 
 export const motionSensor1: MotionSensor = {
   id: '00000000-0000-0000-0000-000000000000',

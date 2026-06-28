@@ -1,4 +1,4 @@
-import type { AirPurifier } from '../../src'
+import type { AirPurifier } from '../../src/index.ts'
 
 export const airPurifier: AirPurifier = {
   id: '00000000-0000-0000-0000-000000000000',

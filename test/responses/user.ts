@@ -1,4 +1,4 @@
-import type { User } from '../../src'
+import type { User } from '../../src/index.ts'
 
 export const memberUser: User = {
   uid: '00000000-0000-0000-0000-000000000000',

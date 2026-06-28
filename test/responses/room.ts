@@ -1,4 +1,4 @@
-import type { Room } from '../../src'
+import type { Room } from '../../src/index.ts'
 
 export const room: Room = {
   id: '00000000-0000-0000-0000-000000000000',

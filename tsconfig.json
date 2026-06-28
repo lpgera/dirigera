@@ -1,14 +1,12 @@
 {
-  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node20/tsconfig"],
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node22/tsconfig"],
   "exclude": ["test", "dist"],
   "compilerOptions": {
-    "verbatimModuleSyntax": false,
-    "moduleResolution": "node16",
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true,
     "declaration": true,
     "outDir": "dist",
     "resolveJsonModule": true
-  },
-  "ts-node": {
-    "files": true
   }
 }

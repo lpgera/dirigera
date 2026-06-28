@@ -4,10 +4,11 @@ import type {
   IdentifiableDeviceAttributes,
   JoinableDeviceAttributes,
   OtaUpdatableDeviceAttributes,
-} from './Device'
+} from './Device.ts'
 
 export interface MotionSensorAttributes
-  extends CommonDeviceAttributes,
+  extends
+    CommonDeviceAttributes,
     JoinableDeviceAttributes,
     Partial<OtaUpdatableDeviceAttributes>,
     Partial<IdentifiableDeviceAttributes> {

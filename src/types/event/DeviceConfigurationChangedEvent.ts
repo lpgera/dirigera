@@ -1,6 +1,6 @@
-import type { CommonEventProperties } from './Event'
-import type { Device } from '../device/Device'
-import type { MotionSensorAttributes } from '../device/MotionSensor'
+import type { CommonEventProperties } from './Event.ts'
+import type { Device } from '../device/Device.ts'
+import type { MotionSensorAttributes } from '../device/MotionSensor.ts'
 
 export type DeviceConfigurationChangedEvent = {
   type: 'deviceConfigurationChanged'

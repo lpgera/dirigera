@@ -1,4 +1,4 @@
-import type { RemotePressEvent } from '../../src'
+import type { RemotePressEvent } from '../../src/index.ts'
 
 const singlePressEvent: RemotePressEvent = {
   id: '00000000-0000-0000-0000-000000000000',

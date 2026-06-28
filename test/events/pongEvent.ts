@@ -1,4 +1,4 @@
-import type { PongEvent } from '../../src'
+import type { PongEvent } from '../../src/index.ts'
 
 const event: PongEvent = {
   id: '00000000-0000-0000-0000-000000000000',

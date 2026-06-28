@@ -1,6 +1,6 @@
-import type { Got } from 'got' with { 'resolution-mode': 'require' }
-import type { Device } from '../types/device/Device'
-import type { WaterSensor } from '../types/device/WaterSensor'
+import type { Got } from 'got'
+import type { Device } from '../types/device/Device.ts'
+import type { WaterSensor } from '../types/device/WaterSensor.ts'
 
 export default (got: Got) => {
   return {

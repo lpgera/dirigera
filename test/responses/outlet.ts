@@ -1,4 +1,4 @@
-import type { Outlet } from '../../src'
+import type { Outlet } from '../../src/index.ts'
 
 export const outlet1: Outlet = {
   id: '00000000-0000-0000-0000-000000000000',
