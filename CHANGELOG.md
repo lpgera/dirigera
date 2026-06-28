@@ -1,8 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.8.1...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v1.8.2...HEAD)
 
 -
+
+## [1.8.2](https://github.com/lpgera/dirigera/compare/v1.8.1...v1.8.2) - 2026-06-28
+
+- Update dependencies.
 
 ## [1.8.1](https://github.com/lpgera/dirigera/compare/v1.8.0...v1.8.1) - 2026-06-02
 
