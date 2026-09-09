@@ -1,16 +1,9 @@
 import crypto from 'node:crypto'
 
-const CODE_CHARACTERS =
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('')
-const CODE_LENGTH = 128
 export const CODE_CHALLENGE_METHOD = 'S256'
 
 export const generateCodeVerifier = () => {
-  return [...Array(CODE_LENGTH)]
-    .map(
-      () => CODE_CHARACTERS[Math.floor(Math.random() * CODE_CHARACTERS.length)]
-    )
-    .join('')
+  return crypto.randomBytes(96).toString('base64url')
 }
 
 export const calculateCodeChallenge = (codeVerifier: string) => {
