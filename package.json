@@ -6,6 +6,17 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "bin": "dist/src/bin.js",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "test": "tsc --noEmit --p tsconfig.test.json",
     "prepare": "husky || exit 0",
