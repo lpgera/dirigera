@@ -1,6 +1,6 @@
 {
   "name": "dirigera",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A TypeScript client for IKEA's DIRIGERA smart home hub",
   "type": "module",
   "main": "dist/index.js",
