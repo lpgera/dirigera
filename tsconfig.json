@@ -1,6 +1,6 @@
 {
   "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node22/tsconfig"],
-  "exclude": ["test", "dist"],
+  "exclude": ["test", "dist", "scratch"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
