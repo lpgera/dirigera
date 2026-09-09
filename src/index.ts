@@ -9,7 +9,7 @@ import {
 } from './authCode.ts'
 import certificate from './certificate.ts'
 import { discoverGatewayIP } from './mdnsDiscovery.ts'
-import { closeWebSocket, initializeWebSocket } from './ws.ts'
+import { createWebSocketConnection } from './ws.ts'
 import type { Home } from './types/Home.ts'
 import type { Event } from './types/event/Event.ts'
 import hub from './api/hub.ts'
@@ -124,6 +124,9 @@ export async function createDirigeraClient({
     },
   })
 
+  let webSocketConnection: ReturnType<typeof createWebSocketConnection> | null =
+    null
+
   return {
     async authenticate({ verbose = false }: { verbose?: boolean } = {}) {
       const codeVerifier = generateCodeVerifier()
@@ -213,14 +216,17 @@ export async function createDirigeraClient({
       if (!accessToken) {
         throw new Error('Access token is missing.')
       }
-      initializeWebSocket({
+      webSocketConnection?.close()
+      webSocketConnection = createWebSocketConnection({
         ip,
         accessToken,
+        rejectUnauthorized,
         callback,
       })
     },
     stopListeningForUpdates() {
-      closeWebSocket()
+      webSocketConnection?.close()
+      webSocketConnection = null
     },
   }
 }
