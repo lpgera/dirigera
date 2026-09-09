@@ -1,8 +1,17 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v2.0.0...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v2.0.1...HEAD)
 
 -
+
+## [2.0.1](https://github.com/lpgera/dirigera/compare/v2.0.0...v2.0.1) - 2026-09-09
+
+- The package now declares an `exports` field, deep imports into the build output are no longer supported.
+- Only the `dist` directory and the changelog are published to npm, instead of the whole repository.
+- Fix mDNS discovery resolving to a link-local IPv6 address, which is not routable and cannot be connected to.
+- Use a cryptographically secure random source when generating the code verifier during authentication.
+- Websocket security and concurrency fixes.
+- Update dependencies.
 
 ## [2.0.0](https://github.com/lpgera/dirigera/compare/v1.8.2...v2.0.0) - 2026-06-28
 
