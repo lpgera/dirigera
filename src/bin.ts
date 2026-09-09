@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
+import { readFileSync } from 'node:fs'
 import { program } from 'commander'
 import { createDirigeraClient } from './index.ts'
-import packageJson from '../package.json' with { type: 'json' }
+
+const packageJson = JSON.parse(
+  readFileSync(new URL('../package.json', import.meta.url), 'utf8')
+) as { version: string }
 
 program
   .version(packageJson.version)

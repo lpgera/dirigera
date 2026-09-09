@@ -3,13 +3,13 @@
   "version": "2.0.0",
   "description": "A TypeScript client for IKEA's DIRIGERA smart home hub",
   "type": "module",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
-  "bin": "dist/src/bin.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": "dist/bin.js",
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "default": "./dist/src/index.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },

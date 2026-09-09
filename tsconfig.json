@@ -1,12 +1,13 @@
 {
   "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node22/tsconfig"],
+  "include": ["src"],
   "exclude": ["test", "dist", "scratch"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
     "erasableSyntaxOnly": true,
     "declaration": true,
-    "outDir": "dist",
-    "resolveJsonModule": true
+    "rootDir": "src",
+    "outDir": "dist"
   }
 }
