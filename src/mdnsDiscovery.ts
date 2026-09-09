@@ -2,6 +2,11 @@ import createMdnsServer from 'mdns-server'
 
 const name = '_ihsp._tcp.local.'
 
+const isLinkLocalIpv6 = (address: string) => /^fe[89ab][0-9a-f]:/i.test(address)
+
+const isUnroutableIpv6 = (address: string) =>
+  address === '::' || address === '::1' || isLinkLocalIpv6(address)
+
 export const discoverGatewayIP = async (
   timeoutMilliseconds = 10000
 ): Promise<string> => {
@@ -34,10 +39,12 @@ export const discoverGatewayIP = async (
     mdnsServer.on('response', (response) => {
       const ipv4 = response?.answers?.find((a) => a.type === 'A')?.data
       if (ipv4) {
-        return resolveWithValue(ipv4)
+        return resolveWithValue(String(ipv4))
       }
 
-      const ipv6 = response?.answers?.find((a) => a.type === 'AAAA')?.data
+      const ipv6 = response?.answers?.find(
+        (a) => a.type === 'AAAA' && !isUnroutableIpv6(a.data)
+      )?.data
       if (ipv6) {
         return resolveWithValue(`[${ipv6}]`)
       }
