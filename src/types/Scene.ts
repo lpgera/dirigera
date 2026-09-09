@@ -153,8 +153,7 @@ export interface Scene {
       | {
           type: 'playAudioClipByName'
           playAudioClipName:
-            | 'ikea://notify/03_device_open'
-            | 'ikea://notify/04_device_close'
+            'ikea://notify/03_device_open' | 'ikea://notify/04_device_close'
           volume: number
         }
       | {

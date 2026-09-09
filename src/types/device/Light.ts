@@ -9,7 +9,6 @@ import type {
 export interface LightAttributes
   extends
     CommonDeviceAttributes,
-    IdentifiableDeviceAttributes,
     JoinableDeviceAttributes,
     OtaUpdatableDeviceAttributes,
     IdentifiableDeviceAttributes {
