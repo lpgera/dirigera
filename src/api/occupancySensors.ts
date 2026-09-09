@@ -14,7 +14,7 @@ export default (got: Got) => {
     async get({ id }: { id: string }) {
       const device = await got.get(`devices/${id}`).json<Device>()
       if (device.deviceType !== 'occupancySensor') {
-        throw new Error('The requested device is not a motionSensor')
+        throw new Error('The requested device is not an occupancySensor')
       }
       return device as OccupancySensor
     },
