@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/lpgera/dirigera/compare/v2.0.1...HEAD)
+## [Unreleased](https://github.com/lpgera/dirigera/compare/v2.0.2...HEAD)
+
+-
+
+## [2.0.2](https://github.com/lpgera/dirigera/compare/v2.0.1...v2.0.2) - 2026-09-13
 
 - Fix missing water and occupancy sensor attributes in the generic Device type.
 
