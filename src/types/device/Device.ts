@@ -9,10 +9,12 @@ import type { HubAttributes } from './Hub.ts'
 import type { LightAttributes } from './Light.ts'
 import type { LightSensorAttributes } from './LightSensor.ts'
 import type { MotionSensorAttributes } from './MotionSensor.ts'
+import type { OccupancySensorAttributes } from './OccupancySensor.ts'
 import type { OpenCloseSensorAttributes } from './OpenCloseSensor.ts'
 import type { OutletAttributes } from './Outlet.ts'
 import type { RepeaterAttributes } from './Repeater.ts'
 import type { SpeakerAttributes } from './Speaker.ts'
+import type { WaterSensorAttributes } from './WaterSensor.ts'
 
 export interface CommonDeviceAttributes {
   customName: string
@@ -105,10 +107,12 @@ export interface Device {
     Partial<LightAttributes> &
     Partial<LightSensorAttributes> &
     Partial<MotionSensorAttributes> &
+    Partial<OccupancySensorAttributes> &
     Partial<OpenCloseSensorAttributes> &
     Partial<OutletAttributes> &
     Partial<RepeaterAttributes> &
-    Partial<SpeakerAttributes>
+    Partial<SpeakerAttributes> &
+    Partial<WaterSensorAttributes>
   capabilities: Capabilities
   room?: Room
   deviceSet: DeviceSet[]
