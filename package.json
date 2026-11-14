@@ -44,21 +44,21 @@
   },
   "homepage": "https://github.com/lpgera/dirigera#readme",
   "dependencies": {
-    "commander": "^15.0.0",
-    "got": "^16.0.0",
+    "commander": "^15.1.0",
+    "got": "^16.2.0",
     "mdns-server": "^1.0.11",
-    "p-retry": "^8.0.1",
+    "p-retry": "^9.0.0",
     "reconnecting-websocket": "^4.4.0",
-    "ws": "^8.21.3"
+    "ws": "^8.23.0"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.6",
-    "@tsconfig/strictest": "^2.0.8",
-    "@types/node": "^26.5.0",
-    "@types/ws": "^8.18.1",
+    "@tsconfig/node22": "^22.0.7",
+    "@tsconfig/strictest": "^2.0.9",
+    "@types/node": "^26.6.6",
+    "@types/ws": "^8.18.2",
     "husky": "^9.1.7",
-    "lint-staged": "^17.5.0",
-    "prettier": "^3.9.6",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.10.1",
     "typescript": "^7.0.2"
   },
   "engines": {
