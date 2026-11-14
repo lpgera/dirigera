@@ -18,6 +18,7 @@ contributions are welcome!
     - [Air purifiers](#air-purifiers)
     - [Blinds](#blinds)
     - [Controllers](#controllers)
+    - [Electrical sensors](#electrical-sensors)
     - [Environment sensors](#environment-sensors)
     - [Lights](#lights)
     - [Light sensors](#light-sensors)
@@ -242,6 +243,28 @@ const controller = await client.controllers.get({
 await client.controllers.setControlMode({
   id: 'YOUR_DEVICE_ID',
   controlMode: 'light', // 'light' | 'speaker' | 'blind' | 'shortcut'
+})
+```
+
+#### [Electrical sensors](./src/api/electricalSensors.ts)
+
+Not tested, feedback required.
+
+Newer energy metering plugs, such as GRILLPLATS, report their measurements as a separate `electricalSensor`
+device. On/off control stays on the sibling `outlet` device, which shares the same `relationId`.
+
+```typescript
+const electricalSensors = await client.electricalSensors.list()
+
+const electricalSensor = await client.electricalSensors.get({
+  id: 'YOUR_DEVICE_ID',
+})
+
+const { currentActivePower, currentAmps, currentVoltage, totalEnergyConsumed } =
+  electricalSensor.attributes
+
+await client.electricalSensors.resetEnergyConsumption({
+  id: 'YOUR_DEVICE_ID',
 })
 ```
 

@@ -27,6 +27,7 @@ import lightSensors from './api/lightSensors.ts'
 import environmentSensors from './api/environmentSensors.ts'
 import openCloseSensors from './api/openCloseSensors.ts'
 import waterSensors from './api/waterSensors.ts'
+import electricalSensors from './api/electricalSensors.ts'
 import deviceSets from './api/deviceSets.ts'
 import rooms from './api/rooms.ts'
 import scenes from './api/scenes.ts'
@@ -40,6 +41,7 @@ export type { Capabilities } from './types/Capabilities.ts'
 export type { Controller } from './types/device/Controller.ts'
 export type { Device } from './types/device/Device.ts'
 export type { DeviceSet } from './types/DeviceSet.ts'
+export type { ElectricalSensor } from './types/device/ElectricalSensor.ts'
 export type { EnvironmentSensor } from './types/device/EnvironmentSensor.ts'
 export type { Home } from './types/Home.ts'
 export type { Hub } from './types/device/Hub.ts'
@@ -207,6 +209,7 @@ export async function createDirigeraClient({
     environmentSensors: environmentSensors(gotInstance),
     openCloseSensors: openCloseSensors(gotInstance),
     waterSensors: waterSensors(gotInstance),
+    electricalSensors: electricalSensors(gotInstance),
     deviceSets: deviceSets(gotInstance),
     rooms: rooms(gotInstance),
     scenes: scenes(gotInstance),

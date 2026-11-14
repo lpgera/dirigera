@@ -4,6 +4,7 @@ import type { DeviceSet } from '../DeviceSet.ts'
 import type { AirPurifierAttributes } from './AirPurifier.ts'
 import type { BlindsAttributes } from './Blinds.ts'
 import type { Controller } from './Controller.ts'
+import type { ElectricalSensorAttributes } from './ElectricalSensor.ts'
 import type { EnvironmentSensorAttributes } from './EnvironmentSensor.ts'
 import type { HubAttributes } from './Hub.ts'
 import type { LightAttributes } from './Light.ts'
@@ -76,6 +77,7 @@ export interface Device {
   deviceType:
     | 'airPurifier'
     | 'blinds'
+    | 'electricalSensor'
     | 'environmentSensor'
     | 'shortcutController'
     | 'lightController'
@@ -102,6 +104,7 @@ export interface Device {
     Partial<AirPurifierAttributes> &
     Partial<BlindsAttributes> &
     Partial<Controller['attributes']> &
+    Partial<ElectricalSensorAttributes> &
     Partial<EnvironmentSensorAttributes> &
     Partial<HubAttributes> &
     Partial<LightAttributes> &

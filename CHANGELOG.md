@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/lpgera/dirigera/compare/v2.0.2...HEAD)
 
+- Add support for GRILLPLATS plugs by introducing the `client.electricalSensors` API and the `ElectricalSensor`
+  type, including the `currentVoltage`, `currentAmps`, `currentActivePower`, `currentAcFrequency` and
+  `totalEnergyConsumed` attributes.
 - Update dependencies.
 
 ## [2.0.2](https://github.com/lpgera/dirigera/compare/v2.0.1...v2.0.2) - 2026-09-13

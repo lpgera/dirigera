@@ -9,6 +9,7 @@ import {
   scrollWheelController,
   dualButtonController,
 } from './controller.ts'
+import { electricalSensor } from './electricalSensor.ts'
 import {
   environmentSensor1,
   environmentSensor2,
@@ -39,6 +40,7 @@ const home: Home = {
     blindsController,
     scrollWheelController,
     dualButtonController,
+    electricalSensor,
     environmentSensor1,
     environmentSensor2,
     environmentSensor3,
